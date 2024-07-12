@@ -1,30 +1,23 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer'
-
-
-
+import Login from "./pages/login/Login";
+import {BrowserRouter , Routes , Route , Link} from 'react-router-dom'
+import SignUp from "./pages/signup/SignUp";
+import FindPw from './pages/login/FindPw'
+import ProSignUp from "./pages/signup/ProSignUp";
 
 function App() {
   return (
-
-    <div className='App'>
-
-      <Navbar/>
-      
+    <div>
       <BrowserRouter>
-        <Routes>
-
-          {/* <Route path='' element={<Navbar/>}/>   <-페이지 이동이 필요할 때 이런 형식으로 작성 */}
-
-        </Routes>
+      
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element = {<SignUp/>} />
+        <Route path="/findPw" element = {<FindPw/>} />
+        <Route path="/pro_signup" element = {<ProSignUp/>} />
+        {/* <Route path="/theater" element = {<Theater/>} /> */}
+      </Routes>
       </BrowserRouter>
-
-      <Footer/>
     </div>
   );
 }
-
 export default App;

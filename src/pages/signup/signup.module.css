@@ -1,0 +1,130 @@
+.signup_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin : 80px auto 0 auto;
+}
+
+.signup_label{
+    width: 540px;
+    margin-bottom: 7px;
+}
+
+.signup_h2{
+    font-size: 40;
+    font-weight: blod;
+    font-family: 'Pretendard', sans-serif;
+}
+
+.signup_p{
+    font-weight: 700;
+    font-family: 'Pretendard', sans-serif;
+    text-align: left;
+    font-size: 16px;
+    margin-top: 40px;
+}
+
+.signup_p2{
+    font-weight: 700;
+    font-family: 'Pretendard', sans-serif;
+    text-align: left;
+    font-size: 16px;
+    margin-top: 40px;
+    margin-bottom: 3px;
+}
+
+.signup_input{
+    background-color: rgba(132, 166, 127, 0.3);
+    border-radius: 20px;
+    border: 1px solid #000000;
+    width: 540px;
+    height: 60px;
+    position: relative;
+    padding-left: 30px;
+}
+
+.signup_gender{
+    height:50px;
+    width:180px;
+    border-radius:15px;
+    border:1px solid grey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px 0 10px;
+}
+
+.signup_for{
+    color : #909090;
+    font-size: 14px;
+}
+
+.signup_radio{
+    width: 20px;
+    height: 20px;
+}
+
+.signup_gender2{
+    display: flex;
+    align-items: center;
+    margin : 0 10px 0 10px;
+}
+
+.signup_email{
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+    height: 50px;
+}
+
+.signup_email_input{
+    border : none;
+    border-bottom: 1px solid #ccc;
+    padding-top: 23px;
+    padding-left: 2px;
+    position: relative;
+}
+
+.signup_email_input:focus,
+.signup_email_input2:focus,
+.signup_select:focus{
+    outline: none;
+}
+
+
+.signup_select{
+    border : none;
+    border-bottom: 1px solid #ccc;
+    margin-top: 20px;
+    margin-left: 5px;
+    width: 130px;
+}
+
+.f2{
+    color: #909090;
+    margin-top: 23px;
+    margin-left: 5px;
+}
+
+.signup_email_input2{
+    border : none;
+    border-bottom: 1px solid #ccc;
+    padding-top: 23px;
+    padding-left: 2px;
+    position: relative;
+    margin-left: 20px;
+}
+
+.signup_btn{
+    display: flex;
+    background-color:rgba(217, 217, 217, 0.30000001192092896);
+    width:280px;
+    height: 45px;
+    border-radius:15px;
+    color:rgba(0, 0, 0, 0.30000001192092896);
+    border: 1px solid rgba(217, 217, 217, 0.30000001192092896);
+    justify-content: center;
+    align-items: center;
+    margin : 40px auto 0 auto; /* 상 우 하 좌 */
+}
