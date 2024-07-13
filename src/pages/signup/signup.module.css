@@ -58,13 +58,20 @@
 .signup_for{
     color : #909090;
     font-size: 14px;
+    order : 1;
 }
 
 .signup_radio{
     width: 20px;
     height: 20px;
+    order : 2;
 }
 
+.signup_radio:checked  +.signup_for {
+    color: black; 
+  }
+
+  
 .signup_gender2{
     display: flex;
     align-items: center;

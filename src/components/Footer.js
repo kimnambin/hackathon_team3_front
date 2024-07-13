@@ -1,8 +1,9 @@
 import React from 'react'
+import styles from './Fixed.module.css';
 
 const Footer = () => {
   return (
-    <div>
+    <div className={styles.fot}>
       Footer
     </div>
   )

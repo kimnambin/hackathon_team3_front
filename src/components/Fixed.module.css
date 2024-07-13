@@ -1,6 +1,17 @@
 .nav{
-    background-color: black;
-    width: 100px;
+    /* background-color: wheat; */
+    width: 100%;
     height: 100px;
     color: wheat;
+    border-bottom: 1px solid grey;
+}
+
+/* 이건 임시로 넣은 것 언제든지 삭제 가능 */
+.fot{
+    /* background-color: wheat; */
+    width: 100%;
+    height: 100px;
+    color: wheat;
+    margin-top: 10px;
+    border-top: 1px solid grey;
 }

@@ -1,0 +1,77 @@
+.firstContainer{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    align-items: center;
+    justify-content: center;
+    margin: 60px auto 0 auto;
+}
+
+.title {
+    font-weight: 700;
+    font-family: 'Pretendard', sans-serif;
+    text-align: left;
+    font-size: 26px;
+    margin-bottom: 30px;
+    color :#000000;
+  }
+
+.btn_select{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    align-items: center;
+    margin: 85px 0 180px 0;
+}  
+
+.btn{
+    background-color:#61885b;
+    height:120px;
+    width:340px;
+    border-radius:10px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 90px;
+}
+
+.btn:hover,
+.proBtn:hover{
+    transform: scale(1.1);
+}
+
+.proBtn{
+    background-color:#ffd620;
+    height:130px;
+    width:340px;
+    border-radius:10px;
+    display: flex;
+    flex-direction: column;
+}
+
+strong{
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.btnP{
+    color: white;
+    font-size: 14px;
+}
+
+.btnP2{
+    display: block;
+    color: white;
+    font-size: 11px;
+    text-align: left;
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+
+.btnpContanier{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 15px;
+    margin-top: 5px;
+}
