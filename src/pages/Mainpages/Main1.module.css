@@ -1,0 +1,64 @@
+.mainBox{
+    box-sizing: border-box;
+    width: 170vh;
+    height: 280px;
+    background-color: rgb(113, 165, 123);
+    border-radius: 20px;
+    position: absolute;
+    left: 60px;
+    margin-top: 230px;
+}
+
+.mainTitleText{
+    font-size: 30px;
+    color: white;
+    position: absolute;
+    left: 50px;
+    top: 30px;
+    font-weight: bold;
+}
+
+.mainText{
+    font-size: 30px;
+    color: white;
+    position: absolute;
+    left: 50vh;
+    top: 70px;
+}
+
+.main2Container{
+    box-sizing: border-box;
+    width: 170vh;
+    position: absolute;
+    top: 70vh;
+    left: 60px;
+}
+
+.main2Text{
+    font-size: 18px;
+    font-weight:500;
+    line-height: 170%;
+    margin-top: -90px;
+}
+
+.main2Text img{
+    width: 60px;
+    float: left;
+}
+
+.main2InBox{
+    margin-top: 40px;
+    margin-left: 30px;
+    box-sizing: border-box;
+    width: 130vh;
+    height: 50px;
+    background-color: rgb(174, 194, 180);
+    border-radius: 30px;
+    border-top-left-radius: 0px;
+    font-weight: 600;
+}
+
+.main2InBox p{
+    padding-top: 14px;
+    padding-left: 40px;
+}
