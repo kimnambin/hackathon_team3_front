@@ -10,7 +10,7 @@ const Main1 = () => {
         <Container>
             <div className={styles.mainTitleText}>끄적임</div>
             <div className={styles.mainText}>시들어가는 나의 마음,<br/>
-                따뜻하게 보듬어줄 손길을 찾는다면, <span style={{fontSize: 70}}>끄적임</span>
+                따뜻하게 보듬어줄 손길을 찾는다면, <span style={{fontSize: 55}}>끄적임</span>
             </div>
         </Container>
       </div>
@@ -25,6 +25,37 @@ const Main1 = () => {
         <div className={styles.main2InBox}>
           <p>적어도 나는 네 덕분에 행복해졌다고, 말해주고 싶었어.</p>
         </div>
+      </div>
+
+      <div className={styles.main3Container}>
+        <div className={styles.main3Box1}>
+          <div className={styles.main3Box1Text}>
+            <span>요즘들어 나의 마음이<br/>
+                시들어가는 기분이 든다면,</span>
+          </div>
+          
+          <div className={styles.main3Box1Section2}>       
+            <div style={{marginLeft: 30, color: "gray"}}>유저님의 마음을 들여다 볼 자가진단</div>
+            <div className={styles.line}></div>
+            <div className={styles.Arrow}></div>
+            <img src="https://st5.depositphotos.com/80218270/66816/v/1600/depositphotos_668167066-stock-illustration-man-doing-side-seated-wide.jpg" alt="" />
+          </div>        
+        </div>
+
+
+        <div className={styles.main3Box2}>
+          <div className={styles.main3Box2Text}>
+            <span>내 집 주변<br />
+                  가까운 정신의학과</span>
+            <img src="https://png.pngtree.com/png-clipart/20210829/original/pngtree-hospital-hand-drawn-cartoon-elements-png-image_6679286.jpg" alt="" />
+          </div>
+          <div className={styles.main2Text2}>
+            <div>찾아보기</div>
+            <div className={styles.line2}></div>
+            <div className={styles.Arrow2}></div>
+          </div>
+        </div>
+
       </div>
       
     </div>

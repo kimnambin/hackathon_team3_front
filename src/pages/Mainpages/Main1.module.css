@@ -1,7 +1,7 @@
 .mainBox{
     box-sizing: border-box;
     width: 170vh;
-    height: 280px;
+    height: 200px;
     background-color: rgb(113, 165, 123);
     border-radius: 20px;
     position: absolute;
@@ -10,7 +10,7 @@
 }
 
 .mainTitleText{
-    font-size: 30px;
+    font-size: 23px;
     color: white;
     position: absolute;
     left: 50px;
@@ -24,13 +24,14 @@
     position: absolute;
     left: 50vh;
     top: 70px;
+    line-height: 130%;
 }
 
 .main2Container{
     box-sizing: border-box;
     width: 170vh;
     position: absolute;
-    top: 70vh;
+    top: 60vh;
     left: 60px;
 }
 
@@ -50,7 +51,7 @@
     margin-top: 40px;
     margin-left: 30px;
     box-sizing: border-box;
-    width: 130vh;
+    width: 167vh;
     height: 50px;
     background-color: rgb(174, 194, 180);
     border-radius: 30px;
@@ -61,4 +62,119 @@
 .main2InBox p{
     padding-top: 14px;
     padding-left: 40px;
+}
+
+.main3Container{
+    box-sizing: border-box;
+    width: 100%;
+    margin-left: -50px;
+    height: auto;
+    position: absolute;
+    bottom: 11vh;
+    color: black;
+    display: flex;
+    justify-content: space-around;
+}
+
+.main3Box1{
+    background-color: rgb(238, 221, 110);
+    width: 115vh;
+    height: 170px;
+    margin-left: 100px;
+    border-radius: 10px;
+    margin-top: 200px;
+    cursor: pointer;
+}
+
+.main3Box1Text{
+    font-size: 30px;
+    margin-left: 30px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    line-height: 130%;
+}
+
+.main3Box1Section2{
+    display: flex;
+    justify-content: start;
+}
+
+.main3Box1Section2 img{
+    width: 150px;
+    margin-top: -110px;
+    margin-left: 100px;
+}
+
+.line{
+    content:"";
+    width: 50vh;
+	margin-top: 13px;
+    margin-left: 20px;
+	background:black;
+	height:2px;
+	font-size:0px;
+	line-height: 0px;
+}
+
+.Arrow{
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    transform: rotate(-135deg);
+    margin-top: 8px;
+    margin-left: -5px;
+}
+
+.main3Box2{
+    background-color: rgb(238, 221, 110);
+    width: 40vh;
+    height: 170px;
+    margin-top: 200px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.main3Box2Text{
+    font-size: 25px;
+    line-height: 130%;
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+.main3Box2Text img{
+    width: 80px;
+    margin-top: -50px;
+    margin-left: 20px;
+}
+
+.main2Text2{
+    display: flex;
+    justify-content: start;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.line2{
+    content:"";
+    width: 20vh;
+	margin-top: 20px;
+    margin-left: 20px;
+	background:black;
+	height:2px;
+	font-size:0px;
+	line-height: 0px;
+}
+
+.Arrow2{
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    transform: rotate(-135deg);
+    margin-top: 15px;
+    margin-left: -5px;
 }
