@@ -243,6 +243,88 @@
     border: 1px solid gray;
 }
 
+/* ==================================================== */
+/* 첨부파일 부분 */
+
+ input[type="file"] {  /*파일 필드 숨기기 */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0);
+    border: 0;
+  }
+  
+.file_container{
+  display: inline-block;
+  color: #999;
+  font-size: 14px;
+  line-height: 60px;
+  vertical-align: middle;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 20px;
+  border: 1px solid #000000;
+  width: 350px;
+  height: 60px;
+  padding-left: 30px;
+}  
+
+.file_p{
+    text-align: left;
+    width: 540px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.file_p2{
+    text-align: left;
+    width: 540px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.file_p3{
+    text-align: left;
+    width: 540px;
+    font-size: 15px;
+    font-weight: bold;
+    margin:20px 0 20px 0;
+    color : #e60000;
+}
+
+.file_p4{
+    text-align: left;
+    width: 540px;
+    font-size: 12px;
+    margin:0 0 20px 0;
+}
+
+.file_container_text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin : 10px auto 20px auto;
+    width: 540px;
+}
+
+.p_container{
+    display: flex;
+    flex-direction: column;
+    width: 570px;
+    align-items: flex-start;
+    justify-content: center; 
+    background-color: #f3f3f3;
+    margin: 0 auto;
+    padding: 8px 0 8px 20px;  /* 상우하좌 */
+    font-size: 11px;
+    color:#555555;
+    text-align: left;
+}
 
 .signup_btn{
     display: flex;
@@ -253,7 +335,7 @@
     color:white;
     justify-content: center;
     align-items: center;
-    margin : 40px auto 0 auto; /* 상 우 하 좌 */
+    margin : 10px auto 0 auto; /* 상 우 하 좌 */
     border : 1px solid #84A67F;
     font-size: 20px;
 }

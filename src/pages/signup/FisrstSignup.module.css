@@ -11,7 +11,7 @@
     font-weight: 700;
     font-family: 'Pretendard', sans-serif;
     text-align: left;
-    font-size: 26px;
+    font-size: 32px;
     margin-bottom: 30px;
     color :#000000;
   }
@@ -26,8 +26,8 @@
 
 .btn{
     background-color:#61885b;
-    height:120px;
-    width:340px;
+    height:100px;
+    width:270px;
     border-radius:10px;
     display: flex;
     flex-direction: column;
@@ -41,8 +41,8 @@
 
 .proBtn{
     background-color:#ffd620;
-    height:130px;
-    width:340px;
+    height:110px;
+    width:290px;
     border-radius:10px;
     display: flex;
     flex-direction: column;
@@ -51,18 +51,18 @@
 strong{
     color: white;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .btnP{
     color: white;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .btnP2{
     display: block;
     color: white;
-    font-size: 11px;
+    font-size: 9px;
     text-align: left;
     margin-left: 15px;
     margin-bottom: 15px;

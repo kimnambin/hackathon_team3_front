@@ -11,7 +11,7 @@
     font-weight: 700;
     font-family: 'Pretendard', sans-serif;
     text-align: left;
-    font-size: 26px;
+    font-size: 32px;
     margin-bottom: 30px;
     color :#000000;
   }
@@ -64,8 +64,8 @@
     color: #818181;
   }
   
-  .loginBtn {
-    background-color: #84A67F;
+  .no_LoginBtn { 
+    background-color: #D9D9D9;
     height: 48px;
     width: 320px;
     border-radius: 15px;
@@ -77,6 +77,12 @@
     align-items: center;
     margin-bottom: 20px;
     margin-top: 30px;
+    cursor: not-allowed;
+  }
+
+  .loginBtn {
+    background-color: #84A67F;
+    cursor: pointer;
   }
   
   .loginP {

@@ -2,7 +2,7 @@ import Login from "./pages/Login/Login";
 import {BrowserRouter , Routes , Route } from 'react-router-dom'
 import SignUp from "./pages/Signup/SignUp";
 import FindPw from './pages/Login/FindPw'
-import ProSignUp from "./pages/Signup/ProSignUp";
+import ProSignUp from "./pages/Professional/ProSignUp";
 import FirstSignup from "./pages/Signup/FirstSignup";
 import Navbar from './components/Navbar';
 import Footer from './components/Footer'

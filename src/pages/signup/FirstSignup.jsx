@@ -22,11 +22,12 @@ export default function FirstSignup() {
                     <p className={styles.btnP}>으로 가입하기</p>
                 </div>
 
-                <p className={styles.btnP2}>...</p>
+                <p className={styles.btnP2}>끄적임의 유저가 되어 고민을 끄적이고<br/>
+                    위로의 손길을 받아보세요</p>
             </button>
         </Link>
 
-        <Link to='/prosignup' style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link to='/pro_signup' style={{ textDecoration: 'none', color: 'inherit' }}>
             <button className={styles.proBtn}>
                 <div className={styles.btnpContanier}>
                     <strong>전문가</strong>
