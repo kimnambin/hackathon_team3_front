@@ -140,7 +140,7 @@ export default function SignUp() {
       <input type='number' placeholder='년(4자)' className={styles.input_date} />
       <select className={styles.input_date2}>
  
-      <option style={{ color: 'red' }} hidden selected >월</option>
+      <option hidden selected >월</option>
       {Array.from({ length: 12 }, (_, index) => (
        <option key={index} value={`Month ${index + 1}`}>{index + 1}월</option>
       ))}
