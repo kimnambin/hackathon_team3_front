@@ -4,7 +4,7 @@
     height: 200px;
     background-color: rgb(113, 165, 123);
     border-radius: 20px;
-    position: absolute;
+    position: relative;
     left: 60px;
     margin-top: 230px;
 }
@@ -12,8 +12,8 @@
 .mainTitleText{
     font-size: 23px;
     color: white;
-    position: absolute;
-    left: 50px;
+    position: relative;
+    left: -60px;
     top: 30px;
     font-weight: bold;
 }
@@ -21,18 +21,16 @@
 .mainText{
     font-size: 30px;
     color: white;
-    position: absolute;
-    left: 50vh;
-    top: 70px;
+    margin-left: 35vh;
+    margin-top: 40px;
     line-height: 130%;
 }
 
 .main2Container{
     box-sizing: border-box;
     width: 170vh;
-    position: absolute;
-    top: 60vh;
-    left: 60px;
+    margin-top: 150px;
+    margin-left: 50px;
 }
 
 .main2Text{
@@ -65,15 +63,11 @@
 }
 
 .main3Container{
-    box-sizing: border-box;
-    width: 100%;
-    margin-left: -50px;
-    height: auto;
-    position: absolute;
-    bottom: 11vh;
     color: black;
     display: flex;
     justify-content: space-around;
+    margin-top: 70px;
+    margin-right: 70px;
 }
 
 .main3Box1{
@@ -82,7 +76,6 @@
     height: 170px;
     margin-left: 100px;
     border-radius: 10px;
-    margin-top: 200px;
     cursor: pointer;
 }
 
@@ -131,7 +124,6 @@
     background-color: rgb(238, 221, 110);
     width: 40vh;
     height: 170px;
-    margin-top: 200px;
     border-radius: 10px;
     cursor: pointer;
 }
