@@ -1,31 +1,33 @@
 import React from 'react'
+import styles from '../Comm.module.css'
+import 'pretendard/dist/web/static/pretendard.css';
 import { FaAngleRight } from "react-icons/fa";
-import styles from './Comm.module.css'
 import { Link } from 'react-router-dom';
 
-export default function CommView() {
 
-
-  return (
-    <div className={styles.CommList_container}>
-      
-    {/* 왼쪽 */}
-    <div className={styles.CommList_left}>
-        <h2 className={styles.CommList_left_h2}>커뮤니티</h2>
-        <p className={styles.CommList_left_h2}>끄적여봐,<br/>
-        깊이 담긴 내면의 이야기들을<br/>
-        우리가 끄덕여줄게.</p>
-        <p className={styles.CommList_left_p}>고민 끄적끄적</p>
-        <Link to='/pro_comm_list' style={{ textDecoration: 'none', color: 'inherit' }}>
-        <p className={styles.CommList_left_p2} >전문의 정보 끄적끄적</p>
-        </Link>
-    </div>
+export default function ProCommView() {
+ 
+    return (
+      <div className={styles.CommList_container}>
+        
+        {/* 왼쪽 */}
+        <div className={styles.CommList_left}>
+            <h2 className={styles.CommList_left_h2}>커뮤니티</h2>
+            <p className={styles.CommList_left_h2}>끄적여봐,<br/>
+            깊이 담긴 내면의 이야기들을<br/>
+            우리가 끄덕여줄게.</p>
+            <Link to='/comm_list' style={{ textDecoration: 'none', color: 'inherit' }}>
+            <p className={styles.CommList_left_p2}>고민 끄적끄적</p>
+            </Link>
+            <p className={styles.CommList_left_p}>전문의 정보 끄적끄적</p>
+        </div>
+    
 
     {/* 오른쪽 부분 */}
     <div className={styles.view_right}>
       <div className={styles.CommList_right_header}>
         <p className={styles.header_p}>홈 <FaAngleRight /> 커뮤니티 <FaAngleRight /> 고민 끄적끄적 <FaAngleRight /></p>
-        <p className={styles.header_p2}>모든 끄적임</p> 
+        <p className={styles.header_p2}>전문의 정보 끄적끄적</p> 
       </div>
 
       {/* 라인 */}
@@ -44,10 +46,8 @@ export default function CommView() {
       {/* 닉네임 날짜 수정 삭제 */}
       <div className={styles.view_nick}>
               <img className={styles.view_img} alt='' src='./img/profile.jpg'></img>
-              <p className={styles.view_p}>여기에 닉네임</p>
+              <p className={styles.view_pro_p}>여기에 닉네임 전문의</p>
               <p className={styles.view_p2}>YYYY-MM-DD hh:ss</p>
-              <p className={styles.view_p3}>수정</p>
-              <p className={styles.view_p3}>삭제</p>
       </div>
 
       {/* 내용 부분 */}
@@ -79,13 +79,11 @@ export default function CommView() {
 
       {/* 댓글 보이는 부분 */}
       <div className={styles.view_show_comment}>
-      <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAfCAYAAAAfrhY5AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAECSURBVHgB7ZW9DcIwEIXPQJF0TibIBjBC2IANYAQ2ASZgBUYIHR3eADaAdOnCs5QCRbbiM/kp8CdFJ/lOeedz/EIUCARGQHCKpZQrhI0lfXwDYrAgHnshxNaUqOtaIVyIwYx4FJ65QcUVd+Q+4kYw8pI84IpnpkV8B0saQXxnWcdFkDkxcb5qeHmGHT5seYy+wLGvicHctTCO47vuwZZHY1kURVRV1ZX6FE/T9IyQd9WhgRwNlGjgRg50nrl2NYx0R47YTMhY61KEBrSlfo9cQuSAqNDYqVWu77yiIUmS5IWHZadtfjGZsvHz8cUb4WnEwRMP28/7Ep925z5/skDgP/kAvWlK4ab/5gwAAAAASUVORK5CYII=' alt=''
-      className={styles.view_show_icon}>
-      </img>
+      
 
       <div className={styles.view_nick}>
               <img className={styles.show_comment_img} alt='' src='./img/profile.jpg'></img>
-              <p className={styles.pronick_comment}>여기에 닉네임 (전문의)</p>
+              <p className={styles.view_p}>여기에 닉네임</p>
               <p className={styles.view_p2}>YYYY-MM-DD hh:ss</p>
       </div>
       <div className={styles.view_comment}>

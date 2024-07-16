@@ -1,12 +1,11 @@
 import React, { useContext } from 'react'
-import styles from './Comm.module.css'
+import styles from '../Comm.module.css'
 import 'pretendard/dist/web/static/pretendard.css';
 import { FaAngleRight } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import { category, category2  , CategoryContext} from '../../components/Comm/Comm_context';
+import { category, category2  , CategoryContext} from '../../../components/Comm/Comm_context';
 
-
-export default function CommList(props) {
+export default function ProCommList() {
 
   const { categoryBtn, ClickCategory} = useContext(CategoryContext);
  
@@ -19,17 +18,17 @@ export default function CommList(props) {
           <p className={styles.CommList_left_h2}>끄적여봐,<br/>
           깊이 담긴 내면의 이야기들을<br/>
           우리가 끄덕여줄게.</p>
-          <p className={styles.CommList_left_p}>고민 끄적끄적</p>
-          <Link to='/pro_comm_list' style={{ textDecoration: 'none', color: 'inherit' }}>
-          <p className={styles.CommList_left_p2} >전문의 정보 끄적끄적</p>
+          <Link to='/comm_list' style={{ textDecoration: 'none', color: 'inherit' }}>
+          <p className={styles.CommList_left_p2}>고민 끄적끄적</p>
           </Link>
+          <p className={styles.CommList_left_p}>전문의 정보 끄적끄적</p>
       </div>
 
       {/* 오른쪽 부분 */}
       <div className={styles.CommList_right}>
         <div className={styles.CommList_right_header}>
           <p className={styles.header_p}>홈 <FaAngleRight /> 커뮤니티 <FaAngleRight /></p>
-          <p className={styles.header_p2}>고민 끄적끄적</p> 
+          <p className={styles.header_p2}>전문의 정보 끄적끄적</p> 
         </div>
 
         <div className={styles.header_category}>
@@ -55,7 +54,7 @@ export default function CommList(props) {
           <div className={styles.CommList_right_mid}>
               <p className={styles.right_mid_p}>총 건</p>
               <div className={styles.right_mid}>
-                <Link to='/comm_write'>
+                <Link to='/pro_comm_write'>
                   <button className={styles.right_mid_btn}>끄적이기</button></Link>
                   <select className={styles.right_mid_select}>
                     <option >최신순</option>
@@ -103,3 +102,4 @@ export default function CommList(props) {
     </div>
   )
 }
+
