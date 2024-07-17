@@ -225,8 +225,10 @@
 
 .write_header3{
     display: flex;
+    flex-direction: row;
+    align-items: center;
     justify-content: flex-end;
-    margin : 10px 0;
+    margin : 5px 0;
     width: 100%;
 }
 
@@ -313,9 +315,9 @@
 .add_btn{
     background-color:#84a67f;
     border : 1px solid #84a67f;
-    height:41px;
-    width:101px;
-    border-radius:30px;
+    height:41px !important;
+    width:101px !important;
+    border-radius:30px !important;
     color: #ffffff;
     margin-left: 15px;
     font-size: 20px;

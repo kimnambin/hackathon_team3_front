@@ -16,6 +16,7 @@ import ProCommWrite from "./pages/Community/Professional/ProCommWrite";
 import Profile from "./pages/Mypage/Profile";
 import  { createGlobalStyle } from 'styled-components';
 import MyPost from "./pages/Mypage/MyPost";
+import HospitalMap from "./pages/Mypage/HospitalMap";
 
 //글로벌 스타일
 const GlobalStyle = createGlobalStyle`
@@ -57,10 +58,11 @@ function App() {
             <Route path="/pro_comm_list" element={<ProCommList />} />
             <Route path="/pro_comm_view" element={<ProCommView />} />
             <Route path="/pro_comm_write" element={<ProCommWrite />} />
-
+            
             {/* 마이페이지 */}
             <Route path="/profile" element={<Profile />} />
             <Route path="/mypost" element={<MyPost />} />
+            <Route path="/hospital_map" element={<HospitalMap />} />
           </Routes>
         </CategoryProvider>
 

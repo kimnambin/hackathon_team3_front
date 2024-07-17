@@ -1,24 +1,31 @@
 //유저가 작성한 글
 
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../Community/Comm.module.css'; // 커뮤니티에서 가져온 스타일
 import 'pretendard/dist/web/static/pretendard.css'; // 프리텐다드 폰트 스타일
 import styles2 from './Mypage.module.css'; // 마이페이지에서 가져온 스타일
 import { Link } from 'react-router-dom';
 
 export default function MyPost() {
+
+  const [test , setTest] = useState(false);
+
+  const handleTest = () => {
+    setTest(!test)
+  }
+
   return (
     <div className={styles2.MyPost}>
 
     {/* 상단 부분 */}
     <div className={styles2.MyPost_top}>
      
-        <div className={styles2.Profile_top01}>
+        <div className={styles2.MyPost_top01}>
           <img className={styles2.Profile_img} src='./img/profile.jpg' alt='' />
-          <p className={styles2.Profile_top01_p}>
+          <p className={styles2.MyPost_top_p} onClick={handleTest}>
             나의 활동
           </p>
-          <p className={styles.right_mid_p}>작성한 게시글 0건</p>
+          <p className={styles.MyPost_top_p2}>작성한 게시글 0건</p>
         </div>
 
         <div className={styles2.Profile_top02}>
@@ -26,12 +33,11 @@ export default function MyPost() {
         </div>
     </div>
       
-        
-
-
+        {/* 여기가 작성한 내용들 */}
       <div className={styles2.postList}>
+
         {Array.from({ length: 4 }, (_, i) => (
-          <div className={styles.CommList_main} key={i}>
+          <div className={styles2.List} key={i} style={{display : test ? 'flex' : 'none'}}>
             <h3 className={styles.main_h3}>세상에 저 혼자인 느낌이...</h3>
             <p className={styles.main_p}>이상하게 이 세상에 </p>
             
@@ -39,10 +45,9 @@ export default function MyPost() {
             <div className={styles.CommList_main_bottom}>
               {/* 맨 밑 왼쪽 */}
               <div className={styles.main_bottom}>
-                <img className={styles.main_img} src='./img/profile.jpg' alt='' />
-                <p className={styles.main_p}>여기에 닉네임</p>
+                <p className={styles2.MyPost_p}>여기에 닉네임</p>
                 <p className={styles.p_line}></p>
-                <p className={styles.main_p2}>1분전</p>
+                <p className={styles.MyPost_p}>1분전</p>
               </div>
               <div className={styles.main_bottom2}>
                 <img className={styles.main_icon} src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAYCAYAAAARfGZ1AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGzSURBVHgB3VTtUcJAEN0wFBArMHSAFSTpIFQgVgAdIBWAFRgrkA6SVCBWYKzAdBDfgz3mCHdhxow/dGcud5fdffduP07kr0ogA6QsywJTgpFjRFwHQfAYx/F6EHhRFBmAXl26tm1v0jRtRvJzCX0KAnMeAr7DaBz/c7PwhgXXZvxWWE7lyJJAe1z5BcxytVnCZmO51dBDndZOcDhEcHiWY6J8cgLR2G+w/8T/uQG+AFdgVkCkAE+YdwpC9pnehvpGD9j7GJyBW6W1V0dXTElii0MWSuDOZzeyHOYKXPcBU6BbkoveYOmzs6sl4wfAawIzRLjJF5Omh2fYt0y0seOMG9xfBYdRrKxyS9841qHalZrEiERc4GNlFapTbRSa9Ym1L+WyupjMW9ECEB/z35ATE8YXU2jeBdxmilC9dR2gfzChg88Hpsj4SA9zU6+HxGr91h17ApRc8HDRcFwtRSv7K80B/6UYlTn8rLW17Y2fS/qaaGa3si1VVbHdWaJ1kiQTH/jY3jCe2v6MNy5QkFXZaf8F7BiSQ/tLjwx5uGZ974oT3DpkrkzZXKEyfZfjQ7aVfy3fA/EHOjSA094AAAAASUVORK5CYII=' alt='' />
@@ -53,9 +58,20 @@ export default function MyPost() {
               </div>
             </div>
 
-            {i !== 3 && <div className={styles.line}></div>}
+            {i !== 3 && <div className={styles2.line}></div>}
           </div>
         ))}
+
+        {/* 글작성이 없을 때 */}
+        <div className={styles2.No_postList} style={{display : test ? 'none' : 'flex'}}>
+            <p>유저님이 끄적인 게시물이 없습니다. <br/>
+            혹시 무슨 고민이 있다면 끄적여보세요.✏️</p>
+            <Link to='/comm_write'>
+            <button className={styles2.No_postList_btn}>끄적이러 가기</button>
+            </Link>
+        </div>
+
+
       </div>
     </div>
   );
