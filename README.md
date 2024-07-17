@@ -15,8 +15,9 @@
 |:-:|:-:|
 | <img src="https://github.com/user-attachments/assets/a1f14956-e036-426d-aaed-abd19999f2db" width="467" height="333"/> | <img src="https://github.com/user-attachments/assets/09d0a9f1-b6c2-48fe-af2a-a27e28b8a63e" width="467" height="333"/> | 
 
-| 전문가 글 보기 |  | 
+| 전문가 글 보기 | 프로필 페이지 | 
 |:-:|:-:|
-| <img src="https://github.com/user-attachments/assets/a1d802e7-f57d-4859-a627-268ed9c8af63" width="467" height="333"/> | <img src="" width="467" height="333"/> | 
+| <img src="https://github.com/user-attachments/assets/a1d802e7-f57d-4859-a627-268ed9c8af63" width="467" height="333"/> | <img src="https://github.com/user-attachments/assets/b9da0ec2-629a-449e-bba5-14545d8adab5" width="467" height="333"/> | 
+
 
 
