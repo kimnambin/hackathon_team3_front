@@ -1,4 +1,5 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Navbar from './components/Navbar';
@@ -27,38 +28,32 @@ import Manager from './pages/manager/Manager';
 function App() {
   return (
     <div className='App'>
-      <BrowserRouter>
-        <Navbar />
+      <Navbar />
 
-        <Routes>
-          <Route path='/' element={<Main1/>}/>
-
-          {/*우울증 자가진단 */}
-          <Route path='/blue' element={<Blue />} />
-          <Route path='/blue2' element={<Blue2 />} />
-          <Route path='/blue3' element={<Blue3 />} />
-          <Route path='/blue4' element={<Blue4 />} />
-          <Route path='/blueResult' element={<BlueResult />} />
-
-          {/* 스트레스 자가진단 */}
-          <Route path='/StressTest' element={<StressTest />} />
-          <Route path='/StressTest2' element={<StressTest2 />} />
-          <Route path='/stressResult' element={<StressResult />} />
-
-          {/* 불안 자가진단 */}
-          <Route path='/anxiety' element={<Anxiety />} />
-          <Route path='/anxiety2' element={<Anxiety2 />} />
-          <Route path='/anxiety3' element={<Anxiety3 />} />
-          <Route path='/anxiety4' element={<Anxiety4 />} />
-          <Route path='/anxiety5' element={<Anxiety5 />} />
-          <Route path='/AnxietyResult' element={<AnxietyResult />} />
-
-          {/* 관리자 페이지 */}
-          <Route path='/Manager' element={<Manager />} />
-        </Routes>
-
-        <Footer />
-      </BrowserRouter>
+      <Routes>
+        <Route path='/Manager' element={<Main1 />} />
+        {/* 우울증 자가진단 */}
+        <Route path='/blue' element={<Blue />} />
+        <Route path='/blue2' element={<Blue2 />} />
+        <Route path='/blue3' element={<Blue3 />} />
+        <Route path='/blue4' element={<Blue4 />} />
+        <Route path='/blueResult' element={<BlueResult />} />
+        {/* 스트레스 자가진단 */}
+        <Route path='/StressTest' element={<StressTest />} />
+        <Route path='/StressTest2' element={<StressTest2 />} />
+        <Route path='/stressResult' element={<StressResult />} />
+        {/* 불안 자가진단 */}
+        <Route path='/anxiety' element={<Anxiety />} />
+        <Route path='/anxiety2' element={<Anxiety2 />} />
+        <Route path='/anxiety3' element={<Anxiety3 />} />
+        <Route path='/anxiety4' element={<Anxiety4 />} />
+        <Route path='/anxiety5' element={<Anxiety5 />} />
+        <Route path='/AnxietyResult' element={<AnxietyResult />} />
+        {/* 관리자 페이지 */}
+        <Route path='/' element={<Manager />} />
+      </Routes>
+      
+      <Footer />
     </div>
   );
 }

@@ -1,0 +1,80 @@
+.pageText{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bolder;
+    color: black;
+    margin-top: 250px;
+}
+
+.acceptButtonBox{
+    display: flex;
+    justify-content: start;
+    margin-top: 100px;
+    margin-left: 110px;
+}
+
+.acceptButton1{
+    border-radius: 20px;
+    background-color: rgb(120, 156, 130);
+    width: 150px;
+    height: 50px;
+    border: none;
+    color: white;
+    margin-right: 50px;
+}
+
+.acceptButton2{
+    border-radius: 20px;
+    width: 150px;
+    height: 50px;
+    border: none;
+    background-color: rgb(165, 164, 164);
+    color: white;
+}
+
+.requestSection1{
+    margin-top: 80px;
+    margin-left: 100px;
+}
+
+.requestSection1 p{
+    margin-left: 20px;
+}
+
+.situationText span{
+    margin-right: 250px;
+    font-size: 13px;
+}
+
+.requestSection2{
+    display: flex;
+    justify-content: start;
+}
+
+.requestBox{
+    box-sizing: border-box;
+    width: 200px;
+    height: 60px;
+    background-color: white;
+    border-radius: 20px;
+    border:solid 1px black;
+    margin-right: 100px;
+    margin-top: -10px;
+}
+
+.stateBox{
+    box-sizing: border-box;
+    width: 120vh;
+    height: auto;
+    border: solid 1px black;
+    border-radius: 10px;
+    margin-left: 100px;
+    margin-top: 100px;
+}
+
+.stateText{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid 1px black;
+    padding: 20px 30px;
+}
