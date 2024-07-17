@@ -183,6 +183,11 @@
 }
 
 /* 다음 페이지 버튼 */
+.pageButtonBox{
+    display: flex;
+    justify-content: center;
+}
+
 .nextPage{
     box-sizing: border-box;
     background-color: rgb(152, 173, 158);
@@ -191,8 +196,8 @@
     border-radius: 10px;
     text-align: center;
     margin-top: 100px;
+    margin-left: 50px;
     border: none;
-    margin-left: 50vh;
     display: flex;
     justify-content: center;
 }
@@ -223,6 +228,28 @@
     position: relative;
     top: 16px;
     left: -9px;
+}
+
+.priviousPageline{
+    display: inline-block;
+    background-color: white;
+    height: 2px; /* 줄의 두께 */
+    width: 70px; /* 줄의 길이 */
+    position: relative;
+    top: 20px;
+    margin-right: 20px;
+}
+
+.priviousPageArrow{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid white;
+    border-top: 2px solid white;
+    transform: rotate(-135deg);
+    position: relative;
+    top: 16px;
+    left: -175px;
 }
 
 /* 테스트 결과 박스 */

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
 import styles from './Stress.module.css'
+import { useNavigate } from 'react-router-dom';
 
 const TestPart = ({ number, text }) => (
     <div className={styles.testpart2}>
@@ -10,6 +11,28 @@ const TestPart = ({ number, text }) => (
 );
 
 const StressTest = () => {
+    // 네비게이트 함수
+    const Navigate = useNavigate();
+
+    const goToMain=()=>{
+        Navigate('/')
+    }
+
+    const goToBlue=()=>{
+        Navigate('/blue')
+    }
+
+    const goToStress=()=>{
+        Navigate('/StressTest')
+    }
+    
+    const goToAnxiety=()=>{
+        Navigate('/anxiety')
+    }
+
+    const nextPage=()=>{
+        Navigate('/StressTest2')
+    }
     
     const testData = [
         { number: 2, text: '인생에서 중요한 일들을 조절할 수 없다는 느낌을 받는다.' },
@@ -20,19 +43,19 @@ const StressTest = () => {
   return (
     <Container>
       <div className={styles.topText}>
-            <div className={styles.topTextCusor}>홈</div>
+            <div className={styles.topTextCusor} onClick={goToMain}>홈</div>
             <div className={styles.Arrow}></div>
-            <div className={styles.topTextCusor}>자가진단</div>
+            <div className={styles.topTextCusor} onClick={goToBlue}>자가진단</div>
             <div className={styles.Arrow}></div>
-            <div className={styles.topTextCusor}>스트레스</div>
+            <div className={styles.topTextCusor} onClick={goToStress}>스트레스</div>
         </div>
 
         <div style={{fontSize: 20, fontWeight: "bold"}}>나의 마음 들여다보기</div>
 
         <div className={styles.topSetion2}>
-            <div className={styles.section2dsign}><span>우울증</span></div>
-            <div className={styles.section2dsign}><span>스트레스</span></div>
-            <div className={styles.section2dsign}><span>불안</span></div>
+            <div className={styles.section2dsign}><span onClick={goToBlue}>우울증</span></div>
+            <div className={styles.section2dsign}><span onClick={goToStress}>스트레스</span></div>
+            <div className={styles.section2dsign}><span onClick={goToAnxiety}>불안</span></div>
         </div>
 
         <div className={styles.topSetion3}>
@@ -47,7 +70,7 @@ const StressTest = () => {
 
         <div className={styles.topSetion4}>
             <p className={styles.section4p1}>왼쪽부터 0점 <span className={styles.line}></span> <span className={styles.Arrow2}></span> 3점입니다.</p> <br/>
-            <p>(1일 이하 : 0점, 1~2일 : 1점, 3~4일: 2점, 5일 이상: 3점)</p>
+            <p>(전혀 아니다 : 0점, 조금 느꼈다 : 1점, 상당히 느꼈다: 2점, 심하게 느꼈다: 3점)</p>
         </div>
 
         {/* 테스트 첫 문항 부분 */}
@@ -101,7 +124,7 @@ const StressTest = () => {
             </div>
         </div>
 
-        <button className={styles.nextPage}>
+        <button className={styles.nextPage} onClick={nextPage} style={{marginLeft: '52vh'}}>
             <p>다음 페이지</p> <span className={styles.nextPageline}></span> <span className={styles.nextPageArrow}></span>
         </button>
 

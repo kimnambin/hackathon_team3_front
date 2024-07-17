@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './Blue.module.css'
 import { Container } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom';
 
 const TestPart = ({ number, text }) => (
     <div className={styles.testpart2}>
@@ -10,6 +11,28 @@ const TestPart = ({ number, text }) => (
 );
 
 const Blue = () => {
+    // 네비게이트 함수
+    const Navigate =useNavigate(); 
+    
+    const goToMain=()=>{
+        Navigate('/')
+    }
+
+    const goToBlue=()=>{
+        Navigate('/blue')
+    }
+
+    const goToStress=()=>{
+        Navigate('/StressTest')
+    }
+    
+    const goToAnxiety=()=>{
+        Navigate('/anxiety')
+    }
+
+    const nextPage=()=>{
+        Navigate('/blue2')
+    }
 
     const testData = [
         { number: 2, text: '먹고 싶지 않고, 식욕이 없었다.' },
@@ -22,7 +45,7 @@ const Blue = () => {
     <Container>
 
         <div className={styles.topText}>
-            <div className={styles.topTextCusor}>홈</div>
+            <div className={styles.topTextCusor} onClick={goToMain}>홈</div>
             <div className={styles.Arrow}></div>
             <div className={styles.topTextCusor}>자가진단</div>
             <div className={styles.Arrow}></div>
@@ -32,9 +55,9 @@ const Blue = () => {
         <div style={{fontSize: 20, fontWeight: "bold"}}>나의 마음 들여다보기</div>
 
         <div className={styles.topSetion2}>
-            <div className={styles.section2dsign}><span>우울증</span></div>
-            <div className={styles.section2dsign}><span>스트레스</span></div>
-            <div className={styles.section2dsign}><span>불안</span></div>
+            <div className={styles.section2dsign} onClick={goToBlue}><span>우울증</span></div>
+            <div className={styles.section2dsign} onClick={goToStress}><span >스트레스</span></div>
+            <div className={styles.section2dsign} onClick={goToAnxiety}><span >불안</span></div>
         </div>
 
         <div className={styles.topSetion3}>
@@ -103,7 +126,7 @@ const Blue = () => {
             </div>
         </div>
 
-        <button className={styles.nextPage}>
+        <button className={styles.nextPage} onClick={nextPage} style={{marginLeft: '52vh'}}>
             <p>다음 페이지</p> <span className={styles.nextPageline}></span> <span className={styles.nextPageArrow}></span>
         </button>
 

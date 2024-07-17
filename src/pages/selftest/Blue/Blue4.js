@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './Blue.module.css'
 import { Container } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom';
 
 const TestPart = ({ number, text }) => (
     <div className={styles.testpart2}>
@@ -10,6 +11,33 @@ const TestPart = ({ number, text }) => (
 );
 
 const Blue4 = () => {
+    // 네비게이트 함수
+
+    const Navigate = useNavigate();
+
+    const goToMain=()=>{
+        Navigate('/')
+    }
+
+    const goToBlue=()=>{
+        Navigate('/blue')
+    }
+
+    const goToStress=()=>{
+        Navigate('/StressTest')
+    }
+    
+    const goToAnxiety=()=>{
+        Navigate('/anxiety')
+    }
+
+    const privPage=()=>{
+        Navigate('/blue3')
+    }
+
+    const nextPage=()=>{
+        Navigate('/blueResult')
+    }
 
     const testData = [
         { number: 17, text: '갑자기 울음이 나온다.' },
@@ -22,21 +50,21 @@ const Blue4 = () => {
     <Container>
 
         <div className={styles.topText}>
-            <div className={styles.topTextCusor}>홈</div>
+            <div className={styles.topTextCusor} onClick={goToMain}>홈</div>
             <div className={styles.Arrow}></div>
-            <div className={styles.topTextCusor}>자가진단</div>
+            <div className={styles.topTextCusor} onClick={goToBlue}>자가진단</div>
             <div className={styles.Arrow}></div>
-            <div className={styles.topTextCusor}>우울증</div>
+            <div className={styles.topTextCusor} onClick={goToStress}>스트레스</div>
         </div>
 
         <div style={{fontSize: 20, fontWeight: "bold"}}>나의 마음 들여다보기</div>
 
         <div className={styles.topSetion2}>
-            <div className={styles.section2dsign}><span>우울증</span></div>
-            <div className={styles.section2dsign}><span>스트레스</span></div>
-            <div className={styles.section2dsign}><span>불안</span></div>
+            <div className={styles.section2dsign}><span onClick={goToBlue}>우울증</span></div>
+            <div className={styles.section2dsign}><span onClick={goToStress}>스트레스</span></div>
+            <div className={styles.section2dsign}><span onClick={goToAnxiety}>불안</span></div>
         </div>
-
+        
         <div className={styles.topSetion3}>
             <p>
                 해당 자가진단은 <span>'우울증'</span>에 관한 것입니다. <br/>
@@ -103,9 +131,15 @@ const Blue4 = () => {
             </div>
         </div>
 
-        <button className={styles.nextPage}>
+        <div className={styles.pageButtonBox}>
+        <button className={styles.nextPage} onClick={privPage}>
+            <span className={styles.priviousPageline}></span><p>이전 페이지</p> <span className={styles.priviousPageArrow}></span>
+            </button>
+
+             <button className={styles.nextPage} onClick={nextPage}>
             <p>다음 페이지</p> <span className={styles.nextPageline}></span> <span className={styles.nextPageArrow}></span>
-        </button>
+            </button>
+        </div>
 
     </Container>
   )

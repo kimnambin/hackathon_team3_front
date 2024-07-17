@@ -1,9 +1,16 @@
 import React from 'react'
 import styles from './Main1.module.css'
 import { Container } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 
 const Main1 = () => {
+  const navgate = useNavigate();
+
+  const goToBlue =()=>{
+    navgate('/blue')
+  }
+
   return (
     <div>
       
@@ -30,7 +37,7 @@ const Main1 = () => {
 
       <div className={styles.main3Container}>
         <div className={styles.main3Box1}>
-          <div className={styles.main3Box1Text}>
+          <div className={styles.main3Box1Text} onClick={goToBlue}>
             <span>요즘들어 나의 마음이<br/>
                 시들어가는 기분이 든다면,</span>
           </div>
