@@ -1,0 +1,186 @@
+/* 프로필 페이지 전체 컨테이너 */
+.Profile_container{
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    align-items: center;
+    justify-content: center;
+    margin: 80px auto;
+}
+
+/* 상단부분 */
+.Profile_top{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    padding-right: 60px;
+}
+
+/* 상단 젤 왼쪽 */
+.Profile_top01{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 40px;
+}
+
+/* 상단 프사 */
+.Profile_img{
+    width: 90px;
+    height: 90px;
+}
+
+.Profile_top01_p{
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+/* 중간 부분 */
+.Profile_top02{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin-right: 50px;
+}
+
+/* 닉넴 부분 */
+.Profile_top02_p1{
+    font-size: 20px;
+    /* font-weight: bold; */
+}
+
+.Profile_top02_p2{
+    font-size: 12px;
+    margin-top: -5px;
+}
+
+/* 젤 오른쪽 */
+.Profile_top03{
+    display: flex;
+    flex-direction: row;
+    padding: 0 20px;
+    align-items: center;
+}
+
+.Profile_top03_p{
+    font-size: 20px;
+    /* font-weight: bold; */
+    margin-top: 0px;
+    margin-right: 20px;
+}
+
+.Profile_top03_img{
+    margin-top: -18px;
+    margin-right: 20px;
+}
+
+/* =================================== */
+/* 중간 부분 */
+.Profile_mid{
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+    justify-content: start;
+    
+}
+
+.Profile_mid_p{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0 10px 80px;
+}
+
+/* 나의 활동 부분 */
+.Profile_mid_content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color:rgba(219, 229, 217, 0.30000001192092896);
+    height:110px;
+    width:810px;
+    border-radius:30px;
+    margin: 10px 0 10px 80px;
+    padding: 0 40px;
+}
+
+/* 안에 내용 */
+.Profile_mid_content01{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Profile_mid_content_p{
+    margin-bottom: 0px;
+}
+
+.Profile_mid_content_line{
+    width:48px;
+    transform:rotate(-90deg);
+    border:1px solid rgba(0, 0, 0, 0.5);
+}
+
+/* 바닥의 둥근 부분 */
+.Profile_footer_content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color:rgba(255, 208, 0, 0.30000001192092896);
+    height:110px;
+    width:810px;
+    border-radius:30px;
+    margin: 10px 0 10px 80px;
+    padding: 0 40px;
+}
+
+.Profile_mid_footer_p{
+    font-size: 9px;
+    color:#414141;
+}
+
+.Profile_footer_btn{
+    background-color:#ffffff;
+    border : 1px solid #ffffff;
+    border-radius:15px;
+}
+
+/* ===================================================== */
+
+/* MyPost 부분 */
+
+/* 전체 컨테이너 */
+.MyPost{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin : 80px auto;
+    width: 80%;
+}
+
+/* 상단부분 */
+.MyPost_top{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: start;
+    margin-left: 0;
+    margin-bottom: 60px;
+}
+
+/* 글내용 부분 */
+.postList{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0 5px 15px;
+    margin : 30px auto 0 auto;
+    width: 920px;
+    border-radius: 25px;
+    border: 1px solid #84a67f;
+}

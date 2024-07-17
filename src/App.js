@@ -13,11 +13,30 @@ import { CategoryProvider } from './components/Comm/Comm_context';
 import ProCommList from "./pages/Community/Professional/ProCommList";
 import ProCommView from "./pages/Community/Professional/ProCommView";
 import ProCommWrite from "./pages/Community/Professional/ProCommWrite";
+import Profile from "./pages/Mypage/Profile";
+import  { createGlobalStyle } from 'styled-components';
+import MyPost from "./pages/Mypage/MyPost";
+
+//글로벌 스타일
+const GlobalStyle = createGlobalStyle`
+  * {
+    font-family: 'Pretendard', sans-serif;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+`;
+
+
 
 function App() {
+
   return (
     <BrowserRouter>
       <div>
+        <GlobalStyle  />
         <Navbar />
 
         <CategoryProvider>
@@ -39,6 +58,9 @@ function App() {
             <Route path="/pro_comm_view" element={<ProCommView />} />
             <Route path="/pro_comm_write" element={<ProCommWrite />} />
 
+            {/* 마이페이지 */}
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/mypost" element={<MyPost />} />
           </Routes>
         </CategoryProvider>
 
