@@ -76,19 +76,14 @@ const HospitalMap = () => {
   
       // 마커 배경 클래스 설정
       const markerClass = `markerbg marker_${index + 1}`;
-      let openHours = '';
-      if (place.open_now !== undefined) {
-        openHours = place.open_now ? '현재 영업 중' : '현재 영업 종료';
-      }
 
       // 리스트 아이템 내용 구성
       const content = `
         <div class="${markerClass}"></div>
-        <div class="info">
+        <div class="info" style="border-bottom: 1px solid #84A67F;">
           <h5>${place.place_name}</h5>
           <span class="gray">${place.address_name}</span><br>
           <span class="tel">${place.phone}</span>
-           <span class="gray">${place.openHours}</span>
         </div>
       `;
       item.innerHTML = content;
@@ -130,27 +125,7 @@ const HospitalMap = () => {
 
 
   return (
-    // <div className="map_wrap">
-    //   <div id="map" style={{ width: '100%', height: '500px', position: 'relative', overflow: 'hidden' }}></div>
-    //   <div id="menu_wrap" className="bg_white">
-    //     <div className="option">
-    //       <div>
-    //         <form onSubmit={handleFormSubmit}>
-    //           키워드 : <input type="text" value={keyword} onChange={handleKeywordChange} size="15" />
-    //           <button type="submit">검색하기</button>
-    //         </form>
-    //       </div>
-    //     </div>
-    //     <hr />
-    //     <ul id="placesList">
-    //       {/* 검색 결과 목록은 여기에 표시됩니다 */}
-    //     </ul>
-    //     <div id="pagination">
-    //       {/* 페이지네이션은 여기에 표시됩니다 */}
-    //     </div>
-    //   </div>
-    // </div>
-
+  
     <div className={styles.map_container}>
     {/* 왼쪽 */}
     <div className={styles.CommList_left}>
