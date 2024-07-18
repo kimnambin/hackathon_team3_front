@@ -2,7 +2,7 @@
 
 import React,{useState} from 'react'
 import styles from './ProSignup.module.css'
-
+import usePWContext from '../../components/pw/PwContext'
 
 export default function ProSignUp() {
   //체크 후 보이는 메시지 숨기는 용
@@ -20,14 +20,16 @@ export default function ProSignUp() {
     setCheckMsg('block')
   }
 
-  
+  //비밀번호 보기
+  const [showPw, handlePw ,showPw2, handlePw2] = usePWContext();
+
   //비밀번호 확인 용
   const [pw , setPw] = useState(''); //첫번째 비밀번호 입력
   const [checkPW , setCheckPW] = useState(''); //비밀번호 재확인
   const [matchpw , setMatchPW] =useState(false); //비밀번호 일치 여부
 
   //첫번째 비번 
-  const handlePW = (e) => {
+  const handlePW02 = (e) => {
     setPw(e.target.value)
     if(matchpw) setMatchPW(false) //비밀번호 일치하면 상태 변경
   }
@@ -87,30 +89,58 @@ export default function ProSignUp() {
       </div>
 
 
-         {/* 비밀번호 부분 */}
-         <div className={styles.signup_label}>
+        {/* 비밀번호 부분 */}
+        <div className={styles.signup_label}>
 
-        <div className={styles.signup_pw_container}>  
-          <p className={styles.signup_p2}>비밀번호</p> 
-          <p className={styles.signup_pw_p}> 영문/숫자 포함 6자 이상 </p>
-        </div>
-          <input type='password'  className={styles.signup_input} 
-          onChange={handlePW}/>
+<div className={styles.signup_pw_container}>  
+  <p className={styles.signup_p2}>비밀번호</p> 
+  <p className={styles.signup_pw_p}> 영문/숫자 포함 6자 이상 </p>
+</div>
+<div className={styles.search}>
+  <input 
+    type={showPw.type}
+    maxLength="16" 
+    aria-hidden='true' 
+    className={styles.inputField2}
+    value={pw}
+    onChange={handlePW02}
+  />
+  <span onClick={handlePw} className={styles.iconnn}>
+    {showPw.visible ? 
+      <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAYCAYAAAACqyaBAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAF1SURBVHgBxVaBUcMwDPx2gozgDcgGeAPYoNmAbAArMEG7ATCB0wmSDQITFCYAmdh3jptIcukdf/dXt31JtizL3kAPQ7wn3hLr8D1iIL4Tj8TXML4KLNERvwvogt3FqIgvhUFz7jHPkAo+reMfA0eOwZ8KO+KJcdZh2vsq6P1nQ+yFSeykwLXgoBXsnwR7u2ZowKdaChzRMj5OWKkBLm37TGvDbw5TUeZ76sCfhBka8OkyipW12eTU2zcywj7RGehT2gvaahtWnRrlOGarXkOs+iW7Ra0P/gAen8n4RtDWK3ZLuNsqRCm+hP8r6PGb9rcCh4OgHVbslvAcRVxHywuO05pEyxXcmM6Cawx5Z9IcNSP4a5DBQd8YfGH5e7sjHnDeNg/QZXI2Wy6l12ivI5hjbcGn6xGXB/YUr9ZGcNAHTXql+ivWge9oDZT4t8dEhAFfOBr6G6+k8ZzBYqrqkqAdFA/IDfQwmPbWhnHa5z8wdbcOBU/nHxvoTp2YPznCAAAAAElFTkSuQmCC' alt=''>
+      </img> 
+    : 
+      <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAYCAYAAAACqyaBAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAKKSURBVHgBxVbJkdpAFP3SsB1xBnIERgcolsOICGwiMBOBIYKBCGYcweAIjCOwOLAfUAaDM8BHKBa/Z0tUD6hbmDnMr1LRdL/+r//abcmFMh6PHcuyPuG7xVfAlKMsB4fDYYlvgK9fqVSWl+i0kgAg9W5ubu4x9ORy8Xe7XReH8OUa8sVikd9sNk+0Vq6XXniIpVxKPhwOC+l0+ru8dO1VwnBst9tGrVYLTtfs04npdPoZxD8NxAPbthvAvCuVShZ/MXcHDwVxYMw7wCyo92xN/RNavNCQyn6/b5fL5UfdOgg6ILvXrSMEdTUPjuTMZiSW1uIk4kgmk0kLnnnQLK9wADfKgSP5bDajxQXNph5cfKcclBVANzqI6Qox7aoxhS4a4Wl0+dBV58AOwU0DMd3VFcWy0EPc47EaGKrRaNSKw8eIF2GtkPxZ9AkW4KSuyDE0zxrcC5cmeHKFA7+3Q6sd0csgGoC4ZcDlEetm3L447Hq9btLtXwwg1ulK+fshAVvQ7DsTHPQjyY2gE+W/ExTm5XLJ2yihHyYEEkpVGIhZAs2+M0F+fLWz2WxPzNbfRgMc1IiFwse4fafClovE7Nmu666g1FQaBdY1B8xkHZZNKMp0VoUYSjfS8bfOw87l68DhlSoK1sXpGS7e39/g4rra/RD7jugloNUcnLZX1mZsrNDF2tVq9VXtle6G1fXIQ8dbjROIWUOnNJVKPeDi0F4aScShAQ31bj+7z+GBJjzwJHoJmKm5XK7PfAkfHWyz7BeeZg+7Xztyt5ac8maPCQqBvHuZTPI64n4mk3HjiCmJD8j5fO5BSUcMdRsjA4ShUywWfRMokTwS5enM+Dqi9Hkc7pf8ez77//N0/gP6TGNxpu9IZQAAAABJRU5ErkJggg==' alt=''>
+      </img> 
+    }
+  </span>
+</div>
 
-        {/* 비밀번호 재확인 */}
-        <div className={styles.signup_pw_container2}>  
-          <p className={styles.signup_p2}>비밀번호 재확인</p> 
-        </div>
-          <input type='password'  
-          className={`${styles.signup_input} ${matchpw ? styles.input_error : ''}`}
-          onChange={handleCheckPW}/>
-           <div className={styles.signup_id_container}>
-           <p></p>
-           {matchpw && (
-          <p className={styles.signup_error_msg}>비밀번호가 일치하지 않습니다.</p>
-           )}
-            </div>
-        </div>
+{/* 비밀번호 재확인 */}
+<div className={styles.signup_pw_container2}>  
+  <p className={styles.signup_p2}>비밀번호 재확인</p> 
+</div>
+<div className={styles.search}>
+  <input type={showPw2.type}  
+  className={`${styles.inputField2} ${matchpw ? styles.search_error : ''}`}
+  onChange={handleCheckPW}/>
+  <span onClick={handlePw2} className={styles.iconnn}>
+    {showPw2.visible ? 
+      <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAYCAYAAAACqyaBAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAF1SURBVHgBxVaBUcMwDPx2gozgDcgGeAPYoNmAbAArMEG7ATCB0wmSDQITFCYAmdh3jptIcukdf/dXt31JtizL3kAPQ7wn3hLr8D1iIL4Tj8TXML4KLNERvwvogt3FqIgvhUFz7jHPkAo+reMfA0eOwZ8KO+KJcdZh2vsq6P1nQ+yFSeykwLXgoBXsnwR7u2ZowKdaChzRMj5OWKkBLm37TGvDbw5TUeZ76sCfhBka8OkyipW12eTU2zcywj7RGehT2gvaahtWnRrlOGarXkOs+iW7Ra0P/gAen8n4RtDWK3ZLuNsqRCm+hP8r6PGb9rcCh4OgHVbslvAcRVxHywuO05pEyxXcmM6Cawx5Z9IcNSP4a5DBQd8YfGH5e7sjHnDeNg/QZXI2Wy6l12ivI5hjbcGn6xGXB/YUr9ZGcNAHTXql+ivWge9oDZT4t8dEhAFfOBr6G6+k8ZzBYqrqkqAdFA/IDfQwmPbWhnHa5z8wdbcOBU/nHxvoTp2YPznCAAAAAElFTkSuQmCC' alt=''>
+      </img> 
+    : 
+      <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAYCAYAAAACqyaBAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAKKSURBVHgBxVbJkdpAFP3SsB1xBnIERgcolsOICGwiMBOBIYKBCGYcweAIjCOwOLAfUAaDM8BHKBa/Z0tUD6hbmDnMr1LRdL/+r//abcmFMh6PHcuyPuG7xVfAlKMsB4fDYYlvgK9fqVSWl+i0kgAg9W5ubu4x9ORy8Xe7XReH8OUa8sVikd9sNk+0Vq6XXniIpVxKPhwOC+l0+ru8dO1VwnBst9tGrVYLTtfs04npdPoZxD8NxAPbthvAvCuVShZ/MXcHDwVxYMw7wCyo92xN/RNavNCQyn6/b5fL5UfdOgg6ILvXrSMEdTUPjuTMZiSW1uIk4kgmk0kLnnnQLK9wADfKgSP5bDajxQXNph5cfKcclBVANzqI6Qox7aoxhS4a4Wl0+dBV58AOwU0DMd3VFcWy0EPc47EaGKrRaNSKw8eIF2GtkPxZ9AkW4KSuyDE0zxrcC5cmeHKFA7+3Q6sd0csgGoC4ZcDlEetm3L447Hq9btLtXwwg1ulK+fshAVvQ7DsTHPQjyY2gE+W/ExTm5XLJ2yihHyYEEkpVGIhZAs2+M0F+fLWz2WxPzNbfRgMc1IiFwse4fafClovE7Nmu666g1FQaBdY1B8xkHZZNKMp0VoUYSjfS8bfOw87l68DhlSoK1sXpGS7e39/g4rra/RD7jugloNUcnLZX1mZsrNDF2tVq9VXtle6G1fXIQ8dbjROIWUOnNJVKPeDi0F4aScShAQ31bj+7z+GBJjzwJHoJmKm5XK7PfAkfHWyz7BeeZg+7Xztyt5ac8maPCQqBvHuZTPI64n4mk3HjiCmJD8j5fO5BSUcMdRsjA4ShUywWfRMokTwS5enM+Dqi9Hkc7pf8ez77//N0/gP6TGNxpu9IZQAAAABJRU5ErkJggg==' alt=''>
+      </img> 
+    }
+  </span>
+  </div>
+   <div className={styles.signup_id_container}>
+   <p></p>
+   {matchpw && (
+  <p className={styles.signup_error_msg}>비밀번호가 일치하지 않습니다.</p>
+   )}
+    </div>
+</div>
 
 
         {/* 닉네임 부분 */}

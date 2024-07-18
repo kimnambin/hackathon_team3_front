@@ -5,15 +5,14 @@
     background-color: rgb(113, 165, 123);
     border-radius: 20px;
     position: relative;
-    left: 60px;
-    margin-top: 230px;
+    margin: 230px auto 0 auto;
 }
 
 .mainTitleText {
     font-size: 23px;
     color: white;
     position: relative;
-    left: -60px;
+    margin: 0 0 0 70px;
     top: 30px;
     font-weight: bold;
 }
@@ -21,7 +20,7 @@
 .mainText {
     font-size: 30px;
     color: white;
-    margin-left: 35vh;
+    margin-left: 70px;
     margin-top: 40px;
     line-height: 130%;
 }
@@ -29,8 +28,7 @@
 .main2Container {
     box-sizing: border-box;
     width: 170vh;
-    margin-top: 150px;
-    margin-left: 50px;
+    margin : 150px auto 0 auto;
 }
 
 .main2Text {

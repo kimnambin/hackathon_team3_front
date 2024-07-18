@@ -18,7 +18,7 @@ const Main1 = () => {
         <Container>
             <div className={styles.mainTitleText}>끄적임</div>
             <div className={styles.mainText}>시들어가는 나의 마음,<br/>
-                따뜻하게 보듬어줄 손길을 찾는다면, <span style={{fontSize: 55}}>끄적임</span>
+                따뜻하게 보듬어줄 손길을 찾는다면, <span style={{fontSize: 75 , fontWeight: 'bold'}}>끄적임</span>
             </div>
         </Container>
       </div>

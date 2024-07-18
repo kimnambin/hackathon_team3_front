@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './Mypage.module.css';
+import styles from '../mypage/Mypage.module.css';
 import commstyles from '../Community/Comm.module.css';
 import { FaAngleRight } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
