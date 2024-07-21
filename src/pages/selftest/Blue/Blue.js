@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react';
 import styles from './Blue.module.css'
 import { Container } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 
-const TestPart = ({ number, text }) => (
-    <div className={styles.testpart2}>
-        <div className={styles.testcircle}><span>{number}</span></div>
-        <p>{text}</p>
+// 각 테스트 항목을 위한 함수형 컴포넌트
+const TestPart = ({ number, text, buttonStates, handleButtonClick, isLast }) => (
+    <div className={styles.roofpart}>
+        <div className={styles.testpart2}>
+            <div className={styles.testcircle}><span>{number}</span></div>
+            <p>{text}</p>
+        </div>
+        <div className={styles.part2}>
+            {!isLast && <div className={styles.part2line}></div>}
+            {[...Array(4)].map((_, index) => (
+                <button
+                    key={index}
+                    className={`${styles.part2circlelast} ${buttonStates[index] ? styles.active : ''} ${isLast ? styles.lastButton : ''}`}
+                    onClick={() => handleButtonClick(number - 1, index)}
+                ></button>
+            ))}
+        </div>
     </div>
 );
 
@@ -34,11 +47,28 @@ const Blue = () => {
         Navigate('/blue2')
     }
 
-    const testData = [
+     // 테스트 데이터를 포함한 질문들
+     const testData = [
+        { number: 1, text: '평소에는 아무렇지도 않던 일들이 괴롭고 귀찮게 느껴졌다.' },
         { number: 2, text: '먹고 싶지 않고, 식욕이 없었다.' },
         { number: 3, text: '어느 누가 도와준다 하더라도, 나의 울적한 기분을 떨쳐 버릴 수 없을 것 같았다.' },
         { number: 4, text: '무슨 일을 하든 정신을 집중하기가 힘들었다.' },
+        { number: 5, text: '비교적 잘 지냈다.' }
     ];
+
+    const initialButtonStates = testData.map(() => Array(4).fill(false));
+    const [buttonStates, setButtonStates] = useState(initialButtonStates);
+
+    // 버튼 클릭 핸들러 함수
+    const handleButtonClick = (questionIndex, buttonIndex) => {
+        setButtonStates(prevState =>
+            prevState.map((buttons, qIndex) =>
+                qIndex === questionIndex
+                    ? buttons.map((state, bIndex) => bIndex === buttonIndex)
+                    : buttons
+            )
+        );
+    };
 
   return (
 
@@ -54,12 +84,14 @@ const Blue = () => {
 
         <div style={{fontSize: 20, fontWeight: "bold"}}>나의 마음 들여다보기</div>
 
+        {/* 네이게이션 옵션 */}
         <div className={styles.topSetion2}>
             <button className={styles.section2dsign} onClick={goToBlue}><span>우울증</span></button>
             <button className={styles.section2dsign} onClick={goToStress}><span >스트레스</span></button>
             <button className={styles.section2dsign} onClick={goToAnxiety}><span >불안</span></button>
         </div>
 
+        {/* 테스트 설명 */}
         <div className={styles.topSetion3}>
             <p>
                 해당 자가진단은 <span>'우울증'</span>에 관한 것입니다. <br/>
@@ -70,62 +102,28 @@ const Blue = () => {
             </p>
         </div>
 
+        {/* 점수 설명 */}
         <div className={styles.topSetion4}>
             <p className={styles.section4p1}>왼쪽부터 0점 <span className={styles.line}></span> <span className={styles.Arrow2}></span> 3점입니다.</p> <br/>
             <p>(1일 이하 : 0점, 1~2일 : 1점, 3~4일: 2점, 5일 이상: 3점)</p>
         </div>
 
-        {/* 테스트 첫 문항 부분 */}
-
+        {/* 질문 렌더링 */}
         <div>
-            <div className={styles.testpart}>
-                <div className={styles.testcircle}><span>1</span></div>
-                <p>평소에는 아무렇지도 않던 일들이 괴롭고 귀찮게 느껴졌다.</p>
+                {testData.map((data, index) => (
+                    <TestPart
+                        key={index}
+                        number={data.number}
+                        text={data.text}
+                        buttonStates={buttonStates[index]}
+                        handleButtonClick={handleButtonClick}
+                        isLast={index === testData.length - 1}
+                    />
+                ))}
             </div>
-
-            
-            <div className={styles.part2}>
-                <div className={styles.part2line}></div>
-                <button className={styles.part2circle}></button>
-                <button className={styles.part2circle}></button>
-                <button className={styles.part2circle}></button>
-                <button className={styles.part2circle}></button>
-            </div>
-        </div>
-
-        {/* 테스트 문항 부분 반복*/}
-
-        <div>
-            {testData.map(({ number, text }, index) => (
-                <React.Fragment key={index}>
-                    <TestPart number={number} text={text} />
-
-                    <div className={styles.part2}>
-                        <div className={styles.part2line}></div>
-                        <button className={styles.part2circle}></button>
-                        <button className={styles.part2circle}></button>
-                        <button className={styles.part2circle}></button>
-                        <button className={styles.part2circle}></button>
-                    </div>
-                </React.Fragment>
-            ))}
-        </div>
   
-        {/* 테스트 마지막 문항 부분 */}
-        <div>
-            <div className={styles.testpart2}>
-                <div className={styles.testcircle}><span>5</span></div>
-                <p>비교적 잘 지냈다.</p>
-            </div>
-            
-            <div className={styles.part2}>
-                <button className={styles.part2circlelast}></button>
-                <button className={styles.part2circlelast}></button>
-                <button className={styles.part2circlelast}></button>
-                <button className={styles.part2circlelast}></button>
-            </div>
-        </div>
 
+        {/* 다음 페이지 버튼 */}
         <button className={styles.nextPage} onClick={nextPage} style={{marginLeft: '52vh'}}>
             <p>다음 페이지</p> <span className={styles.nextPageline}></span> <span className={styles.nextPageArrow}></span>
         </button>
