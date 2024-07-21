@@ -2,11 +2,16 @@ import React, { useContext } from 'react'
 import styles from './Comm.module.css'
 import 'pretendard/dist/web/static/pretendard.css';
 import { FaAngleRight } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { category, category2  , CategoryContext} from '../../components/Comm/Comm_context';
 
 
 export default function CommList(props) {
+  const Navigate =useNavigate()
+
+  const goToMain=()=>{
+    Navigate('/')
+  }
 
   const { categoryBtn, ClickCategory} = useContext(CategoryContext);
  
@@ -28,7 +33,7 @@ export default function CommList(props) {
       {/* 오른쪽 부분 */}
       <div className={styles.CommList_right}>
         <div className={styles.CommList_right_header}>
-          <p className={styles.header_p}>홈 <FaAngleRight /> 커뮤니티 <FaAngleRight /></p>
+          <p className={styles.header_p}><span onClick={goToMain}>홈</span> <FaAngleRight /> 커뮤니티 <FaAngleRight /></p>
           <p className={styles.header_p2}>고민 끄적끄적</p> 
         </div>
 

@@ -2,18 +2,17 @@
     box-sizing: border-box;
     width: 170vh;
     height: 200px;
-    background-color: rgb(113, 165, 123);
+    background-color:#84a67f;
     border-radius: 20px;
     position: relative;
-    left: 60px;
-    margin-top: 230px;
+    margin: 230px auto 0 auto;
 }
 
 .mainTitleText {
     font-size: 23px;
     color: white;
     position: relative;
-    left: -60px;
+    margin: 0 0 0 70px;
     top: 30px;
     font-weight: bold;
 }
@@ -21,7 +20,7 @@
 .mainText {
     font-size: 30px;
     color: white;
-    margin-left: 35vh;
+    margin-left: 50vh;
     margin-top: 40px;
     line-height: 130%;
 }
@@ -29,8 +28,7 @@
 .main2Container {
     box-sizing: border-box;
     width: 170vh;
-    margin-top: 150px;
-    margin-left: 50px;
+    margin : 150px auto 0 auto;
 }
 
 .main2Text {
@@ -47,11 +45,11 @@
 
 .main2InBox {
     margin-top: 40px;
-    margin-left: 30px;
+    margin-left: 10px;
     box-sizing: border-box;
-    width: 167vh;
+    width: 169vh;
     height: 50px;
-    background-color: rgb(174, 194, 180);
+    background-color:rgba(132, 166, 127, 0.30000001192092896);
     border-radius: 30px;
     border-top-left-radius: 0px;
     font-weight: 600;
@@ -67,12 +65,12 @@
     display: flex;
     justify-content: space-around;
     margin-top: 70px;
-    margin-right: 70px;
+    margin-left: -100px;
 }
 
 .main3Box1 {
-    background-color: rgb(238, 221, 110);
-    width: 115vh;
+    background-color:#f9ecb1;
+    width: 117vh;
     height: 170px;
     margin-left: 100px;
     border-radius: 10px;
@@ -121,8 +119,8 @@
 }
 
 .main3Box2 {
-    background-color: rgb(238, 221, 110);
-    width: 40vh;
+    background-color:#ffea8f;
+    width: 41vh;
     height: 170px;
     border-radius: 10px;
     cursor: pointer;

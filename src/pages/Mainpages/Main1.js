@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './Main1.module.css'
-import { Container } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -15,12 +14,11 @@ const Main1 = () => {
     <div>
       
       <div className={styles.mainBox}>
-        <Container>
+            <div></div>
             <div className={styles.mainTitleText}>끄적임</div>
             <div className={styles.mainText}>시들어가는 나의 마음,<br/>
-                따뜻하게 보듬어줄 손길을 찾는다면, <span style={{fontSize: 55}}>끄적임</span>
+                따뜻하게 보듬어줄 손길을 찾는다면, <span style={{fontSize: 75 , fontWeight: 'bold', marginLeft: 30}}>끄적임</span>
             </div>
-        </Container>
       </div>
 
       <div className={styles.main2Container}>

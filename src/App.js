@@ -1,24 +1,32 @@
-import Login from "./pages/Login/Login";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import SignUp from "./pages/Signup/SignUp";
-import FindPw from './pages/Login/FindPw';
-import ProSignUp from "./pages/Professional/ProSignUp";
-import FirstSignup from "./pages/Signup/FirstSignup";
-import CommWrite from './pages/Community/CommWrite';
-import CommList from './pages/Community/CommList';
-import CommView from './pages/Community/CommView';
+
+
+//메인 페이지
+import Main1 from './pages/Mainpages/Main1';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+//로그인 페이지
+import Login from "./pages/login/Login";
+import FindPw from './pages/login/FindPw';
+//회원가입 페이지
+import ProSignUp from "./pages/Professional/ProSignUp";
+import FirstSignup from "./pages/signup/FirstSignup";
+import SignUp from "./pages/signup/SignUp";
+// 커뮤니티 부분
 import { CategoryProvider } from './components/Comm/Comm_context';
 import ProCommList from "./pages/Community/Professional/ProCommList";
 import ProCommView from "./pages/Community/Professional/ProCommView";
 import ProCommWrite from "./pages/Community/Professional/ProCommWrite";
+import CommWrite from './pages/Community/CommWrite';
+import CommList from './pages/Community/CommList';
+import CommView from './pages/Community/CommView';
+// 마이페이지 부분
 import Profile from "./pages/Mypage/Profile";
 import MyPost from "./pages/Mypage/MyPost";
-import HospitalMap from "./pages/Mypage/HospitalMap";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import Main1 from './pages/Mainpages/Main1';
+import HospitalMap from "./pages/map/HospitalMap";
+//자가진단 페이지
 import Blue from './pages/selftest/Blue/Blue';
 import Blue2 from './pages/selftest/Blue/Blue2';
 import Blue3 from './pages/selftest/Blue/Blue3';
@@ -33,11 +41,12 @@ import Anxiety3 from './pages/selftest/anxiety/Anxiety3';
 import Anxiety4 from './pages/selftest/anxiety/Anxiety4';
 import Anxiety5 from './pages/selftest/anxiety/Anxiety5';
 import AnxietyResult from './pages/selftest/anxiety/AnxietyResult';
+//관리자 페이지
 import Manager from './pages/manager/Manager';
 
 function App() {
   return (
-    <div className='App'>
+    <div className='App nanum-myeongjo-regular'>
       <Navbar />
       <CategoryProvider>
         <Routes>
@@ -77,8 +86,8 @@ function App() {
           <Route path='/anxiety5' element={<Anxiety5 />} />
           <Route path='/AnxietyResult' element={<AnxietyResult />} />
           {/* 관리자 페이지 */}
-          <Route path='/manager' element={<Main1 />} />
-          <Route path='/' element={<Manager />} />
+          <Route path='/' element={<Main1 />} />
+          <Route path='/manager' element={<Manager />} />
         </Routes>
       </CategoryProvider>
       <Footer />

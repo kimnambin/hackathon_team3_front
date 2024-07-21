@@ -46,7 +46,7 @@ export default function MyPost() {
               {/* 맨 밑 왼쪽 */}
               <div className={styles.main_bottom}>
                 <p className={styles2.MyPost_p}>여기에 닉네임</p>
-                <p className={styles.p_line}></p>
+                <p className={styles2.p_line}></p>
                 <p className={styles.MyPost_p}>1분전</p>
               </div>
               <div className={styles.main_bottom2}>

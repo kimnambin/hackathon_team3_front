@@ -35,11 +35,11 @@
     border-radius: 50px;
     text-align: center;
     cursor: pointer;
+    border: none;
 }
 
 .section2dsign span{
     position: relative;
-    top: 10px;
     color: white;
     font-weight: 500;
 }
@@ -190,7 +190,7 @@
 
 .nextPage{
     box-sizing: border-box;
-    background-color: rgb(152, 173, 158);
+    background-color:#84a67f;
     width: 300px;
     height: 43px;
     border-radius: 10px;
@@ -258,7 +258,7 @@
     width: 800px;
     height: 500px;
     border-radius: 30px;
-    background-color: rgb(197, 231, 207);
+    background-color:#bcddb7;
     margin-left: 28vh;
     margin-top: 130px;
     padding: 70px 70px;

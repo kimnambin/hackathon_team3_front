@@ -1,7 +1,23 @@
 import React from 'react'
 import styles from './Mypage.module.css'
+import { useNavigate } from 'react-router-dom'
+
 
 export default function Profile() {
+    const Navigate = useNavigate();
+
+    const goToBlue =()=>{
+        Navigate('/blue')
+    }
+
+    const goToStress=()=>{
+        Navigate('/StressTest')
+    }
+
+    const goToAnxiety=()=>{
+        Navigate('/anxiety')
+    }
+
   return (
     <div className={styles.Profile_container}>
         
@@ -83,19 +99,19 @@ export default function Profile() {
                     <div className={styles.Profile_mid_content01}>
                         <p className={styles.Profile_mid_content_p}>우울증 자가진단</p>
                         <p className={styles.Profile_mid_footer_p}>마지막 검사일자: YYYY - MM - DD</p>
-                        <button className={styles.Profile_footer_btn}>보러가기</button>
+                        <button className={styles.Profile_footer_btn} onClick={goToBlue}>보러가기</button>
                     </div>
                     <div className={styles.Profile_mid_content_line}></div>
                     <div className={styles.Profile_mid_content01}>
                         <p className={styles.Profile_mid_content_p}>스트레스 자가진단</p>
                         <p className={styles.Profile_mid_footer_p}>마지막 검사일자: YYYY - MM - DD</p>
-                        <button className={styles.Profile_footer_btn}>보러가기</button>
+                        <button className={styles.Profile_footer_btn} onClick={goToStress}>보러가기</button>
                     </div>
                     <div className={styles.Profile_mid_content_line}></div>
                     <div className={styles.Profile_mid_content01}>
                     <p className={styles.Profile_mid_content_p}>불안 자가진단</p>
                     <p className={styles.Profile_mid_footer_p}>마지막 검사일자: YYYY - MM - DD</p>
-                        <button className={styles.Profile_footer_btn}>보러가기</button>
+                        <button className={styles.Profile_footer_btn} onClick={goToAnxiety}>보러가기</button>
                     </div>
                 </div>
             </div>
