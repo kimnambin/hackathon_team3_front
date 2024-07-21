@@ -26,6 +26,9 @@ import CommView from './pages/Community/CommView';
 import Profile from "./pages/Mypage/Profile";
 import MyPost from "./pages/Mypage/MyPost";
 import HospitalMap from "./pages/map/HospitalMap";
+import BlueSave from './pages/Mypage/BlueSave';
+import StressSave from './pages/Mypage/StressSave'
+import AnxietySave from './pages/Mypage/AnxietySave'
 //자가진단 페이지
 import Blue from './pages/selftest/Blue/Blue';
 import Blue2 from './pages/selftest/Blue/Blue2';
@@ -43,6 +46,7 @@ import Anxiety5 from './pages/selftest/anxiety/Anxiety5';
 import AnxietyResult from './pages/selftest/anxiety/AnxietyResult';
 //관리자 페이지
 import Manager from './pages/manager/Manager';
+
 
 function App() {
   return (
@@ -67,6 +71,9 @@ function App() {
           {/* 마이페이지 */}
           <Route path="/profile" element={<Profile />} />
           <Route path="/mypost" element={<MyPost />} />
+          <Route path="/blueSave" element={<BlueSave />} />
+          <Route path="/stressSave" element={<StressSave/>} />
+          <Route path="/anxietySave" element={<AnxietySave/>} />
           <Route path="/hospital_map" element={<HospitalMap />} />
           {/* 우울증 자가진단 */}
           <Route path='/blue' element={<Blue />} />
