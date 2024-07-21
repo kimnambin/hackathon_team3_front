@@ -50,11 +50,13 @@
 .header_p{
     color: #D9D9D9;
     font-size: 12px;
+    cursor: pointer;
 }
 
 .header_p2{
     color : #84A67F;
     font-size: 12px;
+    cursor: pointer;
 }
 
 .header_category{
