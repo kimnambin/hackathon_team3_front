@@ -241,6 +241,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    font-weight: bold;
 }
 
 .No_postList_btn{
@@ -280,6 +281,33 @@
     margin-top: 50px;
     margin-bottom: 0;
 }
+
+/* 마이페이지 자가진단 결과 부분 */
+
+.BlueSave_top_p{
+    margin-top: 15px;
+}
+
+.BlueSaveblue{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.BlueSaveDate{
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.inspectBut{
+    border: none;
+    width: 200px;
+    height: 40px;
+    border-radius: 30px;
+    margin-top: 50px;
+    margin-left: 60vh;
+}
+
+/* =========================================== */
 
 /* 지도 있는 부분 */
 .map{

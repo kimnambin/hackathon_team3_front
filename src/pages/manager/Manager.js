@@ -3,72 +3,123 @@ import { Container } from 'react-bootstrap'
 import styles from './Manager.module.css'
 
 const Manager = () => {
+  const data = [
+    {
+      id: 1,
+      name: 'cccc',
+      fullName: '홍길동',
+      gender: 'male',
+      birthDate: '20010101',
+      phoneNumber: '01012345678',
+      email: 'ghdrlfehd@naver.com',
+      startDate: '20240719',
+      endDate: '20240721',
+      status: 'FALSE',
+      approval: '수락'
+    },
+    {
+      id: 2,
+      name: 'cccc',
+      fullName: '홍길동',
+      gender: 'male',
+      birthDate: '19951225',
+      phoneNumber: '01023456789',
+      email: 'leesoonshin@naver.com',
+      startDate: '20240720',
+      endDate: '20240722',
+      status: 'TRUE',
+      approval: '승인'
+    },
+    {
+      id: 3,
+      name: 'cccc',
+      fullName: '홍길동',
+      gender: 'male',
+      birthDate: '19800101',
+      phoneNumber: '01034567890',
+      email: 'kimyushin@naver.com',
+      startDate: '20240721',
+      endDate: '20240723',
+      status: 'FALSE',
+      approval: '거절'
+    },
+    {
+      id: 4,
+      name: 'cccc',
+      fullName: '홍길동',
+      gender: 'male',
+      birthDate: '19921012',
+      phoneNumber: '01045678901',
+      email: 'parkbogum@naver.com',
+      startDate: '20240722',
+      endDate: '20240724',
+      status: 'TRUE',
+      approval: '승인'
+    },
+    {
+      id: 5,
+      name: 'cccc',
+      fullName: '홍길동',
+      gender: 'male',
+      birthDate: '19851018',
+      phoneNumber: '01056789012',
+      email: 'songjoongki@naver.com',
+      startDate: '20240723',
+      endDate: '20240725',
+      status: 'FALSE',
+      approval: '수락'
+    },
+    {
+      id: 6,
+      name: 'cccc',
+      fullName: '홍길동',
+      gender: 'male',
+      birthDate: '19860923',
+      phoneNumber: '01067890123',
+      email: 'moonchaewon@naver.com',
+      startDate: '20240724',
+      endDate: '20240726',
+      status: 'TRUE',
+      approval: '승인'
+    }
+  ];
+
   return (
     <Container>
       <div className={styles.pageText}>
         <p>관리자 페이지</p>
       </div>
 
-      <div className={styles.acceptButtonBox}>
-        <button className={styles.acceptButton1}>전문의 수락</button>
-        <button className={styles.acceptButton2}>전문의 거절</button>
-      </div>
-
-      <div className={styles.requestSection1}>
-        <p className={styles.situationText}>
-            <span>요청일</span> <span>닉네님(@아이디)</span> <span style={{marginLeft:-55}}>첨부파일</span> <span style={{marginLeft: -15}}>상태</span>
-        </p>
-        <div className={styles.requestSection2}>
-            <div className={styles.requestBox} style={{marginLeft: 10}}><div style={{marginLeft: 50, marginTop:13}}>yyyy-mm-dd</div></div>
-            <div className={styles.requestBox}><div style={{marginLeft: 25 , marginTop:13}}>3팀 파이팅(@likelion)</div></div>
-            <div className={styles.requestBox}><div style={{marginLeft: 40 , marginTop:13}}>직업상담사.pdf</div></div>
-            <div className={styles.requestBox}><div style={{marginLeft: 80 , marginTop:13}}>대기</div></div> 
+      <div className={styles.boxUpTextBox}>
+        <div className={styles.boxUpText}>
+          <p style={{marginLeft:0}}>NUM</p>
+          <p>ID</p>
+          <p style={{marginLeft:0}}>GENDER</p>
+          <p style={{marginLeft:30}}>BIRTH</p>
+          <p style={{marginLeft:30}}>PHONE</p>
+          <p style={{marginLeft:20}}>EMAIL</p>
+          <p>C-DATE</p>
+          <p>U-DATE</p>
+          <p>ISEXPERT</p>
+          <p>STATUS</p>
         </div>
       </div>
 
       <div className={styles.stateBox}>
-        <div className={styles.stateText}>
-            <div>yyyy-mm-dd</div>
-            <div>닉네님(@아이디)</div>
-            <div>첨부파일</div>
-            <div>상태</div>
-        </div>
-        <div className={styles.stateText}>
-            <div>yyyy-mm-dd</div>
-            <div>닉네님(@아이디)</div>
-            <div>첨부파일</div>
-            <div>상태</div>
-        </div>
-        <div className={styles.stateText}>
-            <div>yyyy-mm-dd</div>
-            <div>닉네님(@아이디)</div>
-            <div>첨부파일</div>
-            <div>상태</div>
-        </div>
-        <div className={styles.stateText}>
-            <div>yyyy-mm-dd</div>
-            <div>닉네님(@아이디)</div>
-            <div>첨부파일</div>
-            <div>상태</div>
-        </div>
-        <div className={styles.stateText}>
-            <div>yyyy-mm-dd</div>
-            <div>닉네님(@아이디)</div>
-            <div>첨부파일</div>
-            <div>상태</div>
-        </div>
-        <div className={styles.stateText}>
-            <div>yyyy-mm-dd</div>
-            <div>닉네님(@아이디)</div>
-            <div>첨부파일</div>
-            <div>상태</div>
-        </div>
-        <div className={styles.stateText}>
-            <div>yyyy-mm-dd</div>
-            <div>닉네님(@아이디)</div>
-            <div>첨부파일</div>
-            <div>상태</div>
-        </div>
+        {data.map((item) => (
+          <div key={item.id} className={styles.stateText}>
+            <div className={styles.item}>{item.id}</div>
+            <div className={styles.item}>{item.name}</div>
+            <div className={styles.item} style={{marginLeft:20, marginRight:10}}>{item.gender}</div>
+            <div className={styles.item} style={{marginRight:20, marginLeft:30 }}>{item.birthDate}</div>
+            <div className={styles.item} style={{marginRight:20, marginLeft:30 }}>{item.phoneNumber}</div>
+            <div className={styles.item}>{item.email}</div>
+            <div className={styles.item}>{item.startDate}</div>
+            <div className={styles.item}>{item.endDate}</div>
+            <div className={styles.item}>{item.status}</div>
+            <button className={styles.item}>{item.approval}</button>
+          </div>
+        ))}
       </div>
     </Container>
   )

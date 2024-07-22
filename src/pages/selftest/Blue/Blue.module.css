@@ -29,12 +29,13 @@
 
 .section2dsign{
     box-sizing: border-box;
-    background-color: rgb(152, 173, 158);
+    background-color:#84a67f;
     width: 150px;
     height: 43px;
     border-radius: 50px;
     text-align: center;
     cursor: pointer;
+    border: none;
 }
 
 .section2dsign span{
@@ -63,6 +64,7 @@
     line-height: 12%;
     font-size: 11px;
     font-weight: bold;
+    margin-bottom: 100px;
 }
 
 .section4p1{
@@ -175,14 +177,32 @@
     margin-right: 30px;
     background-color: white;
     margin-left: 50px;
+    position: relative; /* 체크 마크 위치를 위해 필요 */
 }
 
-.part2circlelast span{
-    position: relative;
-    left: -px;
+.active {
+    background-color: rgb(151, 190, 162);
+    border: 2px solid rgb(151, 190, 162);
 }
 
-/* 다음 페이지 버튼 */
+.active::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 10px;
+    height: 20px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+}
+
+.lastButton {
+    margin-left: 100px;
+    margin-right: -15px;
+}
+
+/* 이전, 다음 페이지 버튼 */
 .pageButtonBox{
     display: flex;
     justify-content: center;
@@ -201,13 +221,11 @@
     display: flex;
     justify-content: center;
 }
-
 .nextPage p{
     color: white;
     position: relative;
     top: 8px;
 }
-
 .nextPageline{
     display: inline-block;
     background-color: white;
@@ -217,7 +235,6 @@
     top: 20px;
     margin-left: 20px;
 }
-
 .nextPageArrow{
     display: inline-block;
     width: 10px;
@@ -229,7 +246,6 @@
     top: 16px;
     left: -9px;
 }
-
 .priviousPageline{
     display: inline-block;
     background-color: white;
@@ -239,7 +255,6 @@
     top: 20px;
     margin-right: 20px;
 }
-
 .priviousPageArrow{
     display: inline-block;
     width: 10px;
@@ -251,7 +266,6 @@
     top: 16px;
     left: -175px;
 }
-
 /* 테스트 결과 박스 */
 .resultBox{
     box-sizing: border-box;
@@ -263,12 +277,10 @@
     margin-top: 130px;
     padding: 70px 70px;
 }
-
 .resultText{
     font-size: 23px;
     font-weight: bold;
 }
-
 .resultScoreLine{
     display: inline-block;
     background-color: black;
@@ -276,7 +288,6 @@
     width: 70vh; /* 줄의 길이 */
     margin-top: 70px;
 }
-
 .resultScoreLine img{
     float: right;
     position: relative;
@@ -284,31 +295,26 @@
     left: 24px;
     width: 30px;
 }
-
 .scoreText{
     font-size: 20px;
     font-weight: bold;
     display: flex;
     justify-content: space-between;
 }
-
 .resultHighlight{
     color: rgb(53, 92, 64);
     font-size: 19px;
     font-weight: bold;
 }
-
 .resultIntro{
     margin-top: 90px;
     font-size: 17px;
 }
-
 .resultIntro img{
     width: 30px;
     position: relative;
     bottom: 5px;
 }
-
 .resultLink{
     display: flex;
     justify-content: end;
@@ -317,7 +323,6 @@
     margin-top: 60px;
     cursor: pointer;
 }
-
 .resultArrow2{
     display: inline-block;
     width: 8px;
@@ -329,7 +334,6 @@
     top: 7.5px;
     right: 6px;
 }
-
 .plusline{
     display: inline-block;
     background-color: black;
@@ -339,9 +343,7 @@
     top: 10px;
     margin-left: 5px;
 }
-
 /* 우울증 결과 추천영상 */
-
 .recommendBox{
     box-sizing: border-box;
     width: 750px;
@@ -352,17 +354,14 @@
     margin-top: 100px;
     border-radius: 10px;
 }
-
 .recommendBox p{
     font-size: 20px;
     font-weight: bold;
 }
-
 .recomendVideo{
     display: flex;
     justify-content: space-between;
 }
-
 .recomendVideoBox{
     box-sizing: border-box;
     background-color: black;
@@ -371,32 +370,24 @@
     height: 200px;
     margin-top: 20px;
 }
-
 /*우울증 추천 활동 */
-
 .recommendActive{
     display: flex;
     justify-content: space-between;
-
 }
-
 .recommendActive img{
     width: 130px;
     margin-top: 50px;
 }
-
 .recommendActive span{
     margin-left: 35px;
 }
-
 /* 마지막 부분 버튼 */
-
 .resultButtonBox{
     margin-top: 100px;
     display: flex;
     justify-content: center;
 }
-
 .resultButton1{
     background-color: rgb(93, 109, 98);
     color: white;
@@ -408,7 +399,6 @@
     margin-left: 70px;
     font-weight: bold;
 }
-
 .resultButton2{
     background-color: rgb(179, 177, 177);
     color: black;
@@ -418,4 +408,3 @@
     height: 50px;
     font-weight: bold;
 }
-

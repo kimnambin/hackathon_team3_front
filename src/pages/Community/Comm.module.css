@@ -50,11 +50,13 @@
 .header_p{
     color: #D9D9D9;
     font-size: 12px;
+    cursor: pointer;
 }
 
 .header_p2{
     color : #84A67F;
     font-size: 12px;
+    cursor: pointer;
 }
 
 .header_category{
@@ -352,12 +354,14 @@
     justify-content: space-between;
     align-items: center;
     width: 740px;
+    margin-bottom: 30px;
 }
 
 /* 제목텍스트 */
 .view_h4{
     font-size: 24px;
     font-weight: bold;
+    margin-top: 30px;
 }
 
 /* 닉넴 이미지 등등 부분 */

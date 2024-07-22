@@ -3,8 +3,18 @@ import styles from '../mypage/Mypage.module.css';
 import commstyles from '../Community/Comm.module.css';
 import { FaAngleRight } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
+import { useNavigate } from 'react-router-dom';
 
 const HospitalMap = () => {
+
+  const Navigate = useNavigate();
+  const goToMain =()=>{
+    Navigate('/')
+  }
+  const goToMap=()=>{
+    Navigate('/hospital_map')
+  }
+
   const [map, setMap] = useState(null); // 지도 객체 상태
   const [markers, setMarkers] = useState([]); // 마커 객체 배열 상태
   const [pagination, setPagination] = useState(null); // 페이지네이션 객체 상태
@@ -138,8 +148,8 @@ const HospitalMap = () => {
     {/* 지도 있는 부분 */}
     <div className={styles.map}>
       <div className={styles.CommList_right_header}>
-        <p className={commstyles.header_p}>홈 <FaAngleRight /></p>
-        <p className={commstyles.header_p2}>내 주변 병원찾기</p> 
+        <p className={commstyles.header_p} onClick={goToMain}>홈 <FaAngleRight /></p>
+        <p className={commstyles.header_p2} onClick={goToMap}>내 주변 병원찾기</p> 
       </div>
 
       <div className={commstyles.CommList_right_header}>

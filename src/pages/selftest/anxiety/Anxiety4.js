@@ -51,17 +51,17 @@ const Anxiety4 = () => {
       <div className={styles.topText}>
             <div className={styles.topTextCusor} onClick={goToMain}>홈</div>
             <div className={styles.Arrow}></div>
-            <div className={styles.topTextCusor}>자가진단</div>
+            <div className={styles.topTextCusor} onClick={goToBlue}>자가진단</div>
             <div className={styles.Arrow}></div>
-            <div className={styles.topTextCusor}>우울증</div>
+            <div className={styles.topTextCusor} onClick={goToAnxiety}>불안</div>
         </div>
 
         <div style={{fontSize: 20, fontWeight: "bold"}}>나의 마음 들여다보기</div>
 
         <div className={styles.topSetion2}>
-            <div className={styles.section2dsign} onClick={goToBlue}><span>우울증</span></div>
-            <div className={styles.section2dsign} onClick={goToStress}><span >스트레스</span></div>
-            <div className={styles.section2dsign} onClick={goToAnxiety}><span >불안</span></div>
+            <button className={styles.section2dsign} onClick={goToBlue}><span >우울증</span></button>
+            <button className={styles.section2dsign} onClick={goToStress}><span >스트레스</span></button>
+            <button className={styles.section2dsign} onClick={goToAnxiety}><span >불안</span></button>
         </div>
 
         <div className={styles.topSetion3}>
