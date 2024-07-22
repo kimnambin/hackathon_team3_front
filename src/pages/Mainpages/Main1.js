@@ -10,6 +10,10 @@ const Main1 = () => {
     navgate('/blue')
   }
 
+  const goToMap=()=>{
+    navgate('/hospital_map')
+  }
+
   return (
     <div>
       
@@ -49,7 +53,7 @@ const Main1 = () => {
         </div>
 
 
-        <div className={styles.main3Box2}>
+        <div className={styles.main3Box2} onClick={goToMap}>
           <div className={styles.main3Box2Text}>
             <span>내 집 주변<br />
                   가까운 정신의학과</span>

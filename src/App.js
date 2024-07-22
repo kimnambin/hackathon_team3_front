@@ -1,3 +1,7 @@
+//url 접근 막기
+//1. 비회원일 때 메인 > 자가진단 및 병원찾기 > 로그인 창
+//2. 커뮤니티 > 끄적이기, 댓글, 북마크 등 클릭시 > 로그인 창
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
@@ -46,6 +50,8 @@ import Anxiety5 from './pages/selftest/anxiety/Anxiety5';
 import AnxietyResult from './pages/selftest/anxiety/AnxietyResult';
 //관리자 페이지
 import Manager from './pages/manager/Manager';
+//로그인 여부 확인 후 url 경로 변경
+import PrivateRoute from './route/PrivateRoute';
 
 
 function App() {
@@ -74,13 +80,13 @@ function App() {
           <Route path="/blueSave" element={<BlueSave />} />
           <Route path="/stressSave" element={<StressSave/>} />
           <Route path="/anxietySave" element={<AnxietySave/>} />
-          <Route path="/hospital_map" element={<HospitalMap />} />
+          <Route path="/hospital_map" element={<PrivateRoute component={HospitalMap} />} />
           {/* 우울증 자가진단 */}
-          <Route path='/blue' element={<Blue />} />
-          <Route path='/blue2' element={<Blue2 />} />
-          <Route path='/blue3' element={<Blue3 />} />
-          <Route path='/blue4' element={<Blue4 />} />
-          <Route path='/blueResult' element={<BlueResult />} />
+          <Route path='/blue' element={<PrivateRoute  component={Blue}/>} />
+          <Route path='/blue2' element={<PrivateRoute component={Blue2}/>} />
+          <Route path='/blue3' element={<PrivateRoute component={Blue3}/>} />
+          <Route path='/blue4' element={<PrivateRoute component={Blue4}/>} />
+          <Route path='/blueResult' element={<PrivateRoute component={BlueResult}/>} />
           {/* 스트레스 자가진단 */}
           <Route path='/StressTest' element={<StressTest />} />
           <Route path='/StressTest2' element={<StressTest2 />} />
