@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import styles from './Comm.module.css'
 import 'pretendard/dist/web/static/pretendard.css';
 import { FaAngleRight } from "react-icons/fa";
@@ -6,13 +6,32 @@ import { Link, useNavigate } from 'react-router-dom';
 import { category, category2  , CategoryContext} from '../../components/Comm/Comm_context';
 
 
-export default function CommList(props) {
-  const Navigate =useNavigate()
+export default function CommList() {
+  //끄적이기 로그인 여부 확인 계속 true 상태, 오류 잡아야 됨
+  const [isLogined, setIsLogined] = useState(false);
+  const navigate =useNavigate()
+
+  useEffect(() => {
+      const loggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+      setIsLogined(loggedIn);
+  }, []);
+
+  //로그인 여부 확인 후 링크 이동
+  const handleLoginClick = () => {
+    console.log('Handle Login Click - Is Logined:', isLogined); // 추가된 로그
+    if (!isLogined) {
+        navigate('/login');
+    } else {
+        navigate('/comm_write');
+    }
+};
+//=================
 
   const goToMain=()=>{
-    Navigate('/')
+    navigate('/')
   }
 
+  //카테고리 클릭 버튼
   const { categoryBtn, ClickCategory} = useContext(CategoryContext);
  
   return (
@@ -60,8 +79,7 @@ export default function CommList(props) {
           <div className={styles.CommList_right_mid}>
               <p className={styles.right_mid_p}>총 건</p>
               <div className={styles.right_mid}>
-                <Link to='/comm_write'>
-                  <button className={styles.right_mid_btn}>끄적이기</button></Link>
+                  <button className={styles.right_mid_btn} onClick={handleLoginClick}>끄적이기</button>
                   <select className={styles.right_mid_select}>
                     <option >최신순</option>
                     <option >인기순</option>

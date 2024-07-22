@@ -75,11 +75,11 @@ function App() {
           <Route path="/pro_comm_view" element={<ProCommView />} />
           <Route path="/pro_comm_write" element={<ProCommWrite />} />
           {/* 마이페이지 */}
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/mypost" element={<MyPost />} />
-          <Route path="/blueSave" element={<BlueSave />} />
-          <Route path="/stressSave" element={<StressSave/>} />
-          <Route path="/anxietySave" element={<AnxietySave/>} />
+          <Route path="/profile" element={<PrivateRoute  component={Profile}/>} />
+          <Route path="/mypost" element={<PrivateRoute  component={MyPost}/>} />
+          <Route path="/blueSave" element={<PrivateRoute  component={BlueSave}/>} />
+          <Route path="/stressSave" element={<PrivateRoute  component={StressSave}/>} />
+          <Route path="/anxietySave" element={<PrivateRoute  component={AnxietySave}/>} />
           <Route path="/hospital_map" element={<PrivateRoute component={HospitalMap} />} />
           {/* 우울증 자가진단 */}
           <Route path='/blue' element={<PrivateRoute  component={Blue}/>} />
