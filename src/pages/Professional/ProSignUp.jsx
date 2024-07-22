@@ -219,9 +219,9 @@ export default function ProSignUp() {
 
       <div className={styles.signup_phone}>
       <div className={styles.file_container}>
-  <label htmlFor="file">파일을 업로드하세요
-  <input type="file" id="file"  className={styles.file_container}/></label>
-</div>
+          <label htmlFor="file" className={styles.file_container2}>파일을 업로드하세요
+        <input type="file" id="file"  className={styles.file_container}/></label>
+      </div>
 
       <button className={styles.signup_btn_phone} onClick={handlePhone}>업로드</button>
       </div>

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import 'pretendard/dist/web/static/pretendard.css';
 import styles from './Login.module.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink ,useNavigate  } from 'react-router-dom';
 import usePWContext from '../../components/pw/PwContext'
+import axios from 'axios';
 
 export default function Login() {
   // 아이디랑 비번 초기 상태
@@ -24,6 +25,30 @@ export default function Login() {
   //버튼 초기 상태 (아이디랑 비번 입력 x)
   const no_btn = id !== '' && pw !== '';
 
+  const navigate = useNavigate();
+
+  // 로그인 버튼 클릭
+  const submitLogin = async () => {
+    try {
+        const response = await axios.get('http://localhost:8080/Member');
+        const members = response.data;
+        const user = members.find(member => member.userId === id && member.password === pw);
+
+        if (user) {
+            navigate(`/profile/${id}`);
+        } else {
+            alert('아이디 또는 비밀번호가 잘못되었습니다.');
+        }
+    } catch (error) {
+        console.error('로그인 요청 에러:', error);
+        alert('서버와 연결하는 데 문제가 발생했습니다.');
+    }
+};
+
+
+
+
+  // =====================================================
   return (
     <div className={styles.loginContainer}>
       <p className={styles.serviceName}>로그인</p>
@@ -68,10 +93,11 @@ export default function Login() {
         <label htmlFor="checkbox_id1" className={styles.checkboxLabel}>아이디 저장</label>
       </div>
 
-      <button className={`${styles.no_LoginBtn} ${no_btn ? styles.loginBtn : ''}`}>
+      
+      <button className={`${styles.no_LoginBtn} ${no_btn ? styles.loginBtn : ''}`} onClick={submitLogin} disabled={!no_btn}>
         로그인
       </button>
-      
+
       <div className={styles.btnAndText}>
         <NavLink to='/firstsignup' className={styles.loginP}>회원가입</NavLink>
         <p className={styles.loginP2}></p>

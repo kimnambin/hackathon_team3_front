@@ -269,7 +269,7 @@
 
  input[type="file"] {  /*파일 필드 숨기기 */
     position: absolute;
-    width: 1px;
+    width: 500px;
     height: 1px;
     padding: 0;
     margin: -1px;
@@ -292,6 +292,20 @@
   height: 60px;
   padding-left: 30px;
 }  
+
+.file_container2{
+    border: none;
+    outline: none;
+    padding: 0; 
+    margin: 0; 
+    background-color: transparent; 
+    width: 320px;
+    height: 60px;
+    /* border-radius: 20px;
+    border: 1px solid #000000;
+   
+    padding-left: 30px; */
+  }  
 
 .file_p{
     text-align: left;

@@ -3,7 +3,7 @@ import styles from './Fixed.module.css'
 import { useNavigate } from 'react-router-dom'
 
 
-const Nav = () => {
+const LoginNav = () => {
   const Navigate =useNavigate();
 
   const goToBlue=()=>{
@@ -19,7 +19,7 @@ const Nav = () => {
   }
 
   const goToMypage=()=>{
-    Navigate("signup")
+    Navigate("/profile/:userId")
   }
   const goToCommu=()=>{
     Navigate("pro_comm_list")
@@ -37,7 +37,7 @@ const Nav = () => {
 
       <div className={styles.textalign2}>
         <div className={styles.text2margin}>
-          <div onClick={goToLogin}>로그인</div>
+          <div onClick={goToLogin}>로그아웃</div>
         </div>
 
         <div className={styles.text2margin}>
@@ -45,7 +45,7 @@ const Nav = () => {
         </div>
 
         <div className={styles.text2margin}>
-        <div onClick={goToMypage}>회원가입</div>
+        <div onClick={goToMypage}>마이페이지</div>
         </div>  
       </div>
     </div>
@@ -64,4 +64,4 @@ const Nav = () => {
   )
 }
 
-export default Nav
+export default LoginNav

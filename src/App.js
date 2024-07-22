@@ -1,9 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 //메인 페이지
 import Main1 from './pages/mainpages/Main1';
 import Navbar from './components/Navbar';
+import LoginNavbar from './components/LoginNavbar';
 import Footer from './components/Footer';
 //로그인 페이지
 import Login from "./pages/login/Login";
@@ -47,9 +48,20 @@ import Manager from './pages/manager/Manager';
 
 
 function App() {
+
+  const location = useLocation();
+
+  // 로그인하기 전 페이지들
+  const authPages = ['/login', '/firstsignup', '/signup', '/findPw', '/pro_signup' , '/'];
+
+  // 현재 페이지가 로그인한건지 아닌지 
+  const showNavbar = authPages.includes(location.pathname);
+
+
   return (
     <div className='App nanum-myeongjo-regular'>
-      <Navbar />
+
+       {showNavbar ? <Navbar /> : <LoginNavbar />}
       <CategoryProvider>
         <Routes>
           {/* 로그인 및 회원가입 */}
@@ -67,7 +79,7 @@ function App() {
           <Route path="/pro_comm_view" element={<ProCommView />} />
           <Route path="/pro_comm_write" element={<ProCommWrite />} />
           {/* 마이페이지 */}
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:userId" element={<Profile />} />
           <Route path="/mypost" element={<MyPost />} />
           <Route path="/blueSave" element={<BlueSave />} />
           <Route path="/stressSave" element={<StressSave/>} />
@@ -93,10 +105,12 @@ function App() {
           {/* 관리자 페이지 */}
           <Route path='/' element={<Main1 />} />
           <Route path='/manager' element={<Manager />} />
+
         </Routes>
       </CategoryProvider>
       <Footer />
     </div>
   );
 }
+
 export default App;
