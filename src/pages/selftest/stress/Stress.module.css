@@ -38,6 +38,18 @@
     border: none;
 }
 
+.section2dsign2{
+    box-sizing: border-box;
+    background-color:rgba(132, 166, 127, 0.5);
+    color:rgba(254, 254, 254, 0.5);
+    width: 150px;
+    height: 43px;
+    border-radius: 50px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+}
+
 .section2dsign span{
     position: relative;
     top: 10px;

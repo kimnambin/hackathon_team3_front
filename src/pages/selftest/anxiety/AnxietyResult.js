@@ -36,8 +36,8 @@ const AnxietyResult = () => {
         <div style={{fontSize: 20, fontWeight: "bold"}}>나의 마음 들여다보기</div>
 
         <div className={styles.topSetion2}>
-            <button className={styles.section2dsign} onClick={goToBlue}><span >우울증</span></button>
-            <button className={styles.section2dsign} onClick={goToStress}><span >스트레스</span></button>
+            <button className={styles.section2dsign2} onClick={goToBlue}><span >우울증</span></button>
+            <button className={styles.section2dsign2} onClick={goToStress}><span >스트레스</span></button>
             <button className={styles.section2dsign} onClick={goToAnxiety}><span >불안</span></button>
         </div>
 

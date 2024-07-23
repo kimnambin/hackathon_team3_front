@@ -38,8 +38,8 @@ const BlueResult = () => {
 
         <div className={styles.topSetion2}>
             <button className={styles.section2dsign} onClick={goToBlue}><span >우울증</span></button>
-            <button className={styles.section2dsign} onClick={goToStress}><span >스트레스</span></button>
-            <button className={styles.section2dsign} onClick={goToAnxiety}><span >불안</span></button>
+            <button className={styles.section2dsign2} onClick={goToStress}><span >스트레스</span></button>
+            <button className={styles.section2dsign2} onClick={goToAnxiety}><span >불안</span></button>
         </div>
         {/* 결과 박스 */}
 

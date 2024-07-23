@@ -62,13 +62,21 @@
 
   .signup_check_msg{
     display: none;
+    color : #0075FF;
+  }
+  .signup_check_msg_sucess{
+    display: block;
+    margin: 10px 0 0 0px;
+    text-align: right; 
+    color : #0075FF;
+    font-size: 14px;
   }
   
   .signup_check_msg_show{
     display: block;
     margin: 10px 0 0 0px;
     text-align: right; 
-    color : #0075FF;
+    color : #FF0000;
     font-size: 14px;
   }
 
@@ -260,6 +268,7 @@
     margin : 40px auto 0 auto; /* 상 우 하 좌 */
     border : 1px solid #84A67F;
     font-size: 20px;
+    cursor: pointer;
 }
 
 .search{
@@ -307,3 +316,19 @@
 .iconnn{
     margin: 0 20px 0 auto;
 }
+
+.no_singup_Btn { 
+    background-color: #D9D9D9;
+    border-radius: 20px;
+    width: 440px;
+    height: 65px;
+    font-family: 'Pretendard', sans-serif;
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid rgba(217, 217, 217, 0.3);
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    cursor: not-allowed;
+  }

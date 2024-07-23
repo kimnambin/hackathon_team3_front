@@ -15,7 +15,7 @@ const Nav = () => {
   }
 
   const goToLogin=()=>{
-    Navigate("login")
+    Navigate("/login")
   }
 
   const goToMypage=()=>{
