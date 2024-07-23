@@ -46,6 +46,8 @@ import AnxietyResult from './pages/selftest/anxiety/AnxietyResult';
 //관리자 페이지
 import Manager from './pages/manager/Manager';
 
+//로그인 여부 확인 후 url 경로 변경
+import PrivateRoute from './route/PrivateRoute';
 
 function App() {
 
@@ -56,7 +58,6 @@ function App() {
 
   // 현재 페이지가 로그인한건지 아닌지 
   const showNavbar = authPages.includes(location.pathname);
-
 
   return (
     <div className='App nanum-myeongjo-regular'>
@@ -79,18 +80,18 @@ function App() {
           <Route path="/pro_comm_view" element={<ProCommView />} />
           <Route path="/pro_comm_write" element={<ProCommWrite />} />
           {/* 마이페이지 */}
-          <Route path="/profile/:userId" element={<Profile />} />
-          <Route path="/mypost" element={<MyPost />} />
-          <Route path="/blueSave" element={<BlueSave />} />
-          <Route path="/stressSave" element={<StressSave/>} />
-          <Route path="/anxietySave" element={<AnxietySave/>} />
-          <Route path="/hospital_map" element={<HospitalMap />} />
+          <Route path="/profile" element={<PrivateRoute  component={Profile}/>} />
+          <Route path="/mypost" element={<PrivateRoute  component={MyPost}/>} />
+          <Route path="/blueSave" element={<PrivateRoute  component={BlueSave}/>} />
+          <Route path="/stressSave" element={<PrivateRoute  component={StressSave}/>} />
+          <Route path="/anxietySave" element={<PrivateRoute  component={AnxietySave}/>} />
+          <Route path="/hospital_map" element={<PrivateRoute component={HospitalMap} />} />
           {/* 우울증 자가진단 */}
-          <Route path='/blue' element={<Blue />} />
-          <Route path='/blue2' element={<Blue2 />} />
-          <Route path='/blue3' element={<Blue3 />} />
-          <Route path='/blue4' element={<Blue4 />} />
-          <Route path='/blueResult' element={<BlueResult />} />
+          <Route path='/blue' element={<PrivateRoute  component={Blue}/>} />
+          <Route path='/blue2' element={<PrivateRoute component={Blue2}/>} />
+          <Route path='/blue3' element={<PrivateRoute component={Blue3}/>} />
+          <Route path='/blue4' element={<PrivateRoute component={Blue4}/>} />
+          <Route path='/blueResult' element={<PrivateRoute component={BlueResult}/>} />
           {/* 스트레스 자가진단 */}
           <Route path='/StressTest' element={<StressTest />} />
           <Route path='/StressTest2' element={<StressTest2 />} />
@@ -105,7 +106,7 @@ function App() {
           {/* 관리자 페이지 */}
           <Route path='/' element={<Main1 />} />
           <Route path='/manager' element={<Manager />} />
-
+          
         </Routes>
       </CategoryProvider>
       <Footer />

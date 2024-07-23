@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import styles from './Comm.module.css'
 import 'pretendard/dist/web/static/pretendard.css';
 import { FaAngleRight } from "react-icons/fa";
@@ -8,13 +8,33 @@ import { category, category2  , CategoryContext} from '../../components/Comm/Com
 
 export default function CommList(props) {
 
+  //끄적이기 로그인 여부 확인 계속 true 상태, 오류 잡아야 됨
+  const [isLogined, setIsLogined] = useState(false);
+  const navigate =useNavigate()
+
+  useEffect(() => {
+      const loggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+      setIsLogined(loggedIn);
+  }, []);
+
+  //로그인 여부 확인 후 링크 이동
+  const handleLoginClick = () => {
+    console.log('Handle Login Click - Is Logined:', isLogined); // 추가된 로그
+    if (!isLogined) {
+        navigate('/login');
+    } else {
+        navigate('/comm_write');
+    }
+};
+
   const Navigate =useNavigate()
 
   const goToMain=()=>{
-    Navigate('/')
+    navigate('/')
   }
 
   const { categoryBtn, ClickCategory} = useContext(CategoryContext);
+
  
   return (
     <div className={styles.CommList_container}>
@@ -62,7 +82,7 @@ export default function CommList(props) {
               <p className={styles.right_mid_p}>총 건</p>
               <div className={styles.right_mid}>
                 <Link to='/comm_write'>
-                  <button className={styles.right_mid_btn}>끄적이기</button></Link>
+                <button className={styles.right_mid_btn} onClick={handleLoginClick}>끄적이기</button></Link>
                   <select className={styles.right_mid_select}>
                     <option >최신순</option>
                     <option >인기순</option>
@@ -76,7 +96,7 @@ export default function CommList(props) {
         
       <div className={styles.CommList_right_main}>
         
-      {Array.from({ length: 4 },(_,i) => (
+      {Array.from({ length: 8 },(_,i) => (
         <div className={styles.CommList_main}>
             <h3 className={styles.main_h3}>세상에 저 혼자인 느낌이...</h3>
             <p className={styles.main_p}>이상하게 이 세상에 </p>
@@ -99,7 +119,7 @@ export default function CommList(props) {
                 </img>
               </div>
             </div>
-            {i!== 3 &&<div className={styles.line}></div>  }
+            {i!== 7 &&<div className={styles.line}></div>  }
         </div>
       ))}
       </div>

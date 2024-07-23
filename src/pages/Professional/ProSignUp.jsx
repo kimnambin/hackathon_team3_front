@@ -2,7 +2,7 @@
 
 import React,{useState} from 'react'
 import styles from './ProSignup.module.css'
-import usePWContext from '../../components/pw/PwContext'
+import UseSignupContext from '../signup/UseSignupContext'
 
 export default function ProSignUp() {
   //체크 후 보이는 메시지 숨기는 용
@@ -21,7 +21,7 @@ export default function ProSignUp() {
   }
 
   //비밀번호 보기
-  const [showPw, handlePw ,showPw2, handlePw2] = usePWContext();
+  const [showPw, handlePw ,showPw2, handlePw2] = UseSignupContext();
 
   //비밀번호 확인 용
   const [pw , setPw] = useState(''); //첫번째 비밀번호 입력

@@ -3,19 +3,19 @@
     font-size: 30px;
     font-weight: bolder;
     color: black;
-    margin-top: 250px;
+    margin-top: 230px;
 }
 
 .boxUpTextBox {
     box-sizing: border-box;
-    width: 100%;
+    width: 1670px;
     border-radius: 10px;
-    margin-top: 100px;
+    margin-top: 130px;
+    margin-left: 10px;
 }
 
 .boxUpText {
     display: flex;
-    justify-content: space-between;
     font-size: 15px;
     padding: 10px;
     background-color: #f0f0f0;
@@ -23,34 +23,37 @@
 
 .boxUpText p {
     flex: 1;
-    text-align: center; /* 중앙 정렬 */
-    margin-right: 15px;
+    text-align: center;
+    margin: 0;
+    width: 10%;
 }
 
 .stateBox {
     box-sizing: border-box;
-    width: 100%;
+    width: 1670px;
     border: solid 1px black;
     border-radius: 10px;
     margin-bottom: 50px;
     overflow-x: auto;
+    margin-left: 10px;
 }
 
-.stateBox button{
+.stateBox button {
     border: none;
-    width: 70px;
-    height: 50px;
-    border-radius: 50px;
-    background-color:#d9d9d9;
+    width: 50px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #d9d9d9;
     color: white;
+    text-align: center;
 }
 
-.acceptbut{
-    background-color:#84a67f;
+.acceptbut {
+    background-color: #84a67f;
 }
 
-.rejectbut{
-    background-color:#ffd000;
+.rejectbut {
+    background-color: #ffd000;
 }
 
 .stateText {
@@ -59,9 +62,9 @@
     padding: 10px;
     background-color: #f9f9f9;
 }
-
 .item {
     flex: 1;
     text-align: center; /* 중앙 정렬 */
-    padding: 5px 10px;
+    padding: 5px 0;
+    width: 10%; /* Set a width to ensure consistent column sizing */
 }

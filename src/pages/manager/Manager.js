@@ -1,6 +1,6 @@
-import React from 'react'
-import { Container } from 'react-bootstrap'
-import styles from './Manager.module.css'
+import React from 'react';
+import { Container } from 'react-bootstrap';
+import styles from './Manager.module.css';
 
 const Manager = () => {
   const data = [
@@ -85,34 +85,33 @@ const Manager = () => {
   ];
 
   return (
-    <Container>
+    <div>
       <div className={styles.pageText}>
         <p>관리자 페이지</p>
       </div>
 
       <div className={styles.boxUpTextBox}>
         <div className={styles.boxUpText}>
-          <p style={{marginLeft:0}}>NUM</p>
+          <p>NUM</p>
           <p>ID</p>
-          <p style={{marginLeft:0}}>GENDER</p>
-          <p style={{marginLeft:30}}>BIRTH</p>
-          <p style={{marginLeft:30}}>PHONE</p>
-          <p style={{marginLeft:20}}>EMAIL</p>
+          <p>GENDER</p>
+          <p>BIRTH</p>
+          <p>PHONE</p>
+          <p>EMAIL</p>
           <p>C-DATE</p>
           <p>U-DATE</p>
           <p>ISEXPERT</p>
           <p>STATUS</p>
         </div>
       </div>
-
       <div className={styles.stateBox}>
         {data.map((item) => (
           <div key={item.id} className={styles.stateText}>
             <div className={styles.item}>{item.id}</div>
             <div className={styles.item}>{item.name}</div>
-            <div className={styles.item} style={{marginLeft:20, marginRight:10}}>{item.gender}</div>
-            <div className={styles.item} style={{marginRight:20, marginLeft:30 }}>{item.birthDate}</div>
-            <div className={styles.item} style={{marginRight:20, marginLeft:30 }}>{item.phoneNumber}</div>
+            <div className={styles.item}>{item.gender}</div>
+            <div className={styles.item}>{item.birthDate}</div>
+            <div className={styles.item}>{item.phoneNumber}</div>
             <div className={styles.item}>{item.email}</div>
             <div className={styles.item}>{item.startDate}</div>
             <div className={styles.item}>{item.endDate}</div>
@@ -121,8 +120,8 @@ const Manager = () => {
           </div>
         ))}
       </div>
-    </Container>
-  )
+    </div>
+  );
 }
 
-export default Manager
+export default Manager;

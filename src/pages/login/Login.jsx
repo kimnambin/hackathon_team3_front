@@ -1,8 +1,8 @@
-import React, { useState , useEffect} from 'react';
+import React, { useState} from 'react';
 import 'pretendard/dist/web/static/pretendard.css';
 import styles from './Login.module.css';
 import { NavLink ,useNavigate  } from 'react-router-dom';
-import usePWContext from '../../components/pw/PwContext'
+import UseSignupContext from '../signup/UseSignupContext'
 import axios from 'axios';
 
 export default function Login() {
@@ -11,7 +11,7 @@ export default function Login() {
   const [pw, setPw] = useState('');
 
   // 커스텀 훅 사용
-  const [showPw, handlePw] = usePWContext();
+  const [showPw, handlePw] = UseSignupContext();
 
   //아이디랑 비번 입력됬을 시
   const handleId = (e) => {

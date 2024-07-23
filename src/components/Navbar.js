@@ -22,7 +22,7 @@ const Nav = () => {
     Navigate("signup")
   }
   const goToCommu=()=>{
-    Navigate("pro_comm_list")
+    Navigate("comm_list")
   }
 
   const map=()=>{
