@@ -18,8 +18,8 @@ const Nav = () => {
     Navigate("login")
   }
 
-  const goToMypage=()=>{
-    Navigate("profile")
+  const goToSignup=()=>{
+    Navigate("firstsignup")
   }
   const goToCommu=()=>{
     Navigate("comm_list")
@@ -44,7 +44,7 @@ const Nav = () => {
         </div>
 
         <div className={styles.text2margin}>
-          <div onClick={goToMypage}>마이페이지</div>
+          <div onClick={goToSignup}>회원가입</div>
         </div>  
       </div>
     </div>
