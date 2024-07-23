@@ -19,7 +19,7 @@ const Nav = () => {
   }
 
   const goToMypage=()=>{
-    Navigate("signup")
+    Navigate("firstsignup")
   }
   const goToCommu=()=>{
     Navigate("comm_list")
