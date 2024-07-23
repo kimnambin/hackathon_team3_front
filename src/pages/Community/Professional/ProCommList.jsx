@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext,useState,useEffect } from 'react'
 import styles from '../Comm.module.css'
 import 'pretendard/dist/web/static/pretendard.css';
 import { FaAngleRight } from "react-icons/fa";
@@ -6,13 +6,33 @@ import { Link, useNavigate } from 'react-router-dom';
 import { category, category2  , CategoryContext} from '../../../components/Comm/Comm_context';
 
 export default function ProCommList() {
+
+  //끄적이기 로그인 여부 확인 계속 true 상태, 오류 잡아야 됨
+  const [isLogined, setIsLogined] = useState(false);
+ 
+
+  useEffect(() => {
+      const loggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+      setIsLogined(loggedIn);
+  }, []);
+
+  //로그인 여부 확인 후 링크 이동
+  const handleLoginClick = () => {
+    console.log('Handle Login Click - Is Logined:', isLogined); // 추가된 로그
+    if (!isLogined) {
+        navigate('/login');
+    } else {
+        navigate('/comm_write');
+    }
+};
+
   const navigate = useNavigate();
   const goToMain =()=>{
     navigate('/')
   }
 
   const { categoryBtn, ClickCategory} = useContext(CategoryContext);
- 
+
   return (
     <div className={styles.CommList_container}>
       
@@ -27,7 +47,6 @@ export default function ProCommList() {
           </Link>
           <p className={styles.CommList_left_p}>전문의 정보 끄적끄적</p>
       </div>
-
       {/* 오른쪽 부분 */}
       <div className={styles.CommList_right}>
         <div className={styles.CommList_right_header}>
@@ -43,7 +62,6 @@ export default function ProCommList() {
         onClick={() => ClickCategory(v)}>{v}</button>
       ))}
         </div>
-
         <div className={styles.CommList_right_header}>
         {
           category2.map((v, i)=>(
@@ -54,12 +72,12 @@ export default function ProCommList() {
         </div>
       </div>
 
-          {/* 중간 부분 */}
-          <div className={styles.CommList_right_mid}>
+           {/* 중간 부분 */}
+           <div className={styles.CommList_right_mid}>
               <p className={styles.right_mid_p}>총 건</p>
               <div className={styles.right_mid}>
-                <Link to='/pro_comm_write'>
-                  <button className={styles.right_mid_btn}>끄적이기</button></Link>
+                <Link to='/comm_write'>
+                <button className={styles.right_mid_btn} onClick={handleLoginClick}>끄적이기</button></Link>
                   <select className={styles.right_mid_select}>
                     <option >최신순</option>
                     <option >인기순</option>
@@ -73,7 +91,7 @@ export default function ProCommList() {
         
       <div className={styles.CommList_right_main}>
         
-      {Array.from({ length: 4 },(_,i) => (
+      {Array.from({ length: 8 },(_,i) => (
         <div className={styles.CommList_main}>
             <h3 className={styles.main_h3}>세상에 저 혼자인 느낌이...</h3>
             <p className={styles.main_p}>이상하게 이 세상에 </p>
@@ -96,7 +114,7 @@ export default function ProCommList() {
                 </img>
               </div>
             </div>
-            {i!== 3 &&<div className={styles.line}></div>  }
+            {i!== 7 &&<div className={styles.line}></div>  }
         </div>
       ))}
       </div>

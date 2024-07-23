@@ -5,7 +5,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import {BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-
+import 'pretendard/dist/web/static/pretendard.css';
 
 //메인 페이지
 import Main1 from './pages/Mainpages/Main1';
@@ -66,7 +66,7 @@ function App() {
   const showNavbar = authPages.includes(location.pathname);
 
   return (
-    <div className='App nanum-myeongjo-regular'>
+    <div className='App'>
       {showNavbar ? <Navbar /> : <LoginNavbar />}
       <CategoryProvider>
         <Routes>
