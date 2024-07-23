@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function UseSignupContext() {
   // 입력값들 (아이디)
@@ -8,7 +9,6 @@ export default function UseSignupContext() {
   const [birthMonth, setBirthMonth] = useState('');
   const [birthDay, setBirthDay] = useState('');
   const [gender, setGender] = useState('');
-  const [verificationCode, setVerificationCode] = useState('');
 
   // 입력값들 (비번)
   const [pw, setPw] = useState('');
@@ -38,17 +38,79 @@ export default function UseSignupContext() {
   };
 
   //폰
-  const [phone, setPhone] = useState('');
+  const [phoneNum, setPhoneNum] = useState('');
+  const [num ,setNum] = useState(false); //인증 번호 부분
   const handlePhone = () => {
-    // 나중에 문자랑 같은 지 확인하는 로직 추가해야함
+    setNum(true)
   };
 
-  // 중복체크
+  // id 중복체크
+  const [isIdAvailable, setIsIdAvailable] = useState(false);
   const [checkId, setCheckId] = useState('none');
-  const showcheckId = () => setCheckId('block');
 
+  const showcheckId = async () => {
+    console.log('클릭')
+    try {
+      // 서버에서 사용자 데이터 가져오기
+      const response = await axios.get('http://localhost:8080/getUserData');
+      const users = response.data;
+
+      // 현재 입력된 ID와 비교하여 중복 여부 확인
+      const isDuplicate = users.some(user => user.userId === userId);
+
+      if (isDuplicate) {
+        setCheckId('block');
+        setIsIdAvailable(false);
+      } else {
+        setCheckId('none');
+        setIsIdAvailable(true);
+      }
+    } catch (error) {
+      console.error('중복 확인 요청 실패:', error);
+      setCheckId('none');
+    }
+  };
+
+
+  // 닉넴 중복체크
+  const [isNickAvailable, setIsNickAvailable] = useState(false);
   const [checkMsg, setCheckMsg] = useState('none');
-  const showcheckMsg = () => setCheckMsg('block');
+
+  const showcheckMsg = async () => {
+    console.log('클릭')
+    try {
+      // 서버에서 사용자 데이터 가져오기
+      const response = await axios.get('http://localhost:8080/getUserData');
+      const users = response.data;
+
+      // 현재 입력된 ID와 비교하여 중복 여부 확인
+      const isDuplicate = users.some(user => user.nickname === nickname);
+
+      if (isDuplicate) {
+        setCheckMsg('block');
+        setIsNickAvailable(false);
+      } else {
+        setCheckMsg('none');
+        setIsNickAvailable(true);
+      }
+    } catch (error) {
+      console.error('중복 확인 요청 실패:', error);
+      setCheckMsg('none');
+    }
+  };
+
+  
+  //버튼 초기에 비활성화
+  const btn = userId !== '' && 
+  nickname !== '' && 
+  birthYear !== '' && 
+  birthMonth !== '' && 
+  birthDay !== '' && 
+  gender !== '' && 
+  pw !== '' && 
+  checkPW !== '' &&
+  phoneNum !== '' && 
+  num !== ''
 
   // 서버로 포스트
   const postUserData = () => {
@@ -68,7 +130,7 @@ export default function UseSignupContext() {
         password: pw,
         birthYear: `${birthYear}-${birthMonth}-${birthDay}`,
         gender,
-        phone,
+        phoneNum,
       }),
     })
       .then(response => {
@@ -94,17 +156,20 @@ export default function UseSignupContext() {
     birthMonth, setBirthMonth,
     birthDay, setBirthDay,
     gender, setGender,
-    verificationCode, setVerificationCode,
     checkId, setCheckId, showcheckId,
     checkMsg, setCheckMsg, showcheckMsg,
     pw, setPw,
     checkPW, setCheckPW,
     matchpw, setMatchPW,
     handlePW02, handleCheckPW,
-    phone, setPhone,
+    phoneNum, setPhoneNum,
+    num , setNum,
     handlePhone,
     showPw, handlePw,
     showPw2, handlePw2,
-    postUserData,handleFieldChange
+    postUserData,handleFieldChange,
+    isIdAvailable, setIsIdAvailable,
+    isNickAvailable, setIsNickAvailable,
+    btn 
   };
 }

@@ -19,31 +19,48 @@ const HospitalMap = () => {
   const [pagination, setPagination] = useState(null); // 페이지네이션 객체 상태
   const [keyword, setKeyword] = useState('정신건강'); // 검색 키워드 상태
   const [ps, setPs] = useState(null); // 장소 검색 객체 상태
-  const [currentPosition, setCurrentPosition] = useState({ latitude: 37.566826, longitude: 126.9786567 }); // 기본 위치
+  const [currentPosition, setCurrentPosition] = useState({ latitude: null, longitude: null }); // 현재 위치 상태
   const [currentAddress, setCurrentAddress] = useState(""); // 현재 위치 주소 상태
 
   useEffect(() => {
-    const handleSuccess = (position) => {
-      const { latitude, longitude } = position.coords;
+    const storedPosition = localStorage.getItem('currentPosition');
+    if (storedPosition) {
+      const { latitude, longitude } = JSON.parse(storedPosition);
       setCurrentPosition({ latitude, longitude });
       initializeMap(latitude, longitude);
-      reverseGeocode(latitude, longitude); // 주소 역지오코딩
-    };
-
-    const handleError = (error) => {
-      console.error('Geolocation error:', error);
-      // Fallback to a default location if geolocation fails
-      initializeMap(37.566826, 126.9786567); // Seoul, South Korea
-      reverseGeocode(37.566826, 126.9786567); // 주소 역지오코딩
-    };
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
+      reverseGeocode(latitude, longitude);
     } else {
-      console.error('Geolocation is not supported by this browser.');
-      // Fallback to a default location if geolocation is not supported
-      initializeMap(37.566826, 126.9786567); // Seoul, South Korea
-      reverseGeocode(37.566826, 126.9786567); // 주소 역지오코딩
+      const handleSuccess = (position) => {
+        const { latitude, longitude } = position.coords;
+        setCurrentPosition({ latitude, longitude });
+        localStorage.setItem('currentPosition', JSON.stringify({ latitude, longitude }));
+        initializeMap(latitude, longitude);
+        reverseGeocode(latitude, longitude);
+      };
+
+      const handleError = (error) => {
+        console.error('Geolocation error:', error);
+        // Fallback to a default location if geolocation fails
+        const defaultLatitude = 37.566826;
+        const defaultLongitude = 126.9786567;
+        setCurrentPosition({ latitude: defaultLatitude, longitude: defaultLongitude });
+        localStorage.setItem('currentPosition', JSON.stringify({ latitude: defaultLatitude, longitude: defaultLongitude }));
+        initializeMap(defaultLatitude, defaultLongitude);
+        reverseGeocode(defaultLatitude, defaultLongitude);
+      };
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
+      } else {
+        console.error('Geolocation is not supported by this browser.');
+        // Fallback to a default location if geolocation is not supported
+        const defaultLatitude = 37.566826;
+        const defaultLongitude = 126.9786567;
+        setCurrentPosition({ latitude: defaultLatitude, longitude: defaultLongitude });
+        localStorage.setItem('currentPosition', JSON.stringify({ latitude: defaultLatitude, longitude: defaultLongitude }));
+        initializeMap(defaultLatitude, defaultLongitude);
+        reverseGeocode(defaultLatitude, defaultLongitude);
+      }
     }
   }, []);
 

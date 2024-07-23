@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import 'pretendard/dist/web/static/pretendard.css';
 import styles from './Signup.module.css';
 import UseSignupContext from './UseSignupContext';
@@ -6,13 +6,17 @@ import UseSignupContext from './UseSignupContext';
 export default function SignUp() {
   const {
     userId, setUserId,nickname, setNickname,birthYear, setBirthYear
-    ,birthMonth, setBirthMonth,birthDay, setBirthDay,gender, setGender,
-    verificationCode, setVerificationCode
+    ,birthMonth, setBirthMonth,birthDay, setBirthDay,gender, setGender
     ,checkId, setCheckId,showcheckId,checkMsg, setCheckMsg,showcheckMsg,
     pw , setPw,checkPW , setCheckPW,matchpw , setMatchPW,handlePW02,
-    handleCheckPW,phone , setPhone,handlePhone,showPw, setShowPw,
-    showPw2, setShowPw2,handlePw,handlePw2,postUserData ,handleFieldChange
+    handleCheckPW,phoneNum, setPhoneNum,handlePhone,
+    showPw, setShowPw, num , setNum,
+    showPw2, setShowPw2,handlePw,handlePw2,postUserData ,handleFieldChange,
+    isIdAvailable, setIsIdAvailable , isNickAvailable, setIsNickAvailable,
+    btn 
   } = UseSignupContext();
+  
+  
 
   return (
     <div className={styles.signup_container}>
@@ -34,9 +38,12 @@ export default function SignUp() {
         onChange={handleFieldChange(setUserId)}/>
         <div className={styles.signup_id_container}>
           <p></p>
-          <p className={`${styles.signup_check_msg} ${checkId === 'block' ? styles.signup_check_msg_show : ''}`}>
-            사용 가능한 아이디입니다.
-          </p>
+          <p className={`${styles.signup_check_msg_sucess} ${isIdAvailable ? styles.signup_check_msg_sucess : ''}`}>
+      {isIdAvailable ? '사용 가능한 아이디입니다.' : ''}
+    </p>
+    <p className={`${styles.signup_check_msg} ${!isIdAvailable && checkId === 'block' ? styles.signup_check_msg_show : ''}`}>
+      {!isIdAvailable ? '이미 사용 중인 아이디입니다.' : ''}
+    </p>
         </div>
       </div>
 
@@ -68,7 +75,8 @@ export default function SignUp() {
         
         {/* 비밀번호 재확인 */}
         <div className={styles.signup_pw_container2}> 
-        </div>search
+        <p className={styles.signup_p2}>비밀번호 재확인</p>
+        </div>
         <div className={`${styles.search} ${matchpw ? styles.search_error : ''}`}>
           <input type={showPw2 ? 'text' : 'password'} 
             className={styles.inputField2}
@@ -101,8 +109,14 @@ export default function SignUp() {
         onChange={handleFieldChange(setNickname)}/>
         <div className={styles.signup_id_container}>
           <p></p>
-          <p className={`${styles.signup_check_msg} ${checkMsg === 'block' ? styles.signup_check_msg_show : ''}`}>
+          {/* <p className={`${styles.signup_check_msg} ${checkMsg === 'block' ? styles.signup_check_msg_show : ''}`}>
             사용 가능한 닉네임입니다.
+          </p> */}
+            <p className={`${styles.signup_check_msg_sucess} ${isNickAvailable ? styles.signup_check_msg_sucess : ''}`}>
+              {isNickAvailable ? '사용 가능한 닉네임입니다.' : ''}
+           </p>
+            <p className={`${styles.signup_check_msg} ${!isNickAvailable && checkMsg === 'block' ? styles.signup_check_msg_show : ''}`}>
+              {!isNickAvailable ? '이미 사용 중인 닉네임입니다.' : ''}
           </p>
         </div>
       </div>
@@ -161,18 +175,23 @@ export default function SignUp() {
       </div>
 
       <div className={styles.signup_phone}>
-      <input type='text' className={styles.signup_input_phone} value={phone} placeholder='전화번호 입력' 
-      onChange={handleFieldChange(setPhone)}/>
-      <button className={styles.signup_btn_phone} onClick={handlePhone}>인증번호 받기</button>
+      <input type='tel' className={styles.signup_input_phone} value={phoneNum} placeholder='전화번호 입력' 
+      maxLength="11"
+      onChange={handleFieldChange(setPhoneNum)}/>
+      <button className={styles.signup_btn_phone} 
+       onClick={handlePhone}>인증번호 받기</button>
       </div>
 
         <div className={styles.signup_phone}>
-      <input type='text' className={styles.signup_input_phone2} placeholder='인증번호를 입력하세요' disabled={phone}/>
-      <button className={styles.signup_btn_phone2} disabled={phone}>확인</button>
+      <input type='text' className={styles.signup_input_phone2} placeholder='인증번호를 입력하세요' 
+      disabled={!num}/>
+      <button className={styles.signup_btn_phone2} disabled={!num}>확인</button>
       </div>
 
       {/* 회원가입 버튼 */}
-      <button className={styles.signup_btn} onClick={postUserData}>가입하기</button>
+      <button 
+      className={`${styles.signup_btn} ${!btn ? styles.no_singup_Btn : styles.signup_btn}`}
+      disabled={!btn} onClick={postUserData}>가입하기</button>
     </div>
   );
 }

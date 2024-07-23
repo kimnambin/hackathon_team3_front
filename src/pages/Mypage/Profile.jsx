@@ -1,45 +1,70 @@
-import React from 'react'
-import styles from './Mypage.module.css'
-import { useNavigate } from 'react-router-dom'
-
+import React, { useEffect, useState } from 'react';
+import styles from './Mypage.module.css';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Profile() {
-    const Navigate = useNavigate();
 
-    const goToBlue =()=>{
-        Navigate('/blue')
+    //사용자 정보 가져오기
+    const [userData, setUserData] = useState(null);
+    const { userId } = useParams(); // 현재 페이지의 userId를 사용
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (userId) {
+            axios.get(`http://localhost:8080/Member`)
+                .then(response => {
+                    // 사용자 데이터를 필터링
+                    const user = response.data.find(member => member.userId === userId);
+                    if (user) {
+                        setUserData(user);
+                    } else {
+                        console.log('사용자를 찾을 수 없습니다.');
+                    }
+                })
+                .catch(error => {
+                    console.log('에러:', error);
+                });
+        }
+    }, [userId]);
+
+
+    const goToBlue = () => {
+        navigate('/blue');
+    };
+
+    const goToStress = () => {
+        navigate('/StressTest');
+    };
+
+    const goToAnxiety = () => {
+        navigate('/anxiety');
+    };
+
+    if (!userData) {
+        return <div>Loading...</div>;
     }
 
-    const goToStress=()=>{
-        Navigate('/StressTest')
-    }
+    return (
+        <div className={styles.Profile_container}>
+            {/* 상단 부분 */}
+            <div className={styles.Profile_top}>
+                {/* 젤 왼쪽 */}
+                <div className={styles.Profile_top01}>
+                    <img className={styles.Profile_img} src='../img/profile.jpg' alt='' />
+                    <label htmlFor="fileUpload" className={styles.Profile_top01_p}>
+                        프로필 사진 변경하기
+                        <input id="fileUpload" type="file" accept=".jpg, .jpeg, .png" />
+                    </label>
+                </div>
 
-    const goToAnxiety=()=>{
-        Navigate('/anxiety')
-    }
+                {/* 중간 부분 */}
+                <div className={styles.Profile_top02}>
+                    <p className={styles.Profile_top02_p1}>{userData.nickname}</p>
+                    <p className={styles.Profile_top02_p2}>닉네임 변경하기</p>
+                </div>
 
-  return (
-    <div className={styles.Profile_container}>
-        
-        {/* 상단 부분 */}
-        <div className={styles.Profile_top}>
-
-            {/* 젤 왼쪽 */}
-            <div className={styles.Profile_top01}>
-                <img className={styles.Profile_img} src='./img/profile.jpg' alt=''></img>
-                <label htmlFor="fileUpload" className={styles.Profile_top01_p}>
-                프로필 사진 변경하기
-                <input id="fileUpload" type="file" accept=".jpg, .jpeg, .png" />
-                </label>
-            </div>
-
-            {/* 중간 부분 */}
-            <div className={styles.Profile_top02}>
-                <p className={styles.Profile_top02_p1}>3팀 가보자고(@babyLion)</p>
-                <p className={styles.Profile_top02_p2}>닉네임 변경하기</p>
-            </div>
-
-            {/* 젤 오른쪽 */}
+                 {/* 젤 오른쪽 */}
             <div className={styles.Profile_top03}>
             <p className={styles.Profile_top03_p}>마음의 날씨</p>
             <img className={styles.Profile_top03_img} src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHISURBVHgBtVVNa8JAEN18KcYYqJq2gfZSxIuHFkoP/v9DLz3UQ3vw4qFC7SGBfJAPjdo3QUtId+Mi+CBkszPz9s3szoYxedjdbvdG1lmXdez3+5PNZkPDHxl/lV0IdeIOcMdzzPN8oev6J892iOlU57TqB9J1EfxkGAZbr9de1YYyxFmW5XXS4XA41jRtYppmlKZpyCUmg2VZTFGUMZ6kKIqQNYCUEin85kEQLISKCUmSeFg9xQJ+HMflbvV6vYGqqrcgum6325RNSvOO4xTb7TaskxIU1gwdpC8oz6A6udvtViB7x7AQBWqsAbZtP4PUqc+jTBb24QrKl6JY4XGj9FE/YUNQFuQjtFM3oX4P9AEVH77vHzdMGPSnSlVtvMrTU+fRW61WhtRKRyg08QoPQcUpYtTaOI7rPMLNozSR7pQ1AMfsNYoij2cT1pgCoMBjYrUrEWkjMQH1fkNJ/l06tOBoNJo1xXJLQR2FLiQ1ZSMcdp+apIDSoKKU7pYBfJcnian30U3U0jMo/mINwN1yv9/vH6mlsdi8atPqSkW9z4P03eK6rkkqBDzCPwjFUCw7BwieotZTWf+L/UE0WUc6EWjVb95lz8Mv1XO5ouoQx6gAAAAASUVORK5CYII=' alt=''>
