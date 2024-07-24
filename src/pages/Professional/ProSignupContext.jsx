@@ -2,17 +2,18 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate} from 'react-router-dom';
 
-export default function UseSignupContext() {
-
+export default function ProSignupContext() {
     const navigate = useNavigate();
 
     // 입력값들 (아이디)
-    const [userId, setUserId] = useState(''); 
+    const [userId, setUserId] = useState('');
     const [nickname, setNickname] = useState('');
     const [birthYear, setBirthYear] = useState('');
     const [birthMonth, setBirthMonth] = useState('');
     const [birthDay, setBirthDay] = useState('');
     const [gender, setGender] = useState('');
+    const [email , setEmail] = useState('');
+    const [file , setFile] = useState(null);
   
     // 입력값들 (비번)
     const [pw, setPw] = useState('');
@@ -59,7 +60,7 @@ export default function UseSignupContext() {
       console.log('클릭');
       try {
         // 서버에서 사용자 데이터 가져오기
-        const response = await axios.get('http://localhost:8080/Member');
+        const response = await axios.get('http://localhost:8080/Pro_Member');
         const users = response.data;
   
         // 현재 입력된 ID와 비교하여 중복 여부 확인
@@ -86,7 +87,7 @@ export default function UseSignupContext() {
       console.log('클릭');
       try {
         // 서버에서 사용자 데이터 가져오기
-        const response = await axios.get('http://localhost:8080/Member');
+        const response = await axios.get('http://localhost:8080/Pro_Member');
         const users = response.data;
   
         // 현재 입력된 닉네임과 비교하여 중복 여부 확인
@@ -122,19 +123,58 @@ export default function UseSignupContext() {
       birthMonth !== '' && 
       birthDay !== '' && 
       gender !== '' && 
+      email !== '' && 
       pw !== '' && 
       checkPW !== '' &&
       phoneNum !== '' && 
-      certified !== '';
+      certified !== '' &&
+      file && file.size > 0;
+
+   //파일 이메일로 보내는 부분
+  const handleFile = (e) => {
+    const selectedFile = e.target.files[0];
+    console.log(selectedFile);
+    if (selectedFile) {
+      setFile(selectedFile);
+    }
+  };
+
+  // 파일 업로드 및 이메일 전송
+  const handleFileUpload = async () => {
+    if (!file) {
+      alert('파일을 선택하세요');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {                               
+        const response = await fetch('http://localhost:8080/pro_file', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        alert('파일이 성공적으로 업로드되었습니다');
+      } else {
+        alert('파일 업로드에 실패하였습니다');
+      }
+    } catch (error) {
+      console.error('파일 업로드 중 오류가 발생했습니다:', error);
+      alert('파일 업로드 중 오류가 발생했습니다');
+    }
+  };   
+
 
   // 회원가입
-  const postUserData = () => {
+  const postProData = () => {
     if (pw !== checkPW) {
       setMatchPW(true);
       alert('다시 확인해주세요');
     }
 
-    fetch('http://localhost:8080/signup/general', {
+    fetch('http://localhost:8080/signup/expert', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -146,6 +186,7 @@ export default function UseSignupContext() {
         birth: `${birthYear}-${birthMonth}-${birthDay}`,
         gender,
         phoneNum,
+        email
       }),
     })
     .then(response => {
@@ -156,7 +197,7 @@ export default function UseSignupContext() {
     })
     .then(data => {
       console.log('서버 응답:', data);
-      const confirmed = window.confirm('회원가입이 완료되었습니다. 로그인 페이지로 이동하시겠습니까?');
+      const confirmed = window.confirm('관리자의 승인까지 1~3일 소요됩니다. 로그인 페이지로 이동하시겠습니까?');
       if (confirmed) {
         navigate('/login'); 
       }
@@ -185,9 +226,10 @@ export default function UseSignupContext() {
     handlePhone,
     showPw, handlePw,
     showPw2, handlePw2,
-    postUserData,handleFieldChange,
+    postProData,handleFieldChange,
     isIdAvailable, setIsIdAvailable,
     isNickAvailable, setIsNickAvailable,
-    btn ,agree , setAgree , handleAgree , certified , setCertified
+    btn ,agree , setAgree , handleAgree , certified , setCertified,
+    email , setEmail , file , setFile ,handleFile , handleFileUpload
   };
 }

@@ -1,7 +1,7 @@
 .signup_container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     margin : 230px auto 80px auto;
 }
@@ -9,6 +9,11 @@
 .signup_label{
     width: 540px;
     margin: 40px 0 3px 0;
+}
+
+.signup_email{
+    width: 540px;
+    margin: 60px 0 0 0;
 }
 
 .signup_checkbox_container{
@@ -28,6 +33,14 @@
 
 .signup_checkbox_p{
     margin-top: 14px;
+}
+
+.signup_check_msg_sucess{
+    display: block;
+    margin: 10px 0 0 0px;
+    text-align: right; 
+    color : #0075FF;
+    font-size: 14px;
 }
 
 .signup_h2{
@@ -83,8 +96,14 @@
     display: flex;
     flex-direction: column;
     /* align-items: center; */
-    margin : 30px 0 -10px 0;
+    margin : 30px 0 0 0;
 }
+
+.signup_label_Nick{
+    width: 540px;
+    margin: 15px 0 3px 0;
+}
+
 
 .input_error {
     color: #FF0000;
@@ -95,7 +114,7 @@
     color: #FF0000;
     text-align: right;
     font-size: 14px;
-    margin : 10px 0 0 0;
+    margin : -10px 0 0 0;
   }
 
 .signup_p2{
@@ -199,7 +218,7 @@
 
 .signup_label2{
     width: 540px;
-    margin: 15px 0 3px 0;
+    margin: 30px 0 3px 0;
 }
 
 /* ============================================= */
@@ -264,6 +283,24 @@
     border : 1px solid #84A67F;
     font-size: 20px;
 }
+
+.no_singup_Btn { 
+    background-color: #D9D9D9;
+    border-radius: 20px;
+    width: 440px;
+    height: 65px;
+    font-family: 'Pretendard', sans-serif;
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid rgba(217, 217, 217, 0.3);
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    cursor: not-allowed;
+  }
+
+  
 /* ==================================================== */
 /* 첨부파일 부분 */
 
@@ -396,7 +433,7 @@
     background-color:white;
     border-radius: 20px;
     color: #FF0000 !important;
-    /* border: 2px solid #FF0000 !important;  */
+    border: 2px solid #FF0000 !important; 
     width: 560px;
     height: 60px;
     margin-bottom: 20px;
