@@ -36,25 +36,33 @@ export default function Login() {
   }, []);
 
 
-  // 로그인 버튼 클릭
-  const submitLogin = async () => {
-    try {
-        const response = await axios.get('http://localhost:8080/Member');
-        const members = response.data;
-        const user = members.find(member => member.userId === id && member.password === pw);
-
-        if (user) {
-            navigate(`/profile/${id}`);
-        } else {
-            alert('아이디 또는 비밀번호가 잘못되었습니다.');
-        }
-    } catch (error) {
-        console.error('로그인 요청 에러:', error);
-        alert('서버와 연결하는 데 문제가 발생했습니다.');
+  // 로그인 버튼 클릭 // 이 부분 바뀜
+  const submitLogin = () => {
+    if (memberData && id === memberData.userId && pw === memberData.password) {
+      sessionStorage.setItem('isLoggedIn', 'true'); // 로그인 상태 저장
+      navigate('/'); // 홈 페이지로 이동
+    } else {
+      alert('아이디 혹은 비밀번호가 맞지 않습니다.');
     }
-};
+  };
+//=========여기 까지
 
+// const submitLogin = async () => {
+//   try {
+//       const response = await axios.get('http://localhost:8080/Member');
+//       const members = response.data;
+//       const user = members.find(member => member.userId === id && member.password === pw);
 
+//       if (user) {
+//           navigate(`/profile/${id}`);
+//       } else {
+//           alert('아이디 또는 비밀번호가 잘못되었습니다.');
+//       }
+//   } catch (error) {
+//       console.error('로그인 요청 에러:', error);
+//       alert('서버와 연결하는 데 문제가 발생했습니다.');
+//   }
+// };
 
 
   // =====================================================

@@ -27,7 +27,6 @@ export default function CommList(props) {
     }
 };
 
-  const Navigate =useNavigate()
 
   const goToMain=()=>{
     navigate('/')
@@ -81,8 +80,8 @@ export default function CommList(props) {
           <div className={styles.CommList_right_mid}>
               <p className={styles.right_mid_p}>총 건</p>
               <div className={styles.right_mid}>
-                <Link to='/comm_write'>
-                <button className={styles.right_mid_btn} onClick={handleLoginClick}>끄적이기</button></Link>
+                
+                <button className={styles.right_mid_btn} onClick={handleLoginClick}>끄적이기</button>
                   <select className={styles.right_mid_select}>
                     <option >최신순</option>
                     <option >인기순</option>
