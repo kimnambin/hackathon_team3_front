@@ -13,7 +13,7 @@ export default function SignUp() {
     showPw, setShowPw, num , setNum,
     showPw2, setShowPw2,handlePw,handlePw2,postUserData ,handleFieldChange,
     isIdAvailable, setIsIdAvailable , isNickAvailable, setIsNickAvailable,
-    btn ,agree , setAgree , handleAgree , certified , setCertified
+    btn ,agree , setAgree , handleAgree , certified , setCertified ,checkNum
   } = UseSignupContext();
   
   
@@ -188,7 +188,7 @@ export default function SignUp() {
       value={certified}
       onChange={handleFieldChange(setCertified)}
       />
-      <button className={styles.signup_btn_phone2} disabled={!num}>확인</button>
+      <button className={styles.signup_btn_phone2} disabled={!num} onClick={checkNum} >확인</button>
       </div>
 
       {/* 회원가입 버튼 */}

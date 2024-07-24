@@ -85,11 +85,12 @@
 
 .main3Box1 {
     background-color:#f9ecb1;
-    width: 117vh;
+    width: 115vh;
     height: 170px;
     /* margin-left: 100px; */
     border-radius: 10px;
     cursor: pointer;
+    margin-right: 50px;
 }
 
 .main3Box1Text {
@@ -135,7 +136,7 @@
 
 .main3Box2 {
     background-color:#ffea8f;
-    width: 41vh;
+    width: 47vh;
     height: 170px;
     border-radius: 10px;
     cursor: pointer;

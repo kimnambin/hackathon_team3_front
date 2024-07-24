@@ -23,44 +23,36 @@ const HospitalMap = () => {
   const [currentAddress, setCurrentAddress] = useState(""); // 현재 위치 주소 상태
 
   useEffect(() => {
-    const storedPosition = localStorage.getItem('currentPosition');
-    if (storedPosition) {
-      const { latitude, longitude } = JSON.parse(storedPosition);
+    const handleSuccess = (position) => {
+      const { latitude, longitude } = position.coords;
       setCurrentPosition({ latitude, longitude });
+      localStorage.setItem('currentPosition', JSON.stringify({ latitude, longitude }));
       initializeMap(latitude, longitude);
       reverseGeocode(latitude, longitude);
+    };
+
+    const handleError = (error) => {
+      console.error('Geolocation error:', error);
+      // Fallback to a default location if geolocation fails
+      const defaultLatitude = 37.566826;
+      const defaultLongitude = 126.9786567;
+      setCurrentPosition({ latitude: defaultLatitude, longitude: defaultLongitude });
+      localStorage.setItem('currentPosition', JSON.stringify({ latitude: defaultLatitude, longitude: defaultLongitude }));
+      initializeMap(defaultLatitude, defaultLongitude);
+      reverseGeocode(defaultLatitude, defaultLongitude);
+    };
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
     } else {
-      const handleSuccess = (position) => {
-        const { latitude, longitude } = position.coords;
-        setCurrentPosition({ latitude, longitude });
-        localStorage.setItem('currentPosition', JSON.stringify({ latitude, longitude }));
-        initializeMap(latitude, longitude);
-        reverseGeocode(latitude, longitude);
-      };
-
-      const handleError = (error) => {
-        console.error('Geolocation error:', error);
-        // Fallback to a default location if geolocation fails
-        const defaultLatitude = 37.566826;
-        const defaultLongitude = 126.9786567;
-        setCurrentPosition({ latitude: defaultLatitude, longitude: defaultLongitude });
-        localStorage.setItem('currentPosition', JSON.stringify({ latitude: defaultLatitude, longitude: defaultLongitude }));
-        initializeMap(defaultLatitude, defaultLongitude);
-        reverseGeocode(defaultLatitude, defaultLongitude);
-      };
-
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
-      } else {
-        console.error('Geolocation is not supported by this browser.');
-        // Fallback to a default location if geolocation is not supported
-        const defaultLatitude = 37.566826;
-        const defaultLongitude = 126.9786567;
-        setCurrentPosition({ latitude: defaultLatitude, longitude: defaultLongitude });
-        localStorage.setItem('currentPosition', JSON.stringify({ latitude: defaultLatitude, longitude: defaultLongitude }));
-        initializeMap(defaultLatitude, defaultLongitude);
-        reverseGeocode(defaultLatitude, defaultLongitude);
-      }
+      console.error('Geolocation is not supported by this browser.');
+      // Fallback to a default location if geolocation is not supported
+      const defaultLatitude = 37.566826;
+      const defaultLongitude = 126.9786567;
+      setCurrentPosition({ latitude: defaultLatitude, longitude: defaultLongitude });
+      localStorage.setItem('currentPosition', JSON.stringify({ latitude: defaultLatitude, longitude: defaultLongitude }));
+      initializeMap(defaultLatitude, defaultLongitude);
+      reverseGeocode(defaultLatitude, defaultLongitude);
     }
   }, []);
 
@@ -289,3 +281,4 @@ const HospitalMap = () => {
 };
 
 export default HospitalMap;
+

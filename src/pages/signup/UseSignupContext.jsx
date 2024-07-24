@@ -48,9 +48,15 @@ export default function UseSignupContext() {
     const [num ,setNum] = useState(false); 
     const handlePhone = () => {
       setNum(true);
+      //여기에 문자가 가지도록 구현해야 함
+      //    /check/sendSMS
     };
     const [certified , setCertified] = useState('')
-  
+    
+    const checkNum = () =>{
+      // /check/certification
+    }
+
     // ID 중복체크
     const [isIdAvailable, setIsIdAvailable] = useState(false);
     const [checkId, setCheckId] = useState('none');
@@ -188,6 +194,7 @@ export default function UseSignupContext() {
     postUserData,handleFieldChange,
     isIdAvailable, setIsIdAvailable,
     isNickAvailable, setIsNickAvailable,
-    btn ,agree , setAgree , handleAgree , certified , setCertified
+    btn ,agree , setAgree , handleAgree , certified ,
+    setCertified , checkNum
   };
 }

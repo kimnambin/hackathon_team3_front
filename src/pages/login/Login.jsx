@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from 'react';
+import React, { useState } from 'react';
 import 'pretendard/dist/web/static/pretendard.css';
 import styles from './Login.module.css';
 import { NavLink ,useNavigate  } from 'react-router-dom';

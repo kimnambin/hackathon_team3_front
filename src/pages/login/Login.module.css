@@ -107,6 +107,15 @@
     margin-left: 18px;
   }
 
+  .btnAndText2 {
+    display: flex; 
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 420px;
+    /* margin-left: 18px; */
+  }
+
   .search{
     display: flex;
     flex-direction: row;
@@ -131,4 +140,9 @@
     font-size: inherit; 
     color: inherit;
     margin-right: 130px;
+}
+
+.Text{
+  color:#D9D9D9;
+  font-size: 12px;
 }
