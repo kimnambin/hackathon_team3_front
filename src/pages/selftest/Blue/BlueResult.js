@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-import styles from './Blue.module.css'
+import styles from './Blue.module.css';
 import { useNavigate } from 'react-router-dom';
 
 const BlueResult = () => {

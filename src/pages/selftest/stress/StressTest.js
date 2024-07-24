@@ -1,12 +1,27 @@
-import React from 'react'
 import { Container } from 'react-bootstrap'
 import styles from './Stress.module.css'
 import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
-const TestPart = ({ number, text }) => (
-    <div className={styles.testpart2}>
-        <div className={styles.testcircle}><span>{number}</span></div>
-        <p>{text}</p>
+// 각 테스트 항목을 위한 함수형 컴포넌트
+const TestPart = ({ number, text, buttonStates, handleButtonClick, isLast }) => (
+    <div className={styles.roofpart}>
+        <div className={styles.testpart2}>
+            <div className={styles.testcircle}><span>{number}</span></div>
+            <p>{text}</p>
+        </div>
+        <div className={styles.part2}>
+            {!isLast && <div className={styles.part2line}></div>}
+            {[...Array(4)].map((_, index) => (
+                <button
+                    key={index}
+                    className={`${styles.part2circlelast} ${buttonStates[index].active ? styles.active : ''} ${isLast ? styles.lastButton : ''}`}
+                    onClick={() => handleButtonClick(number - 1, index)}
+                >
+                    {buttonStates[index].value}
+                </button>
+            ))}
+        </div>
     </div>
 );
 
@@ -34,11 +49,51 @@ const StressTest = () => {
         Navigate('/StressTest2')
     }
     
-    const testData = [
-        { number: 2, text: '인생에서 중요한 일들을 조절할 수 없다는 느낌을 받는다.' },
-        { number: 3, text: '신경이 예민해지고 스트레스를 받고 있다는 느낌을 받는다.' },
-        { number: 4, text: '개인적 문제들을 다루는 데 있어서 자신감이 있다.' },
-    ];
+    // 상태 초기화
+    const [testData, setTestData] = useState([]);
+    const [buttonStates, setButtonStates] = useState([]);
+
+     // 로컬 스토리지에서 상태 복원
+     useEffect(() => {
+        const savedStates = JSON.parse(localStorage.getItem('buttonStates'));
+        if (savedStates) {
+            setButtonStates(savedStates);
+        }
+
+        // 테스트 데이터 설정 (예제)
+        const exampleTestData = [
+            { number: 1, text: '예상치 못했던 일 때문에 당황했던 적이 있다.' },
+            { number: 2, text: '인생에서 중요한 일들을 조절할 수 없다는 느낌을 경험했다.' },
+            { number: 3, text: '신경이 예민해지고 스트레스를 받고 있다는 느낌을 받았다.' },
+            { number: 4, text: '개인적 문제들을 다루는 데 있어서 자신감을 잃었다.' },
+            { number: 5, text: '일상의 일들이 내가 생각한 대로 진행되고 있다는 느낌을 받은 적이 드물다.' }
+        ];
+        setTestData(exampleTestData);
+
+        // 초기 버튼 상태 설정
+        const initialButtonStates = exampleTestData.map(() =>
+            Array(4).fill(false).map((_, index) => ({ value: index, active: false }))
+        );
+        setButtonStates(initialButtonStates);
+
+    }, []);
+
+    // 버튼 클릭 핸들러 함수
+    const handleButtonClick = (questionIndex, buttonIndex) => {
+        console.log(`Button clicked - Question Index: ${questionIndex}, Button Index: ${buttonIndex}`);
+        setButtonStates(prevState => {
+            const updatedStates = prevState.map((buttons, qIndex) =>
+                qIndex === questionIndex
+                    ? buttons.map((button, bIndex) => ({
+                        ...button,
+                        active: bIndex === buttonIndex
+                    }))
+                    : buttons
+            );
+            localStorage.setItem('buttonStates', JSON.stringify(updatedStates));
+            return updatedStates;
+        });
+    };
 
   return (
     <Container>
@@ -73,56 +128,18 @@ const StressTest = () => {
             <p>(전혀 아니다 : 0점, 조금 느꼈다 : 1점, 상당히 느꼈다: 2점, 심하게 느꼈다: 3점)</p>
         </div>
 
-        {/* 테스트 첫 문항 부분 */}
-
         <div>
-            <div className={styles.testpart}>
-                <div className={styles.testcircle}><span>1</span></div>
-                <p>예상치 못했던 일 때문에 당황했던 적이 많다.</p>
+                {testData.map((data, index) => (
+                    <TestPart
+                        key={index}
+                        number={data.number}
+                        text={data.text}
+                        buttonStates={buttonStates[index]}
+                        handleButtonClick={handleButtonClick}
+                        isLast={index === testData.length - 1}
+                    />
+                ))}
             </div>
-
-            
-            <div className={styles.part2}>
-                <div className={styles.part2line}></div>
-                <button className={styles.part2circle}></button>
-                <button className={styles.part2circle}></button>
-                <button className={styles.part2circle}></button>
-                <button className={styles.part2circle}></button>
-            </div>
-        </div>
-
-        {/* 테스트 문항 부분 반복*/}
-
-        <div>
-            {testData.map(({ number, text }, index) => (
-                <React.Fragment key={index}>
-                    <TestPart number={number} text={text} />
-
-                    <div className={styles.part2}>
-                        <div className={styles.part2line}></div>
-                        <button className={styles.part2circle}></button>
-                        <button className={styles.part2circle}></button>
-                        <button className={styles.part2circle}></button>
-                        <button className={styles.part2circle}></button>
-                    </div>
-                </React.Fragment>
-            ))}
-        </div>
-  
-        {/* 테스트 마지막 문항 부분 */}
-        <div>
-            <div className={styles.testpart2}>
-                <div className={styles.testcircle}><span>5</span></div>
-                <p>일상의 일들이 당신의 생각대로 진행되지 않는다는 느낌을 받았다.</p>
-            </div>
-            
-            <div className={styles.part2}>
-                <button className={styles.part2circlelast}></button>
-                <button className={styles.part2circlelast}></button>
-                <button className={styles.part2circlelast}></button>
-                <button className={styles.part2circlelast}></button>
-            </div>
-        </div>
 
         <button className={styles.nextPage} onClick={nextPage} style={{marginLeft: '52vh'}}>
             <p>다음 페이지</p> <span className={styles.nextPageline}></span> <span className={styles.nextPageArrow}></span>

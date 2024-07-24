@@ -65,6 +65,7 @@ const Blue = () => {
 
     // 버튼 클릭 핸들러 함수
     const handleButtonClick = (questionIndex, buttonIndex) => {
+        console.log(`Button clicked - Question Index: ${questionIndex}, Button Index: ${buttonIndex}`);
         setButtonStates(prevState => {
             const updatedStates = prevState.map((buttons, qIndex) =>
                 qIndex === questionIndex
