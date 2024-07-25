@@ -65,7 +65,7 @@ export default function UseSignupContext() {
       console.log('클릭');
       try {
         // 서버에서 사용자 데이터 가져오기
-        const response = await axios.get('http://localhost:8080/Member');
+        const response = await axios.get('http://localhost:8080/login');
         const users = response.data;
   
         // 현재 입력된 ID와 비교하여 중복 여부 확인
@@ -92,7 +92,7 @@ export default function UseSignupContext() {
       console.log('클릭');
       try {
         // 서버에서 사용자 데이터 가져오기
-        const response = await axios.get('http://localhost:8080/Member');
+        const response = await axios.get('http://localhost:8080/login');
         const users = response.data;
   
         // 현재 입력된 닉네임과 비교하여 중복 여부 확인
