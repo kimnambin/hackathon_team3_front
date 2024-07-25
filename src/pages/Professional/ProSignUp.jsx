@@ -215,8 +215,9 @@ export default function ProSignUp() {
 
       {/* 첨부파일 부분 */}
       <div className={styles.signup_label2}>
-      <p className={styles.signup_p}>첨부파일</p>
+      <p className={styles.signup_pp0}>첨부파일</p>
       </div>
+      <p className={styles.signup_pp}>파일 업로드 시 약 5초 정도 소요됩니다.</p>
 
       <div className={styles.signup_phone}>
       <div className={styles.file_container}>

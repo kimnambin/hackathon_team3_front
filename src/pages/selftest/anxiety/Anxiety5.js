@@ -1,8 +1,29 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import styles from './Anxiety.module.css'
 import { Container } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 
+// 각 테스트 항목을 위한 함수형 컴포넌트
+const TestPart = ({ number, text, buttonStates, handleButtonClick, isLast }) => (
+    <div className={styles.roofpart}>
+        <div className={styles.testpart2}>
+            <div className={styles.testcircle}><span>{number}</span></div>
+            <p>{text}</p>
+        </div>
+        <div className={styles.part2}>
+            {!isLast && <div className={styles.part2line}></div>}
+            {[...Array(4)].map((_, index) => (
+                <button
+                    key={index}
+                    className={`${styles.part2circlelast} ${buttonStates[index].active ? styles.active : ''} ${isLast ? styles.lastButton : ''}`}
+                    onClick={() => handleButtonClick(number - 1, index)}
+                >
+                    {buttonStates[index].value}
+                </button>
+            ))}
+        </div>
+    </div>
+);
 
 const Anxiety5 = () => {
     // 네비게이트 함수
@@ -31,6 +52,48 @@ const Anxiety5 = () => {
     const nextPage=()=>{
         Navigate('/AnxietyResult')
     }
+
+    // 상태 초기화
+ const [testData, setTestData] = useState([]);
+ const [buttonStates, setButtonStates] = useState([]);
+
+  // 로컬 스토리지에서 상태 복원
+  useEffect(() => {
+     const savedStates = JSON.parse(localStorage.getItem('buttonStates'));
+     if (savedStates) {
+         setButtonStates(savedStates);
+     }
+
+     // 테스트 데이터 설정 (예제)
+     const exampleTestData = [
+         { number: 21, text: '땀을 많이 흘린다.' }
+     ];
+     setTestData(exampleTestData);
+
+     // 초기 버튼 상태 설정
+     const initialButtonStates = exampleTestData.map(() =>
+         Array(4).fill(false).map((_, index) => ({ value: index, active: false }))
+     );
+     setButtonStates(initialButtonStates);
+
+ }, []);
+
+ // 버튼 클릭 핸들러 함수
+ const handleButtonClick = (questionIndex, buttonIndex) => {
+     console.log(`Button clicked - Question Index: ${questionIndex}, Button Index: ${buttonIndex}`);
+     setButtonStates(prevState => {
+         const updatedStates = prevState.map((buttons, qIndex) =>
+           qIndex === (questionIndex - 20)  // 수정된 인덱스 비교
+                 ? buttons.map((button, bIndex) => ({
+                     ...button,
+                     active: bIndex === buttonIndex
+                 }))
+                 : buttons
+         );
+         localStorage.setItem('buttonStates', JSON.stringify(updatedStates));
+         return updatedStates;
+     });
+ };
 
   return (
     <Container>
@@ -66,22 +129,18 @@ const Anxiety5 = () => {
             <p>(전혀 아니다 : 0점, 조금 느꼈다 : 1점, 상당히 느꼈다: 2점, 심하게 느꼈다 : 3점)</p>
         </div>
 
-        {/* 테스트 첫 문항 부분 */}
-
         <div>
-            <div className={styles.testpart}>
-                <div className={styles.testcircle}><span>21</span></div>
-                <p>별다른 활동 없이 땀을 많이 흘린다.</p>
+                {testData.map((data, index) => (
+                    <TestPart
+                        key={index}
+                        number={data.number}
+                        text={data.text}
+                        buttonStates={buttonStates[index]}
+                        handleButtonClick={handleButtonClick}
+                        isLast={index === testData.length - 1}
+                    />
+                ))}
             </div>
-
-            
-            <div className={styles.part2} style={{marginLeft: 250}}>
-                <button className={styles.part2circle}></button>
-                <button className={styles.part2circle}></button>
-                <button className={styles.part2circle}></button>
-                <button className={styles.part2circle}></button>
-            </div>
-        </div>
 
         <div className={styles.pageButtonBox}>
         <button className={styles.nextPage} onClick={privpage}>

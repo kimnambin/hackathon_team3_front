@@ -145,7 +145,7 @@ export default function ProSignupContext() {
       alert('파일을 선택하세요');
       return;
     }
-
+    
     const formData = new FormData();
     formData.append('file', file);
 

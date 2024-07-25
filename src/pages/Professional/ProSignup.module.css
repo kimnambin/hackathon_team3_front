@@ -64,6 +64,22 @@
     font-weight: bold;
     font-family: 'Pretendard', sans-serif;
   }
+
+  .signup_pp0{
+    flex: 1; 
+    margin: 0 0 -20px 0;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Pretendard', sans-serif;
+  }
+
+  .signup_pp {
+    flex: 1; 
+    margin: 0 0 10px -30px;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: 'Pretendard', sans-serif;
+  }
   
   .signup_check_p {
     flex: 1; 
@@ -348,7 +364,8 @@
     text-align: left;
     width: 540px;
     font-size: 14px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    margin-top: -20px;
 }
 
 .file_p2{

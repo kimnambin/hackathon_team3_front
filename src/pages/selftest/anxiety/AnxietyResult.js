@@ -40,7 +40,6 @@ const AnxietyResult = () => {
             <button className={styles.section2dsign2} onClick={goToStress}><span >스트레스</span></button>
             <button className={styles.section2dsign} onClick={goToAnxiety}><span >불안</span></button>
         </div>
-
         {/* 결과 박스 */}
 
         <div className={styles.resultBox}>
