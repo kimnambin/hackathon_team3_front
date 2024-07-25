@@ -98,7 +98,7 @@ export default function CommList(props) {
         
       {Array.from({ length: 8 },(_,i) => (
         <div className={styles.CommList_main}>
-            <h3 className={styles.main_h3}>세상에 저 혼자인 느낌이...</h3>
+            <p className={styles.main_h3}>세상에 저 혼자인 느낌이...</p>
             <p className={styles.main_p}>이상하게 이 세상에 </p>
             
              {/* 맨 밑에 부분 */}

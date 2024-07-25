@@ -45,6 +45,18 @@ export default function Profile() {
         navigate('/anxiety');
     };
 
+    const goToPost = () => {
+        navigate('/mypost');
+    };
+
+    const goToComment = () => {
+        navigate('/mycomment');
+    };
+
+    const goToBookmark = () => {
+        navigate('/mybookmark');
+    };
+
     if (!userInfo) {
         return <div>Loading...</div>;
     }
@@ -123,17 +135,19 @@ export default function Profile() {
                 
                 {/* 둥근 부분 */}
                 <div className={styles.Profile_mid_content}>
-                    <div className={styles.Profile_mid_content01}>
+                    <div className={styles.Profile_mid_content01} onClick={goToPost}>
                         <p className={styles.Profile_mid_content_p}>작성한 게시글</p>
                         <p>0개</p>
                     </div>
+
                     <div className={styles.Profile_mid_content_line}></div>
-                    <div className={styles.Profile_mid_content01}>
+                    <div className={styles.Profile_mid_content01} onClick={goToComment}>
                         <p className={styles.Profile_mid_content_p}>댓글단 게시글</p>
                         <p>0개</p>
                     </div>
+
                     <div className={styles.Profile_mid_content_line}></div>
-                    <div className={styles.Profile_mid_content01}>
+                    <div className={styles.Profile_mid_content01} onClick={goToBookmark}>
                     <p className={styles.Profile_mid_content_p}>북마크 게시글</p>
                     <p>0개</p>
                     </div>

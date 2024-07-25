@@ -4,6 +4,7 @@ import commstyles from '../Community/Comm.module.css';
 import { FaAngleRight } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom';
+import 'pretendard/dist/web/static/pretendard.css'; // 프리텐다드 폰트 스타일s
 
 const HospitalMap = () => {
   const navigate = useNavigate();

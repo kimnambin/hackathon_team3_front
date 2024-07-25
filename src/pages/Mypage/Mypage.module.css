@@ -247,7 +247,18 @@
 .No_postList_btn{
     color:#ffffff;
     background-color:#84a67f;
-    font-size:17px;
+    font-size:13px;
+    border-style:hidden;
+    outline:none;
+    width:131px;
+    height: 45px;
+    border-radius: 30px;
+}
+
+.No_postList_btn02{
+    color:#ffffff;
+    background-color:#84a67f;
+    font-size:11px;
     border-style:hidden;
     outline:none;
     width:131px;

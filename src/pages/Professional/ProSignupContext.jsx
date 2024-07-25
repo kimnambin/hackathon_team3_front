@@ -186,7 +186,7 @@ export default function ProSignupContext() {
         birth: `${birthYear}-${birthMonth}-${birthDay}`,
         gender,
         phoneNum,
-        email
+        email,
       }),
     })
     .then(response => {

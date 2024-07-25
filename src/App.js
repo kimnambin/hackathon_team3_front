@@ -49,6 +49,8 @@ import Manager from './pages/manager/Manager';
 //로그인 여부 확인 후 url 경로 변경
 // import PrivateRoute from './route/PrivateRoute';
 import 'pretendard/dist/web/static/pretendard.css';
+import MyComment from './pages/mypage/MyComment';
+import MyBookmark from './pages/mypage/MyBookmark';
 
 function App() {
 
@@ -87,8 +89,10 @@ function App() {
           <Route path="/stressSave" element={<PrivateRoute  component={StressSave}/>} />
           <Route path="/anxietySave" element={<PrivateRoute  component={AnxietySave}/>} />
           <Route path="/hospital_map" element={<PrivateRoute component={HospitalMap} />} /> */}
-           <Route path="/profile/:userId" element={<Profile />} />
-          <Route path="/mypost" element={<MyPost/>} />
+          <Route path="/profile/:userId" element={<Profile />} />
+          <Route path="/mypost" element={<MyPost/>} /> {/* 작성한 게시글 */}
+          <Route path="/mycomment" element={<MyComment/>} />{/* 작성한 댓글 */}
+          <Route path="/mybookmark" element={<MyBookmark/>} />{/* 저장한 북마크 */}
           <Route path="/blueSave" element={<BlueSave/>} />
           <Route path="/stressSave" element={<StressSave/>} />
           <Route path="/anxietySave" element={<AnxietySave/>} />

@@ -21,6 +21,9 @@ export default function UseSignupContext() {
     const [showPw, setShowPw] = useState(false); //비번 숨기고 보기
     const [showPw2, setShowPw2] = useState(false); //비번 숨기고 보기 22
   
+    const phoneNumber = {
+      "phoneNumber":"01096667750"
+  }
     // 입력이 되기 위함
     const handleFieldChange = (setter) => (e) => setter(e.target.value);
   
@@ -46,16 +49,72 @@ export default function UseSignupContext() {
   
     // 인증 번호 부분
     const [num ,setNum] = useState(false); 
-    const handlePhone = () => {
-      setNum(true);
-      //여기에 문자가 가지도록 구현해야 함
-      //    /check/sendSMS
+    
+    const handlePhone = async () => {
+      setNum(true); // 로딩 상태나 UI 업데이트를 위해 상태 설정
+    
+      try {
+        const response = await axios.post('http://52.78.131.56:8080/check/sendSMS', {
+          phoneNumber: phoneNum,
+        });
+        
+    
+        // 서버의 응답을 확인합니다.
+        if (response.status === 200) {
+          // 성공적으로 SMS 발송 요청이 이루어진 경우
+          console.log('버튼 클릭됨, SMS 발송 요청 성공');
+          alert('SMS 발송 요청이 성공적으로 처리되었습니다.');
+    
+        } else {
+          // 응답 상태가 200이 아닌 경우
+          console.log('SMS 발송 요청 실패:', response.status);
+          alert('SMS 발송 요청에 실패하였습니다. 다시 시도해 주세요.');
+        }
+      } catch (error) {
+        // API 호출 중 발생한 에러를 처리합니다.
+        console.log('SMS 요청 에러:', error);
+        alert('서버와 연결하는 데 문제가 발생했습니다.');
+      } finally {
+        setNum(false); // 로딩 상태를 종료합니다.
+      }
     };
+    
+    
+    
+
     const [certified , setCertified] = useState('')
     
-    const checkNum = () =>{
-      // /check/certification
-    }
+    
+
+    const checkNum = async () => {
+     
+      try {
+        const response = await axios.post('http://52.78.131.56:8080/check/certification', {
+        });
+        console.log('확인 버튼 클릭됨')
+        // 서버의 응답을 확인합니다.
+        if (response.status === 200) {
+          // 성공적으로 SMS 발송 요청이 이루어진 경우
+          console.log('버튼 클릭됨, SMS 발송 요청 성공');
+          alert('SMS 발송 요청이 성공적으로 처리되었습니다.');
+    
+          // 추가적인 성공 처리 로직을 여기에 작성할 수 있습니다.
+          // 예를 들어, 상태 업데이트, UI 변경, 또는 다른 API 호출 등을 수행할 수 있습니다.
+          // 예: setSmsSent(true); // SMS가 발송되었음을 나타내는 상태 업데이트
+        } else {
+          // 응답 상태가 200이 아닌 경우
+          console.error('SMS 발송 요청 실패:', response.status);
+          alert('SMS 발송 요청에 실패하였습니다. 다시 시도해 주세요.');
+        }
+      } catch (error) {
+        // API 호출 중 발생한 에러를 처리합니다.
+        console.error('SMS 요청 에러:', error);
+        alert('서버와 연결하는 데 문제가 발생했습니다.');
+      } finally {
+        setNum(false); // 로딩 상태를 종료합니다.
+      }
+    };
+    
 
     // ID 중복체크
     const [isIdAvailable, setIsIdAvailable] = useState(false);
@@ -140,7 +199,7 @@ export default function UseSignupContext() {
       alert('다시 확인해주세요');
     }
 
-    fetch('http://localhost:8080/signup/general', {
+    fetch('http://52.78.131.56:8080/signup/general', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

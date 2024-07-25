@@ -175,20 +175,22 @@ export default function SignUp() {
       </div>
 
       <div className={styles.signup_phone}>
-      <input type='tel' className={styles.signup_input_phone} value={phoneNum} placeholder='전화번호 입력' 
-      maxLength="11"
-      onChange={handleFieldChange(setPhoneNum)}/>
+        <input type='tel' className={styles.signup_input_phone} value={phoneNum} placeholder='전화번호 입력' 
+        maxLength="11"
+        // onChange={handleFieldChange(setPhoneNum)}
+        onChange={(e) => setPhoneNum(e.target.value)}
+        />
       <button className={styles.signup_btn_phone} 
        onClick={handlePhone}>인증번호 받기</button>
-      </div>
+      </div> 
 
-        <div className={styles.signup_phone}>
-      <input type='text' className={styles.signup_input_phone2} placeholder='인증번호를 입력하세요' 
-      disabled={!num} 
-      value={certified}
-      onChange={handleFieldChange(setCertified)}
-      />
-      <button className={styles.signup_btn_phone2} disabled={!num} onClick={checkNum} >확인</button>
+      <div className={styles.signup_phone}>
+        <input type='text' className={styles.signup_input_phone2} placeholder='인증번호를 입력하세요' 
+        // disabled={!num} 
+        value={certified}
+        onChange={handleFieldChange(setCertified)}
+        />
+      <button className={styles.signup_btn_phone2}  onClick={checkNum} >확인</button>
       </div>
 
       {/* 회원가입 버튼 */}

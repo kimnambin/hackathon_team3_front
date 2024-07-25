@@ -1,88 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import styles from './Manager.module.css';
+import axios from 'axios';
 
 const Manager = () => {
-  const data = [
-    {
-      id: 1,
-      name: 'cccc',
-      fullName: '홍길동',
-      gender: 'male',
-      birthDate: '20010101',
-      phoneNumber: '01012345678',
-      email: 'ghdrlfehd@naver.com',
-      startDate: '20240719',
-      endDate: '20240721',
-      status: 'FALSE',
-      approval: '수락'
-    },
-    {
-      id: 2,
-      name: 'cccc',
-      fullName: '홍길동',
-      gender: 'male',
-      birthDate: '19951225',
-      phoneNumber: '01023456789',
-      email: 'leesoonshin@naver.com',
-      startDate: '20240720',
-      endDate: '20240722',
-      status: 'TRUE',
-      approval: '승인'
-    },
-    {
-      id: 3,
-      name: 'cccc',
-      fullName: '홍길동',
-      gender: 'male',
-      birthDate: '19800101',
-      phoneNumber: '01034567890',
-      email: 'kimyushin@naver.com',
-      startDate: '20240721',
-      endDate: '20240723',
-      status: 'FALSE',
-      approval: '거절'
-    },
-    {
-      id: 4,
-      name: 'cccc',
-      fullName: '홍길동',
-      gender: 'male',
-      birthDate: '19921012',
-      phoneNumber: '01045678901',
-      email: 'parkbogum@naver.com',
-      startDate: '20240722',
-      endDate: '20240724',
-      status: 'TRUE',
-      approval: '승인'
-    },
-    {
-      id: 5,
-      name: 'cccc',
-      fullName: '홍길동',
-      gender: 'male',
-      birthDate: '19851018',
-      phoneNumber: '01056789012',
-      email: 'songjoongki@naver.com',
-      startDate: '20240723',
-      endDate: '20240725',
-      status: 'FALSE',
-      approval: '수락'
-    },
-    {
-      id: 6,
-      name: 'cccc',
-      fullName: '홍길동',
-      gender: 'male',
-      birthDate: '19860923',
-      phoneNumber: '01067890123',
-      email: 'moonchaewon@naver.com',
-      startDate: '20240724',
-      endDate: '20240726',
-      status: 'TRUE',
-      approval: '승인'
-    }
-  ];
+  const [userInfo, setUserInfo] = useState(null);
+
+  useEffect(() => {
+    const getProUser = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/Pro_login');
+        setUserInfo(response.data);
+      } catch (error) {
+        console.error('로그인 요청 에러:', error);
+        alert('서버와 연결하는 데 문제가 발생했습니다.');
+      }
+    };
+
+    getProUser();
+  }, []);
 
   return (
     <div>
@@ -105,7 +41,7 @@ const Manager = () => {
         </div>
       </div>
       <div className={styles.stateBox}>
-        {data.map((item) => (
+        {userInfo && userInfo.map((item) => (
           <div key={item.id} className={styles.stateText}>
             <div className={styles.item}>{item.id}</div>
             <div className={styles.item}>{item.name}</div>
