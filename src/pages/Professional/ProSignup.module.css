@@ -1,7 +1,7 @@
 .signup_container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     margin : 230px auto 80px auto;
 }
@@ -9,6 +9,11 @@
 .signup_label{
     width: 540px;
     margin: 40px 0 3px 0;
+}
+
+.signup_email{
+    width: 540px;
+    margin: 60px 0 0 0;
 }
 
 .signup_checkbox_container{
@@ -30,6 +35,14 @@
     margin-top: 14px;
 }
 
+.signup_check_msg_sucess{
+    display: block;
+    margin: 10px 0 0 0px;
+    text-align: right; 
+    color : #0075FF;
+    font-size: 14px;
+}
+
 .signup_h2{
     font-size: 32px;
     font-weight: bold;
@@ -48,6 +61,22 @@
     flex: 1; 
     margin: 0 0 10px 0;
     font-size: 20px;
+    font-weight: bold;
+    font-family: 'Pretendard', sans-serif;
+  }
+
+  .signup_pp0{
+    flex: 1; 
+    margin: 0 0 -20px 0;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Pretendard', sans-serif;
+  }
+
+  .signup_pp {
+    flex: 1; 
+    margin: 0 0 10px -30px;
+    font-size: 12px;
     font-weight: bold;
     font-family: 'Pretendard', sans-serif;
   }
@@ -83,8 +112,14 @@
     display: flex;
     flex-direction: column;
     /* align-items: center; */
-    margin : 30px 0 -10px 0;
+    margin : 30px 0 0 0;
 }
+
+.signup_label_Nick{
+    width: 540px;
+    margin: 15px 0 3px 0;
+}
+
 
 .input_error {
     color: #FF0000;
@@ -95,7 +130,7 @@
     color: #FF0000;
     text-align: right;
     font-size: 14px;
-    margin : 10px 0 0 0;
+    margin : -10px 0 0 0;
   }
 
 .signup_p2{
@@ -199,7 +234,7 @@
 
 .signup_label2{
     width: 540px;
-    margin: 15px 0 3px 0;
+    margin: 30px 0 3px 0;
 }
 
 /* ============================================= */
@@ -264,12 +299,30 @@
     border : 1px solid #84A67F;
     font-size: 20px;
 }
+
+.no_singup_Btn { 
+    background-color: #D9D9D9;
+    border-radius: 20px;
+    width: 440px;
+    height: 65px;
+    font-family: 'Pretendard', sans-serif;
+    color: #ffffff;
+    font-size: 16px;
+    border: 1px solid rgba(217, 217, 217, 0.3);
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    cursor: not-allowed;
+  }
+
+  
 /* ==================================================== */
 /* 첨부파일 부분 */
 
  input[type="file"] {  /*파일 필드 숨기기 */
     position: absolute;
-    width: 1px;
+    width: 500px;
     height: 1px;
     padding: 0;
     margin: -1px;
@@ -293,11 +346,26 @@
   padding-left: 30px;
 }  
 
+.file_container2{
+    border: none;
+    outline: none;
+    padding: 0; 
+    margin: 0; 
+    background-color: transparent; 
+    width: 320px;
+    height: 60px;
+    /* border-radius: 20px;
+    border: 1px solid #000000;
+   
+    padding-left: 30px; */
+  }  
+
 .file_p{
     text-align: left;
     width: 540px;
     font-size: 14px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    margin-top: -20px;
 }
 
 .file_p2{
@@ -382,7 +450,7 @@
     background-color:white;
     border-radius: 20px;
     color: #FF0000 !important;
-    /* border: 2px solid #FF0000 !important;  */
+    border: 2px solid #FF0000 !important; 
     width: 560px;
     height: 60px;
     margin-bottom: 20px;
