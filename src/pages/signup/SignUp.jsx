@@ -13,7 +13,7 @@ export default function SignUp() {
     showPw, setShowPw, num , setNum,
     showPw2, setShowPw2,handlePw,handlePw2,postUserData ,handleFieldChange,
     isIdAvailable, setIsIdAvailable , isNickAvailable, setIsNickAvailable,
-    btn 
+    btn ,agree , setAgree , handleAgree , certified , setCertified ,checkNum
   } = UseSignupContext();
   
   
@@ -24,7 +24,7 @@ export default function SignUp() {
 
       {/* 개인정보 수집 부분 */}
       <div className={styles.signup_checkbox_container}>
-        <input type="checkbox" className={styles.signup_checkbox} /> 
+        <input type="checkbox" className={styles.signup_checkbox} value={!agree} onClick={handleAgree} /> 
         <p className={styles.signup_checkbox_p}> (필수) 개인정보 수집/이용 동의</p>
       </div>
 
@@ -63,7 +63,7 @@ export default function SignUp() {
             onChange={handlePW02}
           />
          <span onClick={handlePw} className={styles.iconnn}>
-            {showPw.visible ? 
+            {showPw ? 
               <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAYCAYAAAACqyaBAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAF1SURBVHgBxVaBUcMwDPx2gozgDcgGeAPYoNmAbAArMEG7ATCB0wmSDQITFCYAmdh3jptIcukdf/dXt31JtizL3kAPQ7wn3hLr8D1iIL4Tj8TXML4KLNERvwvogt3FqIgvhUFz7jHPkAo+reMfA0eOwZ8KO+KJcdZh2vsq6P1nQ+yFSeykwLXgoBXsnwR7u2ZowKdaChzRMj5OWKkBLm37TGvDbw5TUeZ76sCfhBka8OkyipW12eTU2zcywj7RGehT2gvaahtWnRrlOGarXkOs+iW7Ra0P/gAen8n4RtDWK3ZLuNsqRCm+hP8r6PGb9rcCh4OgHVbslvAcRVxHywuO05pEyxXcmM6Cawx5Z9IcNSP4a5DBQd8YfGH5e7sjHnDeNg/QZXI2Wy6l12ivI5hjbcGn6xGXB/YUr9ZGcNAHTXql+ivWge9oDZT4t8dEhAFfOBr6G6+k8ZzBYqrqkqAdFA/IDfQwmPbWhnHa5z8wdbcOBU/nHxvoTp2YPznCAAAAAElFTkSuQmCC' alt=''>
               </img> 
             : 
@@ -82,7 +82,7 @@ export default function SignUp() {
             className={styles.inputField2}
             onChange={handleCheckPW}/>
          <span onClick={handlePw2} className={styles.iconnn}>
-            {showPw2.visible ? 
+            {showPw2 ? 
               <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAYCAYAAAACqyaBAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAF1SURBVHgBxVaBUcMwDPx2gozgDcgGeAPYoNmAbAArMEG7ATCB0wmSDQITFCYAmdh3jptIcukdf/dXt31JtizL3kAPQ7wn3hLr8D1iIL4Tj8TXML4KLNERvwvogt3FqIgvhUFz7jHPkAo+reMfA0eOwZ8KO+KJcdZh2vsq6P1nQ+yFSeykwLXgoBXsnwR7u2ZowKdaChzRMj5OWKkBLm37TGvDbw5TUeZ76sCfhBka8OkyipW12eTU2zcywj7RGehT2gvaahtWnRrlOGarXkOs+iW7Ra0P/gAen8n4RtDWK3ZLuNsqRCm+hP8r6PGb9rcCh4OgHVbslvAcRVxHywuO05pEyxXcmM6Cawx5Z9IcNSP4a5DBQd8YfGH5e7sjHnDeNg/QZXI2Wy6l12ivI5hjbcGn6xGXB/YUr9ZGcNAHTXql+ivWge9oDZT4t8dEhAFfOBr6G6+k8ZzBYqrqkqAdFA/IDfQwmPbWhnHa5z8wdbcOBU/nHxvoTp2YPznCAAAAAElFTkSuQmCC' alt=''>
               </img> 
             : 
@@ -184,8 +184,11 @@ export default function SignUp() {
 
         <div className={styles.signup_phone}>
       <input type='text' className={styles.signup_input_phone2} placeholder='인증번호를 입력하세요' 
-      disabled={!num}/>
-      <button className={styles.signup_btn_phone2} disabled={!num}>확인</button>
+      disabled={!num} 
+      value={certified}
+      onChange={handleFieldChange(setCertified)}
+      />
+      <button className={styles.signup_btn_phone2} disabled={!num} onClick={checkNum} >확인</button>
       </div>
 
       {/* 회원가입 버튼 */}

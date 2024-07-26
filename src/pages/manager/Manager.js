@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Manager.module.css';
+
 
 const Manager = () => {
   const data = [
@@ -82,6 +83,8 @@ const Manager = () => {
       approval: '승인'
     }
   ];
+
+ 
 
   return (
     <div>
