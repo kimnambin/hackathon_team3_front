@@ -38,10 +38,12 @@ export default function Login() {
 
   const submitLogin = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/login');
-      const members = response.data;
-      const user = members.find(member => member.userId === id && member.password === pw);
-
+      const response = await axios.post('http://52.78.131.56:8080/login', {
+        userId: id,
+        password: pw
+      });
+  
+      const user = response.data;
       if (user) {
         // 아이디 저장 여부에 따라 로컬 스토리지에 아이디를 저장하거나 삭제합니다.
         if (saveId) {
@@ -58,6 +60,7 @@ export default function Login() {
       alert('서버와 연결하는 데 문제가 발생했습니다.');
     }
   };
+  
   
 
   return (
