@@ -120,25 +120,33 @@ export default function SignUp() {
         </div>
       </div>
 
-      {/* 생년월일 부분 */}
-      <div className={styles.signup_label}>
-        <p className={styles.signup_p}>생년월일</p>
-      </div>
+      {/* 생년월일 입력 부분 */}
       <div className={styles.signup_date_contanier}>
-        <input type='number' placeholder='년(4자)' className={styles.input_date} value={birthYear} 
-        onChange={handleFieldChange(setBirthYear)}/>
-        <select className={styles.input_date2}  
-        onChange={handleFieldChange(setBirthMonth)}
-        >
-          <option hidden selected>월</option>
-          {Array.from({ length: 12 }, (_, index) => (
-            <option key={index} value={`Month ${index + 1}`}>{index + 1}월</option>
-          ))}
-        </select>
-        <input type='number' placeholder='일' className={styles.input_date} 
-        value={birthDay}  onChange={handleFieldChange(setBirthDay)} 
-        />
-      </div>
+  <input 
+    type='number' 
+    placeholder='년(4자)' 
+    className={styles.input_date} 
+    value={birthYear} 
+    onChange={handleFieldChange(setBirthYear)}
+  />
+  <select 
+    className={styles.input_date2}  
+    onChange={(e) => setBirthMonth(e.target.value)}
+    value={birthMonth}
+  >
+    <option hidden>월</option>
+    {Array.from({ length: 12 }, (_, index) => (
+      <option key={index} value={`${index + 1}`}>{index + 1}월</option>
+    ))}
+  </select>
+  <input 
+    type='number' 
+    placeholder='일' 
+    className={styles.input_date} 
+    value={birthDay}  
+    onChange={handleFieldChange(setBirthDay)} 
+  />
+</div>
 
       {/* 성별 부분 */}
       <div className={styles.signup_label2}>
