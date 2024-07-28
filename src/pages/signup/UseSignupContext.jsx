@@ -89,37 +89,33 @@ export default function useSignupContext() {
   };
 
   // 아이디 중복확인
-  const showcheckId = async () => {
-    if (!userId) {
-      alert('사용자 ID를 입력해 주세요.');
-      return;
-    }
-  
-    try {
-      const response = await axios.get(`http://52.78.131.56:8080/signup/checkId/${userId}`);
-  
-      const message = response.data;
-      // 현재 입력된 ID와 비교하여 중복 여부 확인
-      // const isDuplicate = users.some(user => user.userId === userId);
-  
-      if (typeof message === 'string') {
-        if (message === '사용 가능한 아이디입니다.') {
-          setCheckId('none');
-          setIsIdAvailable(true);
-        } else if (message === '이미 사용 중인 아이디입니다.') {
-          setCheckId('block');
-          setIsIdAvailable(false);
-        } else {
-          console.error('알 수 없는 응답 메시지:', message);
-          setCheckId('none');
-          setIsIdAvailable(false);
-        }
+const showcheckId = async () => {
+  if (!userId) {
+    alert('사용자 ID를 입력해 주세요.');
+    return;
+  }
+
+  try {
+    const response = await axios.get(`http://52.78.131.56:8080/signup/checkId/${userId}`);
+    const message = response.data;
+
+    if (typeof message === 'string') {
+      if (message === '사용 가능한 아이디입니다.') {
+        setCheckId('none');
+        setIsIdAvailable(true);
+      } else if (message === '이미 사용 중인 아이디입니다.' || message === '이미 존재하는 아이디 입니다.') {
+        setCheckId('block');
+        setIsIdAvailable(false);
       } else {
-        console.error('서버 응답 데이터가 예상과 다릅니다:', message);
+        console.error('알 수 없는 응답 메시지:', message);
         setCheckId('none');
         setIsIdAvailable(false);
       }
-  
+    } else {
+      console.error('서버 응답 데이터가 예상과 다릅니다:', message);
+      setCheckId('none');
+      setIsIdAvailable(false);
+    }
     } catch (error) {
       console.error('API 호출 에러:', error);
       console.error('에러 응답 데이터:', error.response?.data);
@@ -129,79 +125,78 @@ export default function useSignupContext() {
     }
   };
   
-   //닉네임 중복확인
+   // 닉네임 중복확인
+const showcheckMsg = async () => {
+  if (!userId || !nickname) {
+    alert('아이디와 닉네임을 입력해 주세요.');
+    return;
+  }
 
-   const showcheckMsg = async () => {
-    if (!userId || !nickname) {
-      alert('아이디와 닉네임을 입력해 주세요.');
-      return;
+  try {
+    const response = await axios.get(`http://52.78.131.56:8080/signup/checkId/${userId}`);
+
+    // 응답 데이터 로그 출력
+    console.log('API 응답 데이터:', response.data);
+
+    const data = response.data;
+
+    // 서버 응답이 문자열일 경우 처리
+    if (typeof data === 'string') {
+      // 문자열 값에 따라 처리
+      if (data === '사용 가능한 아이디입니다.' || data === '사용 가능한 닉네임입니다.') {
+        setCheckMsg('none');
+        setIsNickAvailable(true);
+      } else if (data === '이미 사용 중인 아이디입니다.' || data === '이미 존재하는 아이디 입니다.' || data === '이미 사용 중인 닉네임입니다.' || data === '이미 존재하는 닉네임 입니다.') {
+        setCheckMsg('block');
+        setIsNickAvailable(false);
+      } else {
+        console.error('알 수 없는 응답 메시지:', data);
+        setCheckMsg('none');
+        setIsNickAvailable(false);
+      }
     }
-  
-    try {
-      const response = await axios.get(`http://52.78.131.56:8080/signup/checkId/${userId}`);
-  
-      // 응답 데이터 로그 출력
-      console.log('API 응답 데이터:', response.data);
-  
-      const data = response.data;
-  
-      // 서버 응답이 문자열일 경우 처리
-      if (typeof data === 'string') {
-        // 문자열 값에 따라 처리
-        if (data === '사용 가능한 아이디입니다.') {
+    // 서버 응답이 객체일 경우 처리
+    else if (typeof data === 'object' && data !== null) {
+      // 예를 들어, 응답이 { message: '사용 가능한 닉네임입니다.' } 형태일 경우
+      if (data.message) {
+        if (data.message === '사용 가능한 닉네임입니다.' || data.message === '사용 가능한 아이디입니다.') {
           setCheckMsg('none');
           setIsNickAvailable(true);
-        } else if (data === '이미 사용 중인 아이디입니다.') {
+        } else if (data.message === '이미 사용 중인 닉네임입니다.' || data.message === '이미 존재하는 닉네임 입니다.' || data.message === '이미 사용 중인 아이디입니다.' || data.message === '이미 존재하는 아이디 입니다.') {
           setCheckMsg('block');
           setIsNickAvailable(false);
         } else {
-          console.error('알 수 없는 응답 메시지:', data);
+          console.error('알 수 없는 응답 메시지:', data.message);
           setCheckMsg('none');
           setIsNickAvailable(false);
         }
-      }
-      // 서버 응답이 객체일 경우 처리
-      else if (typeof data === 'object' && data !== null) {
-        // 예를 들어, 응답이 { message: '사용 가능한 닉네임입니다.' } 형태일 경우
-        if (data.message) {
-          if (data.message === '사용 가능한 닉네임입니다.') {
-            setCheckMsg('none');
-            setIsNickAvailable(true);
-          } else if (data.message === '이미 사용 중인 닉네임입니다.') {
-            setCheckMsg('block');
-            setIsNickAvailable(false);
-          } else {
-            console.error('알 수 없는 응답 메시지:', data.message);
-            setCheckMsg('none');
-            setIsNickAvailable(false);
-          }
-        } else {
-          console.error('서버 응답 데이터가 예상과 다릅니다:', data);
-          setCheckMsg('none');
-          setIsNickAvailable(false);
-        }
-      }
-      // 서버 응답이 배열일 경우 처리
-      else if (Array.isArray(data)) {
-        // 예를 들어, 응답이 [{ nickname: 'example' }, { nickname: 'test' }] 형태일 경우
-        const isDuplicate = data.some(item => item.nickname === nickname);
-        setCheckMsg(isDuplicate ? 'block' : 'none');
-        setIsNickAvailable(!isDuplicate);
-      }
-      else {
+      } else {
         console.error('서버 응답 데이터가 예상과 다릅니다:', data);
         setCheckMsg('none');
         setIsNickAvailable(false);
       }
-  
-    } catch (error) {
-      console.error('API 호출 에러:', error);
-      console.error('에러 응답 데이터:', error.response?.data);
-      console.error('에러 메시지:', error.message);
-      setCheckMsg('none');
-      alert('서버와 연결하는 데 문제가 발생했습니다.');
     }
-  };
+    // 서버 응답이 배열일 경우 처리
+    else if (Array.isArray(data)) {
+      // 예를 들어, 응답이 [{ nickname: 'example' }, { nickname: 'test' }] 형태일 경우
+      const isDuplicate = data.some(item => item.nickname === nickname);
+      setCheckMsg(isDuplicate ? 'block' : 'none');
+      setIsNickAvailable(!isDuplicate);
+    } else {
+      console.error('서버 응답 데이터가 예상과 다릅니다:', data);
+      setCheckMsg('none');
+      setIsNickAvailable(false);
+    }
+
+  } catch (error) {
+    console.error('API 호출 에러:', error);
+    console.error('에러 응답 데이터:', error.response?.data);
+    console.error('에러 메시지:', error.message);
+    setCheckMsg('none');
+    alert('서버와 연결하는 데 문제가 발생했습니다.');
+  }
+};
+
 
   //필수항목 동의 
   const handleAgree = () => {
