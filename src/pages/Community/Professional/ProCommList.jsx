@@ -51,6 +51,7 @@ export default function ProCommList() {
   // 로그인 여부 확인 후 링크 이동
   const handleLoginClick = () => {
     if (!isLogined) {
+      sessionStorage.setItem('redirectPath', '/pro_comm_write');
       navigate('/login');
     } else {
       navigate('/pro_comm_write');

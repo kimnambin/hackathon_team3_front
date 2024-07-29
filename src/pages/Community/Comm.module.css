@@ -404,6 +404,7 @@
 .view_p3{
     margin-right: 10px;
     color:#575757;
+    cursor: pointer;
 }
 
 /* 내용 부분 */
