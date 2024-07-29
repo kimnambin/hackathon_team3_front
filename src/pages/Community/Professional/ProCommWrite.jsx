@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { jwtDecode } from 'jwt-decode';
 import styles from '../Comm.module.css';
 import 'pretendard/dist/web/static/pretendard.css';
 import { FaAngleRight } from "react-icons/fa";
@@ -14,8 +15,16 @@ export default function ProCommWrite() {
 
   const proToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3bmdsMTIzIiwiaWF0IjoxNzIxODI4MjA4LCJyb2xlIjoiRXhwZXJ0IiwiZXhwIjoxNzIxODMxODA4fQ.9IZnTQVTHd0OKxrDwyPUu72DAaTIEKXFK9hu7Md45JAr8ZR8yUKphDKXIxshvxOVa2-Ojrpvh05HUQWRN5bWrA';
 
+  const [role, setRole] = useState(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+
+  useEffect(() => {
+    if (proToken) {
+      const decodedToken = jwtDecode(proToken);
+      setRole(decodedToken.role);
+    }
+  }, [proToken]);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -26,7 +35,7 @@ export default function ProCommWrite() {
   };
 
   const handleSubmit = async () => {
-    if (!proToken) {
+    if (role !== 'Expert') {
       console.error('전문가 회원이 아닙니다');
       alert('전문가 회원이 아닙니다. 고민 끄적끄적을 이용해주세요');
       return;
@@ -35,10 +44,7 @@ export default function ProCommWrite() {
       const response = await axios.post('http://52.78.131.56:8080/expert/post', {
         title,
         content,
-      }, {
-        headers: {
-          'Authorization': `Bearer ${proToken}`
-        }
+        token: proToken,
       });
       alert('글이 성공적으로 등록되었습니다.');
       navigate('/pro_comm_list');  // 성공 후 목록 페이지로 이동

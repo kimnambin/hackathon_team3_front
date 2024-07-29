@@ -1,20 +1,35 @@
-import React, { useContext, useState, useEffect} from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styles from '../Comm.module.css';
 import 'pretendard/dist/web/static/pretendard.css';
 import { FaAngleRight } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 import { category, category2, CategoryContext } from '../../../components/Comm/Comm_context';
 import axios from 'axios';
 
 export default function ProCommList() {
-  const [proCommlist, setproCommlist] = useState([]);
+  const navigate = useNavigate();
+  const goToComm = () => { navigate('/comm_list') };
 
-  const goToComm=()=>{navigate('/comm_list')}
+  const [proCommlist, setproCommlist] = useState([]);
+  const proToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3bmdsMTIzIiwiaWF0IjoxNzIxODI4MjA4LCJyb2xlIjoiRXhwZXJ0IiwiZXhwIjoxNzIxODMxODA4fQ.9IZnTQVTHd0OKxrDwyPUu72DAaTIEKXFK9hu7Md45JAr8ZR8yUKphDKXIxshvxOVa2-Ojrpvh05HUQWRN5bWrA';
+
+  const [role, setRole] = useState(null);
+
+  useEffect(() => {
+    if (proToken) {
+      const decodedToken = jwtDecode(proToken);
+      setRole(decodedToken.role);
+    }
+  }, [proToken]);
 
   // 전문 커뮤니티 리스트 가져오기
   const fetchProCommList = async () => {
     try {
-      const response = await axios.get('http://52.78.131.56:8080/expert/postall');
+      const response = await axios.get('http://52.78.131.56:8080/expert/postall', {
+        headers: { Authorization: `Bearer ${proToken}` },
+      });
+
       setproCommlist(response.data);
     } catch (error) {
       console.error('데이터를 불러오는데 실패했습니다', error);
@@ -34,7 +49,6 @@ export default function ProCommList() {
   }, []);
 
   // 로그인 여부 확인 후 링크 이동
-  const navigate = useNavigate();
   const handleLoginClick = () => {
     if (!isLogined) {
       navigate('/login');
@@ -93,9 +107,7 @@ export default function ProCommList() {
         <div className={styles.CommList_right_mid}>
           <p className={styles.right_mid_p}>총 건 {proCommlist.length}</p>
           <div className={styles.right_mid}>
-            <Link to='/pro_comm_write'>
-              <button className={styles.right_mid_btn} onClick={handleLoginClick}>끄적이기</button>
-            </Link>
+            <button className={styles.right_mid_btn} onClick={handleLoginClick}>끄적이기</button>
             <select className={styles.right_mid_select}>
               <option>최신순</option>
               <option>인기순</option>
@@ -130,7 +142,7 @@ export default function ProCommList() {
                   <p className={styles.main_p}>{post.saveSize}</p>
                 </div>
               </div>
-              {i!== 7 &&<div className={styles.line}></div>  }
+              {i !== 7 && <div className={styles.line}></div>}
             </div>
           ))}
         </div>

@@ -244,10 +244,10 @@ export default function ProSignupContext() {
         formData.append('image', image);
     
         try {
-            console.log('URL:', 'http://52.78.131.56:8080/signup/expert');
+            console.log('URL:', 'http://52.78.131.56:8080/signup/Expert');
             console.log('Form Data:', formData);
             
-            const response = await axios.post('http://52.78.131.56:8080/signup/expert', formData, {
+            const response = await axios.post('http://52.78.131.56:8080/signup/Expert', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -277,62 +277,69 @@ export default function ProSignupContext() {
         }
     };
     
-    
   
 
    // 회원가입
-const postProData = async () => {
-  if (pw !== checkPW) {
-    setMatchPW(true);
-    alert('다시 확인해주세요');
-    return;
-  }
-
-  const birth = `${birthYear}${birthMonth.padStart(2, '0')}${birthDay.padStart(2, '0')}`;
-  const birthRegex = /^\d{4}\d{2}\d{2}$/;
-  if (!birthRegex.test(birth)) {
-    alert('생년월일 형식이 올바르지 않습니다.');
-    return;
-  }
-
-  try {
-    const response = await fetch('http://52.78.131.56:8080/signup/expert', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        userId,
-        nickname,
-        password: pw,
-        birth,
-        gender,
-        phoneNum,
-        email,
-      }),
-    });
-
-    const contentType = response.headers.get('Content-Type');
-    if (!contentType || !contentType.includes('application/json')) {
-      throw new Error('서버에서 JSON 형식의 응답이 아닙니다.');
+   const postProData = async () => {
+    if (pw !== checkPW) {
+      setMatchPW(true);
+      alert('다시 확인해주세요');
+      return;
     }
-
-    if (!response.ok) {
-      throw new Error('회원가입 요청이 실패했습니다.');
+  
+    const birth = `${birthYear}${birthMonth.padStart(2, '0')}${birthDay.padStart(2, '0')}`;
+    const birthRegex = /^\d{4}\d{2}\d{2}$/;
+    if (!birthRegex.test(birth)) {
+      alert('생년월일 형식이 올바르지 않습니다.');
+      return;
     }
-
-    const data = await response.json();
-    console.log('서버 응답:', data);
-    const confirmed = window.confirm('관리자의 승인까지 1~3일 소요됩니다. 로그인 페이지로 이동하시겠습니까?');
-    if (confirmed) {
-      navigate('/login'); 
+  
+    try {
+      // FormData 객체를 생성
+      const formData = new FormData();
+      formData.append('userId', userId);
+      formData.append('nickname', nickname);
+      formData.append('password', pw);
+      formData.append('birth', birth);
+      formData.append('gender', gender);
+      formData.append('phoneNum', phoneNum);
+      formData.append('email', email);
+      
+      // image가 File 객체인지 확인
+      if (image instanceof File) {
+        formData.append('image', image);
+      } else {
+        console.warn('Image is not a File object');
+      }
+  
+      const response = await fetch('http://52.78.131.56:8080/signup/Expert', {
+        method: 'POST',
+        body: formData, // FormData 객체를 body로 설정
+      });
+  
+      const contentType = response.headers.get('Content-Type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('서버에서 JSON 형식의 응답이 아닙니다.');
+      }
+  
+      if (!response.ok) {
+        throw new Error('회원가입 요청이 실패했습니다.');
+      }
+  
+      const data = await response.json();
+      console.log('서버 응답:', data);
+      const confirmed = window.confirm('관리자의 승인까지 1~3일 소요됩니다. 로그인 페이지로 이동하시겠습니까?');
+      if (confirmed) {
+        navigate('/login'); 
+      }
+  
+    } catch (error) {
+      console.error('오류 발생:', error);
+      alert('회원가입 중 오류가 발생했습니다.');
     }
-
-  } catch (error) {
-    console.error('오류 발생:', error);
-    alert('회원가입 중 오류가 발생했습니다.');
-  }
-};
+  };
+  
+  
 
 
     return {

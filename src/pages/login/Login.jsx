@@ -45,13 +45,15 @@ export default function Login() {
   
       const user = response.data;
       if (user) {
-        // 아이디 저장 여부에 따라 로컬 스토리지에 아이디를 저장하거나 삭제합니다.
         if (saveId) {
           localStorage.setItem('savedId', id);
         } else {
           localStorage.removeItem('savedId');
         }
-        navigate(`/profile/${id}`);
+        // Get redirect path from sessionStorage
+        const redirectPath = sessionStorage.getItem('redirectPath') || '/profile/' + id;
+        sessionStorage.removeItem('redirectPath'); // Clear redirectPath after use
+        navigate(redirectPath);
       } else {
         alert('아이디 또는 비밀번호가 잘못되었습니다.');
       }

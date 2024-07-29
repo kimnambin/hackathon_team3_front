@@ -21,6 +21,7 @@ export default function CommList(props) {
   const handleLoginClick = () => {
     console.log('Handle Login Click - Is Logined:', isLogined); // 추가된 로그
     if (!isLogined) {
+        sessionStorage.setItem('redirectPath', '/comm_write');
         navigate('/login');
     } else {
         navigate('/comm_write');
