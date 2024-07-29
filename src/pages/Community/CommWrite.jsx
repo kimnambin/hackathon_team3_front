@@ -12,6 +12,22 @@ export default function CommWrite() {
   const goTocommlist = () => { navigate('/comm_list') };
 
   const { categoryBtn, ClickCategory } = useContext(CategoryContext);
+  //=====================================================================
+  const categories = [
+    { key: 'a', label: '일반 고민' },
+    { key: 'b', label: '진로/취업' },
+    { key: 'c', label: '학교' },
+    { key: 'd', label: '직장' },
+    { key: 'e', label: '대인 관계' },
+    { key: 'f', label: '썸/연애' },
+    { key: 'g', label: '결혼/육아' },
+    { key: 'h', label: '이별/이혼' },
+    { key: 'i', label: '가족' },
+    { key: 'j', label: '성 생활' },
+    { key: 'k', label: '외모' },
+    { key: 'l', label: '금전' },
+    { key: 'm', label: 'LGBT' },
+  ];
 
   const generalToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuamgxMjM0IiwiaWF0IjoxNzIxOTgxMDAwLCJyb2xlIjoiR2VuZXJhbCIsImV4cCI6MTcyMTk4NDYwMH0.4QcgdIbkbmJtnuqIuZXfexcVT-piyUB-ZZo-QJpXhSBHur6KyC_HqSdlxjHCJYykIsCXmENIMqILmwOZLbuaTQ';
   

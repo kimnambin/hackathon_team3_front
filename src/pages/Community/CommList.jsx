@@ -2,8 +2,10 @@ import React, { useContext, useState, useEffect } from 'react'
 import styles from './Comm.module.css'
 import 'pretendard/dist/web/static/pretendard.css';
 import { FaAngleRight } from "react-icons/fa";
+import { jwtDecode } from 'jwt-decode';
 import { Link, useNavigate } from 'react-router-dom';
 import { category, category2  , CategoryContext} from '../../components/Comm/Comm_context';
+import axios from 'axios';
 
 
 export default function CommList(props) {
@@ -32,9 +34,65 @@ export default function CommList(props) {
   const goToMain=()=>{
     navigate('/')
   }
-
   const { categoryBtn, ClickCategory} = useContext(CategoryContext);
 
+//========================================
+
+ // 카테고리 리스트 정의
+ const categories = [
+  { key: 'a', label: '일반 고민' },
+  { key: 'b', label: '진로/취업' },
+  { key: 'c', label: '학교' },
+  { key: 'd', label: '직장' },
+  { key: 'e', label: '대인 관계' },
+  { key: 'f', label: '썸/연애' },
+  { key: 'g', label: '결혼/육아' },
+  { key: 'h', label: '이별/이혼' },
+  { key: 'i', label: '가족' },
+  { key: 'j', label: '성 생활' },
+  { key: 'k', label: '외모' },
+  { key: 'l', label: '금전' },
+  { key: 'm', label: 'LGBT' },
+];
+
+const generalToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuamgxMjM0IiwiaWF0IjoxNzIxOTgxMDAwLCJyb2xlIjoiR2VuZXJhbCIsImV4cCI6MTcyMTk4NDYwMH0.4QcgdIbkbmJtnuqIuZXfexcVT-piyUB-ZZo-QJpXhSBHur6KyC_HqSdlxjHCJYykIsCXmENIMqILmwOZLbuaTQ';
+
+const [role, setRole] = useState(null);
+const [generalCommlist, setGeneralCommlist] = useState([]);
+const [selectedCategory, setSelectedCategory] = useState(categories[0].key);
+
+useEffect(() => {
+  if (generalToken) {
+    try {
+      const decodedToken = jwtDecode(generalToken);
+      setRole(decodedToken.role);
+    } catch (error) {
+      console.error('토큰을 디코딩하는데 실패했습니다', error);
+    }
+  }
+}, [generalToken]);
+
+// 일반회원 커뮤니티 리스트 불러오기
+const fetchGeneralCommlist = async (category) => {
+  try {
+    const response = await axios.get(`http://52.78.131.56:8080/general/postall/${category}`, {
+      headers: { Authorization: `Bearer ${generalToken}` },
+    });
+
+    setGeneralCommlist(response.data);
+  } catch (error) {
+    console.error('데이터를 불러오는데 실패했습니다', error);
+    alert('데이터를 불러오지 못했습니다.');
+  }
+};
+
+useEffect(() => {
+  fetchGeneralCommlist(selectedCategory);
+}, [selectedCategory]);
+
+const handleCategoryClick = (categoryKey) => {
+  setSelectedCategory(categoryKey);
+}; //이걸 어디에 넣어야 될지 모르겠음 남빈 필요
  
   return (
     <div className={styles.CommList_container}>
@@ -58,7 +116,7 @@ export default function CommList(props) {
           <p className={styles.header_p2}>고민 끄적끄적</p> 
         </div>
 
-        <div className={styles.header_category}>
+      <div className={styles.header_category}>
         <div className={styles.CommList_right_header}>
           {category.map((v, i) => (
         <button key={i}  
