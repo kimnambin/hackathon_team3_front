@@ -25,11 +25,13 @@ const Manager = () => {
   }, []);
 
   // 관리자 승인 버튼
-  const handleExpertAccept = async (id) => {
+  const handleExpertAccept = async (id, isExpert) => {
+    const url = `http://52.78.131.56:8080/admin/changeIsExpert/${id}`;
+    console.log(`Sending request to: ${url} with isExpert: ${isExpert}`);
     try {
-      const response = await axios.post(`http://52.78.131.56:8080/admin/changeIsExpert/${id}`);
+      const response = await axios.post(url, { isExpert });
+      console.log('Response:', response.data);
       alert('승인되었습니다');
-      // 해당 항목을 완료된 상태로 설정
       setCompleted((prev) => ({ ...prev, [id]: true }));
     } catch (error) {
       console.error('데이터를 불러오는데 실패했습니다', error);
@@ -77,7 +79,7 @@ const Manager = () => {
               <div className={styles.item}>{item.isExpert ? 'Yes' : 'No'}</div>
               <button
                 className={`${styles.item} ${item.isExpert ? styles.acceptbut : styles.rejectbut}`}
-                onClick={() => handleExpertAccept(item.id)}
+                onClick={() => handleExpertAccept(item.id, !item.isExpert)}
                 disabled={completed[item.id]} // 완료된 항목은 버튼 비활성화
               >
                 {completed[item.id] ? '완료' : (item.isExpert ? '수락' : '반려')}
