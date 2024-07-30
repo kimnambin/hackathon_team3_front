@@ -304,6 +304,7 @@ export default function ProSignupContext() {
       formData.append('gender', gender);
       formData.append('phoneNum', phoneNum);
       formData.append('email', email);
+      formData.append('image', image);
       
       // image가 File 객체인지 확인
       if (image instanceof File) {

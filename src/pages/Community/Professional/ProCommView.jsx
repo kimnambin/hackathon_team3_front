@@ -76,6 +76,71 @@ export default function ProCommView() {
     }
   };
 
+  //=============================================================================
+  
+ //댓글 부분
+ // 댓글 번호와 사용자 토큰 설정
+ const 게시글번호 = 123; // 실제 게시글 번호로 교체
+ const memberToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3bmdsMTIzIiwiaWF0IjoxNzIxODI4MjA4LCJyb2xlIjoiRXhwZXJ0IiwiZXhwIjoxNzIxODMxODA4fQ.9IZnTQVTHd0OKxrDwyPUu72DAaTIEKXFK9hu7Md45JAr8ZR8yUKphDKXIxshvxOVa2-Ojrpvh05HUQWRN5bWrA' || 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuamgxMjM0IiwiaWF0IjoxNzIxOTgxMDAwLCJyb2xlIjoiR2VuZXJhbCIsImV4cCI6MTcyMTk4NDYwMH0.4QcgdIbkbmJtnuqIuZXfexcVT-piyUB-ZZo-QJpXhSBHur6KyC_HqSdlxjHCJYykIsCXmENIMqILmwOZLbuaTQ';
+
+ const [comment, setComment] = useState([]);
+ const [commentContent, setCommentContent] = useState('');
+
+ useEffect(() => {
+   if (memberToken) {
+     const decodedToken = jwtDecode(memberToken);
+     setRole(decodedToken.role);
+   }
+ }, [memberToken]);
+
+ // 댓글 조회
+ const fetchComments = async () => {
+   try {
+     const response = await axios.get(`http://52.78.131.56:8080/comment/${게시글번호}`, {
+       headers: { Authorization: `Bearer ${memberToken}` },
+     });
+     setComment(response.data);
+   } catch (error) {
+     console.error('댓글을 불러오는 데 실패했습니다', error);
+     alert('댓글을 불러오지 못했습니다.');
+   }
+ };
+
+ // 댓글 수정
+ const handleCommentEdit = async (commentId, newContent) => {
+   try {
+     const response = await axios.put(`http://52.78.131.56:8080/comment/${commentId}`, {
+       content: newContent,
+       token: memberToken,
+     }, {
+       headers: { Authorization: `Bearer ${memberToken}` },
+     });
+     alert('댓글이 성공적으로 수정되었습니다.');
+     fetchComments(); // 수정 후 댓글 목록 새로고침
+   } catch (error) {
+     console.error('댓글 수정에 실패했습니다', error);
+     alert('댓글을 수정하지 못했습니다.');
+   }
+ };
+
+ // 댓글 삭제
+ const handleCommentDelete = async (commentId) => {
+   try {
+     await axios.delete(`http://52.78.131.56:8080/comment/${commentId}`, {
+       headers: { Authorization: `Bearer ${memberToken}` },
+     });
+     alert('댓글이 성공적으로 삭제되었습니다.');
+     fetchComments(); // 삭제 후 댓글 목록 새로고침
+   } catch (error) {
+     console.error('댓글 삭제에 실패했습니다', error);
+     alert('댓글을 삭제하지 못했습니다.');
+   }
+ };
+
+ useEffect(() => {
+   fetchComments(); // 컴포넌트 마운트 시 댓글 불러오기
+ }, []);
+
   return (
     <div className={styles.CommList_container}>
       <div className={styles.CommList_left}>

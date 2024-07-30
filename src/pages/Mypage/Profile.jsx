@@ -7,15 +7,15 @@ export default function Profile() {
 
     //사용자 정보 가져오기
     const [userInfo, setUserInfo] = useState(null);
-    const { userId } = useParams(); // 현재 페이지의 userId를 사용
+    const { Id } = useParams(); // 현재 페이지의 Id를 사용
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (userId) {
-            axios.get(`http://localhost:8080/login`)
+        if (Id) {
+            axios.post(`http://localhost:8080/admin/login`)
                 .then(response => {
                     // 사용자 데이터를 필터링
-                    const user = response.data.find(member => member.userId === userId);
+                    const user = response.data.find(member => member.Id === Id);
                     if (user) {
                         setUserInfo(user);
                     } else {
@@ -26,7 +26,7 @@ export default function Profile() {
                     console.log('에러:', error);
                 });
         }
-    }, [userId]);
+    }, [Id]);
 
     //기분 상태 (아이콘 선택 부분)
     const [icon , setIcon] = useState(false)
