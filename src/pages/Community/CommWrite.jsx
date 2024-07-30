@@ -32,7 +32,7 @@ export default function CommWrite() {
   const generalToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuamgxMjM0IiwiaWF0IjoxNzIxOTgxMDAwLCJyb2xlIjoiR2VuZXJhbCIsImV4cCI6MTcyMTk4NDYwMH0.4QcgdIbkbmJtnuqIuZXfexcVT-piyUB-ZZo-QJpXhSBHur6KyC_HqSdlxjHCJYykIsCXmENIMqILmwOZLbuaTQ';
   
   const [role, setRole] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState(category[0]);
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
 
   useEffect(() => {
     if (generalToken) {
