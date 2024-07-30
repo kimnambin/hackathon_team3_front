@@ -3,13 +3,11 @@ import styles from "./Fixed.module.css"
 import { useNavigate } from 'react-router-dom'
 
 const Footer = () => {
-
   const Navigate = useNavigate()
 
   const goToManager=()=>{
     Navigate('/manager')
   }
-
   return (
     <footer>
 
@@ -29,7 +27,7 @@ const Footer = () => {
         <p>문의하기</p>
         <p onClick={goToManager}>관리자 페이지</p>
       </div>
-      
+
     </footer>
   )
 }

@@ -12,7 +12,7 @@ export default function ProSignUp() {
     num, setNum, showPw2, setShowPw2, handlePw, handlePw2, postProData,
     handleFieldChange, isIdAvailable, setIsIdAvailable, isNickAvailable,
     setIsNickAvailable, btn, agree, setAgree, handleAgree, certified, setCertified ,
-    email , setEmail , file , setFile , handleFile , handleFileUpload
+    email , setEmail , image , setImage , handleFile , handleFileUpload, checkNum
   } = ProSignupContext();
 
   return (
@@ -25,23 +25,22 @@ export default function ProSignUp() {
         <p className={styles.signup_checkbox_p}>  (필수) 개인정보 수집/이용 동의</p>
       </div>
 
-      {/* 아이디 부분 */}
-      <div className={styles.signup_label}>
+       {/* 아이디 부분 */}
+       <div className={styles.signup_label}>
         <div className={styles.signup_id_container}>
           <p className={styles.signup_p}>아이디</p>
           <p className={styles.signup_check_p} onClick={showcheckId}>중복 확인하기</p>
         </div>
-        <input type='text' className={styles.signup_input} 
-        value={userId} 
-        onChange={handleFieldChange(setUserId)}/>
+        <input type='text' className={styles.signup_input} value={userId} onChange={handleFieldChange(setUserId)}/>
+
         <div className={styles.signup_id_container}>
           <p></p>
           <p className={`${styles.signup_check_msg_sucess} ${isIdAvailable ? styles.signup_check_msg_sucess : ''}`}>
-      {isIdAvailable ? '사용 가능한 아이디입니다.' : ''}
+          {isIdAvailable ? '사용 가능한 아이디입니다.' : ''}
           </p>
-            <p className={`${styles.signup_check_msg} ${!isIdAvailable && checkId === 'block' ? styles.signup_check_msg_show : ''}`}>
-              {!isIdAvailable ? '이미 사용 중인 아이디입니다.' : ''}
-            </p>
+          <p className={`${styles.signup_check_msg} ${!isIdAvailable && checkId === 'block' ? styles.signup_check_msg_show : ''}`}>
+            {!isIdAvailable ? '이미 사용 중인 아이디입니다.' : ''}
+          </p>
         </div>
       </div>
 
@@ -122,25 +121,33 @@ export default function ProSignUp() {
         </div>
       </div>
          
-      {/* 생년월일 부분 */}
-      <div className={styles.signup_label}>
-      <p className={styles.signup_p}>생년월일</p>
-      </div>
+      {/* 생년월일 입력 부분 */}
       <div className={styles.signup_date_contanier}>
-        <input type='number' placeholder='년(4자)' className={styles.input_date} value={birthYear} 
-        onChange={handleFieldChange(setBirthYear)}/>
-        <select className={styles.input_date2}  
-        onChange={handleFieldChange(setBirthMonth)}
-        >
-          <option hidden selected>월</option>
-          {Array.from({ length: 12 }, (_, index) => (
-            <option key={index} value={`Month ${index + 1}`}>{index + 1}월</option>
-          ))}
-        </select>
-        <input type='number' placeholder='일' className={styles.input_date} 
-        value={birthDay}  onChange={handleFieldChange(setBirthDay)} 
-        />
-      </div>
+  <input 
+    type='number' 
+    placeholder='년(4자)' 
+    className={styles.input_date} 
+    value={birthYear} 
+    onChange={handleFieldChange(setBirthYear)}
+  />
+  <select 
+    className={styles.input_date2}  
+    onChange={(e) => setBirthMonth(e.target.value)}
+    value={birthMonth}
+  >
+    <option hidden>월</option>
+    {Array.from({ length: 12 }, (_, index) => (
+      <option key={index} value={`${index + 1}`}>{index + 1}월</option>
+    ))}
+  </select>
+  <input 
+    type='number' 
+    placeholder='일' 
+    className={styles.input_date} 
+    value={birthDay}  
+    onChange={handleFieldChange(setBirthDay)} 
+  />
+</div>
 
 
         {/* 성별 부분 */}
@@ -191,25 +198,30 @@ export default function ProSignUp() {
 
 
        {/* 전화번호 부분 */}
-       <div className={styles.signup_label2}>
-       <p className={styles.signup_p}>휴대전화</p>
-       </div>
-
-       <div className={styles.signup_phone}>
-      <input type='tel' className={styles.signup_input_phone} value={phoneNum} placeholder='전화번호 입력' 
-      maxLength="11"
-      onChange={handleFieldChange(setPhoneNum)}/>
-      <button className={styles.signup_btn_phone} 
-       onClick={handlePhone}>인증번호 받기</button>
+      <div className={styles.signup_label2}>
+        <p className={styles.signup_p}>휴대전화</p>
       </div>
 
-        <div className={styles.signup_phone}>
-      <input type='text' className={styles.signup_input_phone2} placeholder='인증번호를 입력하세요' 
-      disabled={!num} 
-      value={certified}
-      onChange={handleFieldChange(setCertified)}
-      />
-      <button className={styles.signup_btn_phone2} disabled={!num}>확인</button>
+      <div className={styles.signup_phone}>
+        <input type='tel' className={styles.signup_input_phone} value={phoneNum} placeholder='전화번호 입력' 
+        maxLength="11"
+        // onChange={handleFieldChange(setPhoneNum)}
+        onChange={(e) => setPhoneNum(e.target.value)}
+        />
+      <button className={styles.signup_btn_phone} 
+       onClick={handlePhone}>인증번호 받기</button>
+      </div> 
+
+
+      <div className={styles.signup_phone}>
+        <input
+          type='text'
+          className={styles.signup_input_phone2}
+          placeholder='인증번호를 입력하세요'
+          value={certified}
+          onChange={e => setCertified(e.target.value)}
+        />
+        <button className={styles.signup_btn_phone2} onClick={checkNum}>확인</button>
       </div>
 
 
@@ -221,7 +233,7 @@ export default function ProSignUp() {
 
       <div className={styles.signup_phone}>
       <div className={styles.file_container}>
-        <label htmlFor="file" className={styles.file_container2} vlaue={file}>{file ? file.name : '이미지 파일을 업로드하세요'}
+        <label htmlFor="file" className={styles.file_container2} vlaue={image}>{image ? image.name : '이미지 파일을 업로드하세요'}
         <input type="file" id="file"  accept="image/*" className={styles.file_container} onChange={handleFile}/></label>
       </div>
 

@@ -268,31 +268,6 @@
 
 /* =========================================== */
 
-/* 지도 찾는 부분 */
-.map_container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 90%;
-    margin: 230px auto 80px auto;
-}
-
-/* 젤 왼쪽 */
-.CommList_left{
-    display: flex;
-    flex-direction: column;
-    margin : 50px 0 auto 0;
-}
-
-.CommList_right_header{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 50px;
-    margin-bottom: 0;
-}
-
 /* 마이페이지 자가진단 결과 부분 */
 
 .BlueSave_top_p{
@@ -319,6 +294,31 @@
 }
 
 /* =========================================== */
+
+/* 지도 찾는 부분 */
+.map_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 90%;
+    margin: 230px auto 80px auto;
+}
+
+/* 젤 왼쪽 */
+.CommList_left{
+    display: flex;
+    flex-direction: column;
+    margin : 50px 0 auto 0;
+}
+
+.CommList_right_header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 0;
+}
 
 /* 지도 있는 부분 */
 .map{
@@ -386,5 +386,5 @@
     border-radius:30px;
     border: 1px solid #84A67F;
     overflow-y: auto;
+    cursor: pointer;
 }
-

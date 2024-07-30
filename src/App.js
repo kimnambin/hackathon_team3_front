@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import {BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 //메인 페이지
-import Main1 from './pages/mainpages/Main1';
+import Main1 from './pages/Mainpages/Main1';
 import Navbar from './components/Navbar';
 import LoginNavbar from './components/LoginNavbar';
 import Footer from './components/Footer';
@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 import Login from "./pages/login/Login";
 import FindPw from './pages/login/FindPw';
 //회원가입 페이지
-import ProSignUp from "./pages/professional/ProSignUp";
+import ProSignUp from "./pages/Professional/ProSignUp";
 import FirstSignup from "./pages/signup/FirstSignup";
 import SignUp from "./pages/signup/SignUp";
 // 커뮤니티 부분
@@ -22,12 +22,14 @@ import CommWrite from './pages/Community/CommWrite';
 import CommList from './pages/Community/CommList';
 import CommView from './pages/Community/CommView';
 // 마이페이지 부분
-import Profile from "./pages/mypage/Profile";
-import MyPost from "./pages/mypage/MyPost";
+import Profile from "./pages/Mypage/Profile";
+import MyComment from './pages/Mypage/MyComment';
+import MyBookmark from './pages/Mypage/MyBookmark';
+import MyPost from "./pages/Mypage/MyPost";
 import HospitalMap from "./pages/map/HospitalMap";
-import BlueSave from './pages/mypage/BlueSave';
-import StressSave from './pages/mypage/StressSave'
-import AnxietySave from './pages/mypage/AnxietySave'
+import BlueSave from './pages/Mypage/BlueSave';
+import StressSave from './pages/Mypage/StressSave'
+import AnxietySave from './pages/Mypage/AnxietySave'
 //자가진단 페이지
 import Blue from './pages/selftest/Blue/Blue';
 import Blue2 from './pages/selftest/Blue/Blue2';
@@ -49,8 +51,6 @@ import Manager from './pages/manager/Manager';
 //로그인 여부 확인 후 url 경로 변경
 // import PrivateRoute from './route/PrivateRoute';
 import 'pretendard/dist/web/static/pretendard.css';
-import MyComment from './pages/mypage/MyComment';
-import MyBookmark from './pages/mypage/MyBookmark';
 
 function App() {
 
@@ -76,11 +76,11 @@ function App() {
           <Route path="/pro_signup" element={<ProSignUp />} />
           {/* 커뮤니티 */}
           <Route path="/comm_list" element={<CommList />} />
-          <Route path="/comm_view" element={<CommView />} />
+          <Route path="/comm_view/:id" element={<CommView />} />
           <Route path="/comm_write" element={<CommWrite />} />
           {/* 전문가가 올린 커뮤니티 */}
           <Route path="/pro_comm_list" element={<ProCommList />} />
-          <Route path="/pro_comm_view" element={<ProCommView />} />
+          <Route path="/pro_comm_view/:id" element={<ProCommView />} />
           <Route path="/pro_comm_write" element={<ProCommWrite />} />
           {/* 마이페이지 */}
           {/* <Route path="/profile/:userId" element={<PrivateRoute  component={Profile}/>} />
@@ -93,6 +93,7 @@ function App() {
           <Route path="/mypost" element={<MyPost/>} /> {/* 작성한 게시글 */}
           <Route path="/mycomment" element={<MyComment/>} />{/* 작성한 댓글 */}
           <Route path="/mybookmark" element={<MyBookmark/>} />{/* 저장한 북마크 */}
+          <Route path="/mypost" element={<MyPost/>} />
           <Route path="/blueSave" element={<BlueSave/>} />
           <Route path="/stressSave" element={<StressSave/>} />
           <Route path="/anxietySave" element={<AnxietySave/>} />

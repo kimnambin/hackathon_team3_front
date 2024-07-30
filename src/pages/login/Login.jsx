@@ -36,28 +36,67 @@ export default function Login() {
 
   const no_btn = id !== '' && pw !== '';
 
+  // const submitLogin = async () => {
+  //   try {
+  //     const response = await axios.post('http://52.78.131.56:8080/login', {
+  //       userId: id,
+  //       password: pw
+  //     });
+  
+  //     const user = response.data;
+  //     if (user) {
+  //       if (saveId) {
+  //         localStorage.setItem('savedId', id);
+  //       } else {
+  //         localStorage.removeItem('savedId');
+  //       }
+  //       // Get redirect path from sessionStorage
+  //       const redirectPath = sessionStorage.getItem('redirectPath') || '/profile/' + id;
+  //       sessionStorage.removeItem('redirectPath'); // Clear redirectPath after use
+  //       navigate(redirectPath);
+  //     } else {
+  //       alert('아이디 또는 비밀번호가 잘못되었습니다.');
+  //     }
+  //   } catch (error) {
+  //     console.error('로그인 요청 에러:', error);
+  //     alert('서버와 연결하는 데 문제가 발생했습니다.');
+  //   }
+  // };
+  const memberToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3bmdsMTIzIiwiaWF0IjoxNzIxODI4MjA4LCJyb2xlIjoiRXhwZXJ0IiwiZXhwIjoxNzIxODMxODA4fQ.9IZnTQVTHd0OKxrDwyPUu72DAaTIEKXFK9hu7Md45JAr8ZR8yUKphDKXIxshvxOVa2-Ojrpvh05HUQWRN5bWrA' || 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuamgxMjM0IiwiaWF0IjoxNzIxOTgxMDAwLCJyb2xlIjoiR2VuZXJhbCIsImV4cCI6MTcyMTk4NDYwMH0.4QcgdIbkbmJtnuqIuZXfexcVT-piyUB-ZZo-QJpXhSBHur6KyC_HqSdlxjHCJYykIsCXmENIMqILmwOZLbuaTQ';
+
   const submitLogin = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/login');
-      const members = response.data;
-      const user = members.find(member => member.userId === id && member.password === pw);
+      const response = await axios.post('http://52.78.131.56:8080/login', {
+        userId: id,
+        password: pw
+      }, {
+        headers: {
+          'Authorization': `Bearer ${memberToken}`
+        }
+      });
 
+      const user = response.data;
       if (user) {
-        // 아이디 저장 여부에 따라 로컬 스토리지에 아이디를 저장하거나 삭제합니다.
         if (saveId) {
           localStorage.setItem('savedId', id);
         } else {
           localStorage.removeItem('savedId');
         }
-        navigate(`/profile/${id}`);
+        // Get redirect path from sessionStorage
+        // const redirectPath = sessionStorage.getItem('redirectPath') || `/profile/${id}`;
+        const redirectPath = sessionStorage.getItem('redirectPath') || `/hospital_map`;
+        sessionStorage.removeItem('redirectPath'); // Clear redirectPath after use
+        navigate(redirectPath); // 네비게이션 호출
       } else {
         alert('아이디 또는 비밀번호가 잘못되었습니다.');
       }
     } catch (error) {
-      console.error('로그인 요청 에러:', error);
+      // 순환 참조 문제를 피하기 위해 오류 메시지만 출력
+      console.error('로그인 요청 에러:', error.message || error);
       alert('서버와 연결하는 데 문제가 발생했습니다.');
     }
   };
+  
   
 
   return (

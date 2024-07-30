@@ -1,24 +1,43 @@
 import React, { useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
 import styles from './Manager.module.css';
 import axios from 'axios';
 
 const Manager = () => {
-  const [userInfo, setUserInfo] = useState(null);
+  const [expertCheck, setExpertCheck] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [completed, setCompleted] = useState({}); // 개별 항목의 완료 상태를 관리
+
+  // 전문가 요청 리스트 가져오기
+  const fetchExpertCheck = async () => {
+    try {
+      const response = await axios.get('http://52.78.131.56:8080/admin/expertCheck');
+      setExpertCheck(response.data);
+    } catch (error) {
+      console.error('데이터를 불러오는데 실패했습니다', error);
+      alert('데이터를 불러오지 못했습니다.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const getProUser = async () => {
-      try {
-        const response = await axios.get('http://localhost:8080/Pro_login');
-        setUserInfo(response.data);
-      } catch (error) {
-        console.error('로그인 요청 에러:', error);
-        alert('서버와 연결하는 데 문제가 발생했습니다.');
-      }
-    };
-
-    getProUser();
+    fetchExpertCheck();
   }, []);
+
+  // 관리자 승인 버튼
+  const handleExpertAccept = async (id, isExpert) => {
+    const url = `http://52.78.131.56:8080/admin/changeIsExpert/${id}`;
+    console.log(`Sending request to: ${url} with isExpert: ${isExpert}`);
+    try {
+      const response = await axios.post(url, { isExpert });
+      console.log('Response:', response.data);
+      alert('승인되었습니다');
+      setCompleted((prev) => ({ ...prev, [id]: true }));
+    } catch (error) {
+      console.error('데이터를 불러오는데 실패했습니다', error);
+      alert('데이터를 불러오지 못했습니다.');
+    }
+  };
 
   return (
     <div>
@@ -30,32 +49,45 @@ const Manager = () => {
         <div className={styles.boxUpText}>
           <p>NUM</p>
           <p>ID</p>
+          <p>NAME</p>
           <p>GENDER</p>
-          <p>BIRTH</p>
           <p>PHONE</p>
           <p>EMAIL</p>
+          <p>BIRTH</p>
           <p>C-DATE</p>
           <p>U-DATE</p>
           <p>ISEXPERT</p>
           <p>STATUS</p>
         </div>
       </div>
-      <div className={styles.stateBox}>
-        {userInfo && userInfo.map((item) => (
-          <div key={item.id} className={styles.stateText}>
-            <div className={styles.item}>{item.id}</div>
-            <div className={styles.item}>{item.name}</div>
-            <div className={styles.item}>{item.gender}</div>
-            <div className={styles.item}>{item.birthDate}</div>
-            <div className={styles.item}>{item.phoneNumber}</div>
-            <div className={styles.item}>{item.email}</div>
-            <div className={styles.item}>{item.startDate}</div>
-            <div className={styles.item}>{item.endDate}</div>
-            <div className={styles.item}>{item.status}</div>
-            <button className={styles.item}>{item.approval}</button>
-          </div>
-        ))}
-      </div>
+
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <div className={styles.stateBox}>
+          {expertCheck.map((item, index) => (
+            <div key={item.id} className={styles.stateText}>
+              <div className={styles.item}>{index + 1}</div>
+              <div className={styles.item}>{item.userId}</div>
+              <div className={styles.item}>{item.name}</div>
+              <div className={styles.item}>{item.gender}</div>
+              <div className={styles.item}>{item.phone}</div>
+              <div className={styles.item}>{item.email}</div>
+              <div className={styles.item}>{item.birth}</div>
+              <div className={styles.item}>{item.createDate}</div>
+              <div className={styles.item}>{item.updateDate}</div>
+              <div className={styles.item}>{item.isExpert ? 'Yes' : 'No'}</div>
+              <button
+                className={`${styles.item} ${item.isExpert ? styles.acceptbut : styles.rejectbut}`}
+                onClick={() => handleExpertAccept(item.id, !item.isExpert)}
+                disabled={completed[item.id]} // 완료된 항목은 버튼 비활성화
+              >
+                {completed[item.id] ? '완료' : (item.isExpert ? '수락' : '반려')}
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

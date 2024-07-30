@@ -59,7 +59,7 @@ const LoginNav = () => {
         <li className={styles.navTextMargin} onClick={map}>내 주변 병원 찾기</li>
       </ul>
     </nav>
-    
+
   </header>
   )
 }

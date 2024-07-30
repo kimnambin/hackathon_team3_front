@@ -1,4 +1,4 @@
-//유저가 작성한 글
+// 유저가 단 댓글
 
 import React, { useState } from 'react';
 import styles from '../Community/Comm.module.css'; // 커뮤니티에서 가져온 스타일
@@ -6,7 +6,7 @@ import 'pretendard/dist/web/static/pretendard.css'; // 프리텐다드 폰트 �
 import styles2 from './Mypage.module.css'; // 마이페이지에서 가져온 스타일
 import { Link } from 'react-router-dom';
 
-export default function MyPost() {
+export default function MyComment() {
 
   const [test , setTest] = useState(false);
 
@@ -25,7 +25,7 @@ export default function MyPost() {
           <p className={styles2.MyPost_top_p} onClick={handleTest}>
             나의 활동
           </p>
-          <p className={styles.MyPost_top_p2}>작성한 게시글 0건</p>
+          <p className={styles.MyPost_top_p2}>작성한 댓글 0건</p>
         </div>
 
         <div className={styles2.Profile_top02}>
@@ -64,10 +64,10 @@ export default function MyPost() {
 
         {/* 글작성이 없을 때 */}
         <div className={styles2.No_postList} style={{display : test ? 'none' : 'flex'}}>
-            <p>유저님이 끄적인 게시물이 없습니다. <br/>
-            혹시 무슨 고민이 있다면 끄적여보세요.✏️</p>
-            <Link to='/comm_write'>
-            <button className={styles2.No_postList_btn}>끄적이러 가기</button>
+        <p>유저님이 댓글단 게시물이 없습니다.<br/>
+        고민이 있는 분에게 다정함 한 스푼을 건네보세요.🌸</p>
+            <Link to='/comm_list'>
+            <button className={styles2.No_postList_btn02}>다정함 건네러가기</button>
             </Link>
         </div>
 
@@ -76,3 +76,4 @@ export default function MyPost() {
     </div>
   );
 }
+

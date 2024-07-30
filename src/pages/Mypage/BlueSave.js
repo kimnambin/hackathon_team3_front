@@ -12,7 +12,7 @@ const BlueSave = () => {
 
   return (
     <div className={styles2.MyPost}>
-
+      
         {/* 상단 부분 */}
         <div className={styles2.MyPost_top}>
             <div className={styles2.MyPost_top01}>
@@ -25,7 +25,7 @@ const BlueSave = () => {
                 <span className={styles2.BlueSaveblue}>우울증</span>
                 <span className={styles2.BlueSaveDate}>마지막 검사일자: yyyy-mm-dd</span>
             </p>  
-
+            
             </div>
 
             <div className={styles2.Profile_top02}>
@@ -42,7 +42,7 @@ const BlueSave = () => {
                 </p>        
             </div>
         </div>
-
+    
         <div onClick={goToBlue}>
             <button className={styles2.inspectBut}>검사하러 가기</button>
         </div>

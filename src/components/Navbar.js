@@ -15,10 +15,10 @@ const Nav = () => {
   }
 
   const goToLogin=()=>{
-    Navigate("/login")
+    Navigate("login")
   }
 
-  const goToMypage=()=>{
+  const goToSignup=()=>{
     Navigate("firstsignup")
   }
   const goToCommu=()=>{
@@ -28,7 +28,6 @@ const Nav = () => {
   const map=()=>{
     Navigate("hospital_map")
   }
-
   return (
 
   <header> 
@@ -45,14 +44,14 @@ const Nav = () => {
         </div>
 
         <div className={styles.text2margin}>
-        <div onClick={goToMypage}>회원가입</div>
+          <div onClick={goToSignup}>회원가입</div>
         </div>  
       </div>
     </div>
 
     <nav className={styles.nav}>
       <ul className={styles.navflex}>
-      <li className={styles.navTextMargin} onClick={goToCommu}>커뮤니티</li>
+        <li className={styles.navTextMargin} onClick={goToCommu}>커뮤니티</li>
         <li style={{color: 'gray'}} className={styles.navTextMargin}>|</li>
         <li className={styles.navTextMargin} onClick={goToBlue}>자가진단</li>
         <li style={{color: 'gray'}} className={styles.navTextMargin}>|</li>
