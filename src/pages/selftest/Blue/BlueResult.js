@@ -1,9 +1,11 @@
-import React from 'react'
-import { Container } from 'react-bootstrap'
+import React from 'react';
+import { useLocation , useNavigate } from 'react-router-dom';
 import styles from './Blue.module.css';
-import { useNavigate } from 'react-router-dom';
+import { Container } from 'react-bootstrap'
+import TestResult from '../../../test/TestResult';
 
 const BlueResult = () => {
+
     // 네비게이트 함수
     const Navigate = useNavigate();
 
@@ -23,9 +25,23 @@ const BlueResult = () => {
         Navigate('/anxiety')
     }
 
+    //url에 나타내기 위함
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
 
-  return (
-    <Container>
+    //선택한 값을 가져오기 위함
+    const buttonStates = JSON.parse(queryParams.get('buttonStates')) || [];
+
+    // 총합 
+    const sum = buttonStates.reduce((total, buttons) => {
+        const selectedButton = buttons.find(button => button.active);
+        return total + (selectedButton ? selectedButton.value : 0);
+    }, 0);
+
+    console.log(`총 결과값: ${sum}`);
+
+    return (
+       <Container>
       <div className={styles.topText}>
             <div className={styles.topTextCusor} onClick={goToMain}>홈</div>
             <div className={styles.Arrow}></div>
@@ -42,8 +58,8 @@ const BlueResult = () => {
             <button className={styles.section2dsign2} onClick={goToAnxiety}><span >불안</span></button>
         </div>
         {/* 결과 박스 */}
-
-        <div className={styles.resultBox}>
+        <TestResult sum={sum} />
+        {/* <div className={styles.resultBox}>
             <div className={styles.resultText}>
                 <p>'유저'님의 검사 결과</p>
             </div>
@@ -53,7 +69,7 @@ const BlueResult = () => {
                 </p>
             </div>
             <div className={styles.resultIntro}>
-                <p>현재 '유저'님은 <span className={styles.resultHighlight}>'20점'</span>으로 <span className={styles.resultHighlight}>'우울증'</span>이 의심되는 단계입니다. <img src={process.env.PUBLIC_URL + "/imges/cloud.png"} alt="" /> <br/>
+                <p>현재 '유저'님은 <span className={styles.resultHighlight}>{sum}</span>으로 <span className={styles.resultHighlight}>'우울증'</span>이 의심되는 단계입니다. <img src={process.env.PUBLIC_URL + "/imges/cloud.png"} alt="" /> <br/>
                    <span>'우울증'</span>은 마음의 감기라고도 불립니다. <br/>
                    <span>주변 의료기관을 방문해 보시는 것을 추천드립니다.</span>
                 </p>
@@ -64,7 +80,7 @@ const BlueResult = () => {
                 <div className={styles.plusline}></div>
                 <div className={styles.resultArrow2}></div>
             </div>
-        </div>
+        </div> */}
 
         {/* 추천 영상 */}
 
@@ -99,7 +115,7 @@ const BlueResult = () => {
             <button className={styles.resultButton2} onClick={goToBlue}>다시 검사하기</button>
         </div>
     </Container>
-  )
-}
+    );
+};
 
-export default BlueResult
+export default BlueResult;

@@ -51,6 +51,7 @@ import Manager from './pages/manager/Manager';
 //로그인 여부 확인 후 url 경로 변경
 // import PrivateRoute from './route/PrivateRoute';
 import 'pretendard/dist/web/static/pretendard.css';
+import Test from './test/Test';
 
 function App() {
 
@@ -119,6 +120,8 @@ function App() {
           <Route path='/' element={<Main1 />} />
           <Route path='/manager' element={<Manager />} />
           
+           {/* 테스트용 */}
+           <Route path='/test' element={<Test />} />
         </Routes>
       </CategoryProvider>
       <Footer />

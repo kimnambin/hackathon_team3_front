@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import 'pretendard/dist/web/static/pretendard.css';
 import styles from './signup.module.css';
 import UseSignupContext from './UseSignupContext';
