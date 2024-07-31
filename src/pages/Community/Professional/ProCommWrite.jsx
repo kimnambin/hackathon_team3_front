@@ -19,12 +19,19 @@ export default function ProCommWrite() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
-  useEffect(() => {
-    if (proToken) {
-      const decodedToken = jwtDecode(proToken);
-      setRole(decodedToken.role);
+ //로그인 토큰 가져오기
+ useEffect(() => {
+  const memberToken = localStorage.getItem('memberToken');
+  if (memberToken) {
+    try {
+      const decodedmemberToken = jwtDecode(memberToken);
+      setRole(decodedmemberToken.role);
+    } catch (error) {
+      console.error('토큰 해독 실패', error);
     }
-  }, [proToken]);
+  }
+}, []);
+//=============================================================
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);

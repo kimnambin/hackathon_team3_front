@@ -16,12 +16,19 @@ export default function ProCommList() {
 
   const [role, setRole] = useState(null);
 
+  //로그인 토큰 가져오기
   useEffect(() => {
-    if (proToken) {
-      const decodedToken = jwtDecode(proToken);
-      setRole(decodedToken.role);
+    const memberToken = localStorage.getItem('memberToken');
+    if (memberToken) {
+      try {
+        const decodedmemberToken = jwtDecode(memberToken);
+        setRole(decodedmemberToken.role);
+      } catch (error) {
+        console.error('토큰 해독 실패', error);
+      }
     }
-  }, [proToken]);
+  }, []);
+  //=============================================================
 
   // 전문 커뮤니티 리스트 가져오기
   const fetchProCommList = async () => {
