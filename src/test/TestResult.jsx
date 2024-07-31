@@ -172,3 +172,25 @@ export default function TestResult ({ sum }) {
         </div>
     );
 }
+
+{/* <div className={styles.resultContainer}>
+<h1>결과 보기</h1>
+<div className={styles.resultContent}>
+    {buttonStates.map((buttons, questionIndex) => {
+        // 선택된 버튼 찾기
+        const selectedButton = buttons.find(button => button.active);
+        return (
+            <div key={questionIndex} className={styles.questionResult}>
+                <h2>문제 번호: {questionIndex + 1}</h2>
+                <p>
+                    {selectedButton ? `선택한 값: ${selectedButton.value}` : '선택 안됨'}
+                </p>
+            </div>
+        );
+    })}
+    <div className={styles.totalSum}>
+        <h2>총합</h2>
+        <p>{sum}</p>
+    </div>
+</div>
+</div> */}
