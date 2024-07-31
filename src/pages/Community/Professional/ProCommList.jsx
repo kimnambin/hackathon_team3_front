@@ -16,16 +16,22 @@ export default function ProCommList() {
 
   const [role, setRole] = useState(null);
 
-  //로그인 토큰 가져오기
+  // 로그인 상태 확인
+  const [isLogined, setIsLogined] = useState(false);
+  
   useEffect(() => {
     const memberToken = localStorage.getItem('memberToken');
     if (memberToken) {
       try {
         const decodedmemberToken = jwtDecode(memberToken);
         setRole(decodedmemberToken.role);
+        setIsLogined(true); // 로그인 상태 업데이트
       } catch (error) {
         console.error('토큰 해독 실패', error);
+        setIsLogined(false);
       }
+    } else {
+      setIsLogined(false);
     }
   }, []);
   //=============================================================
@@ -47,14 +53,7 @@ export default function ProCommList() {
   useEffect(() => {
     fetchProCommList();
   }, []);
-
-  // 끄적이기 로그인 여부 확인
-  const [isLogined, setIsLogined] = useState(false);
-  useEffect(() => {
-    const loggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
-    setIsLogined(loggedIn);
-  }, []);
-
+  
   // 로그인 여부 확인 후 링크 이동
   const handleLoginClick = () => {
     if (!isLogined) {

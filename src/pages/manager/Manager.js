@@ -1,16 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Manager.module.css';
 import axios from 'axios';
+import {jwtDecode} from 'jwt-decode';
+
+// 더미 토큰 (테스트용)
+const dummyToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwicm9sZSI6Im1hbmFnZXIiLCJleHBpcmF0aW9uIjoiMjAyNC0wNy0zMSIsImlhdCI6MTY4Njk2NzEyMH0.SzM4vDFwBQJMBU9e3gnhnUSrfA0X62Q4u1Kb36QlkJY';
 
 const Manager = () => {
   const [expertCheck, setExpertCheck] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [completed, setCompleted] = useState({}); // 개별 항목의 완료 상태를 관리
+  const [completed, setCompleted] = useState({});
+  const [role, setRole] = useState(null);
 
-  // 전문가 요청 리스트 가져오기
+  useEffect(() => {
+    try {
+      const decodedToken = jwtDecode(dummyToken);
+      setRole(decodedToken.role);
+
+      // 더미 토큰의 role이 'manager'인지 확인
+      if (decodedToken.role !== 'manager') {  // 관리자 역할 확인 (예: 'manager')
+        alert('관리자 권한이 필요합니다.');
+        window.location.href = '/';  // 리다이렉트할 페이지
+        return;
+      }
+
+      fetchExpertCheck(); // 역할이 'manager'인 경우 데이터 가져오기
+    } catch (error) {
+      console.error('토큰 디코딩 오류:', error);
+      alert('유효하지 않은 토큰입니다.');
+      window.location.href = '/login';  // 리다이렉트할 페이지
+    }
+  }, []);
+
+  //전문가인지 확인
   const fetchExpertCheck = async () => {
     try {
-      const response = await axios.get('http://52.78.131.56:8080/admin/expertCheck');
+      const response = await axios.get('http://52.78.131.56:8080/admin/expertCheck', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('memberToken')}`  // 실제 토큰 사용
+        }
+      });
       setExpertCheck(response.data);
     } catch (error) {
       console.error('데이터를 불러오는데 실패했습니다', error);
@@ -20,19 +49,26 @@ const Manager = () => {
     }
   };
 
-  useEffect(() => {
-    fetchExpertCheck();
-  }, []);
-
-  // 관리자 승인 버튼
-  const handleExpertAccept = async (id, isExpert) => {
+  //수락 버튼
+  const handleExpertAccept = async (id) => {
     const url = `http://52.78.131.56:8080/admin/changeIsExpert/${id}`;
-    console.log(`Sending request to: ${url} with isExpert: ${isExpert}`);
+    console.log(`Sending request to: ${url} with isExpert: true`);
+
     try {
-      const response = await axios.post(url, { isExpert });
+      const response = await axios.post(url, { isExpert: true }, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('memberToken')}`  // 실제 토큰 사용
+        }
+      });
       console.log('Response:', response.data);
       alert('승인되었습니다');
       setCompleted((prev) => ({ ...prev, [id]: true }));
+      setExpertCheck((prev) =>
+        prev.map((item) =>
+          item.id === id ? { ...item, isExpert: true } : item
+        )
+      );
     } catch (error) {
       console.error('데이터를 불러오는데 실패했습니다', error);
       alert('데이터를 불러오지 못했습니다.');
@@ -79,10 +115,10 @@ const Manager = () => {
               <div className={styles.item}>{item.isExpert ? 'Yes' : 'No'}</div>
               <button
                 className={`${styles.item} ${item.isExpert ? styles.acceptbut : styles.rejectbut}`}
-                onClick={() => handleExpertAccept(item.id, !item.isExpert)}
-                disabled={completed[item.id]} // 완료된 항목은 버튼 비활성화
+                onClick={() => handleExpertAccept(item.id)}
+                disabled={completed[item.id]}
               >
-                {completed[item.id] ? '완료' : (item.isExpert ? '수락' : '반려')}
+                {completed[item.id] ? '완료' : '수락'}
               </button>
             </div>
           ))}
@@ -90,6 +126,6 @@ const Manager = () => {
       )}
     </div>
   );
-}
+};
 
 export default Manager;

@@ -50,7 +50,7 @@ export const CategoryProvider = ({ children }) => {
 
   // 전체 카테고리 객체를 받도록 수정
   const ClickCategory = (category) => {
-    console.log('선택한 카테고리', category);
+    
     
 
     // 카테고리 버튼 상태 업데이트
@@ -58,6 +58,13 @@ export const CategoryProvider = ({ children }) => {
     
     // 카테고리 데이터 가져오기
     getCategoryData(category.key); 
+  };
+  const [selectedCategory, setSelectedCategory] = useState('a');
+
+  const handleCategory = (e) => {
+    const selectedValue = e.target.value;
+    setSelectedCategory(selectedValue); 
+    ClickCategory(selectedValue); 
   };
 
   useEffect(() => {
@@ -67,7 +74,7 @@ export const CategoryProvider = ({ children }) => {
   }, [categoryBtn]);
 
   return (
-    <CategoryContext.Provider value={{ categoryBtn, data, ClickCategory ,data }}>
+    <CategoryContext.Provider value={{ categoryBtn, data, ClickCategory ,data , handleCategory , selectedCategory }}>
       {children}
     </CategoryContext.Provider>
   );
