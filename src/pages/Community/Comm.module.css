@@ -21,6 +21,7 @@
 .CommList_left_p{
     color:#84a67f;
     font-family: 'Pretendard', sans-serif;
+    cursor: pointer;
 }
 
 .CommList_left_p2{
@@ -70,7 +71,7 @@
     color:rgba(254, 254, 254, 0.5);
     background-color:rgba(132, 166, 127, 0.5);
     border : 1px solid rgba(132, 166, 127, 0.5);
-    height: 25px;
+    height: 30px;
     width: 80px;
     margin-right: 10px;
     font-size: 13px;
@@ -115,10 +116,9 @@
     color:#fefefe;
     background-color:#84a67f;
     border : 1px solid rgba(132, 166, 127, 0.5);
-    height: 25px;
+    height: 40px;
     margin-bottom: 10px;
     width: 125px;
-    height: 40px;
 }
 
 .right_mid_select{
@@ -129,15 +129,14 @@
     text-align: center;
 }
 
-.CommList_right_main{
+/* .CommList_right_main{
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
     align-items: left;
-    padding: 10px 0 10px 15px;
-    margin : 30px auto 0 0px;
+    padding: 0 0 0 15px;
+    margin : 20px auto 0 0px;
     width: 100%;
-    height: 510px;
+    height: 340px;
     border-radius: 25px;
     border: 1px solid #84a67f;
     overflow-y: auto;
@@ -147,21 +146,50 @@
 .CommList_main{
     height: 80%;
     display: flex;
+    align-items: flex-start;
     flex-direction: column;
     margin : 0;
     padding: 0;
     width: 100%;
+} */
+
+.CommList_right_main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 0 0 15px;
+    margin: 20px auto 0 0px;
+    width: 100%;
+    height: 340px; 
+    border-radius: 25px;
+    border: 1px solid #84a67f;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box; 
+}
+
+.CommList_main {
+    width: 100%;
+    padding: 10px 0; 
+    margin: 0; 
+    box-sizing: border-box; 
 }
 
 .CommList_main_bottom{
     display: flex;
     flex-direction: row;
     width: 100%;
+    height: 40px;
     justify-content: space-between;
+    margin : 0;
+    padding: 0;
 }
 
 .main_h3 {
-    margin : 20px 0 10px 0 ;
+    margin : 10px 0 10px 0 ;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0;
 }
 
 .main_bottom{
@@ -183,7 +211,6 @@
     background-color: #d9d9d9;
     width: 1px;
     height: 11px; 
-    /* border: 1px solid #d9d9d9; */
     margin : 0 10px;
 }
 
@@ -379,6 +406,17 @@
     align-items: center;
     font-size: 10px;
     margin-top: -30px;
+    margin-bottom: 15px;
+}
+
+.view_nick2{
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0;
+    align-items: center;
+    font-size: 10px;
+    margin-top: 30px;
+    margin-bottom: 15px;
 }
 
 /* 이미지 */
@@ -386,6 +424,7 @@
     width: 20px;
     height: 20px;
     margin-right: 3px;
+    margin-top: -20px;
 }
 
 /* 닉넴 */
@@ -404,7 +443,6 @@
 .view_p3{
     margin-right: 10px;
     color:#575757;
-    cursor: pointer;
 }
 
 /* 내용 부분 */
@@ -420,7 +458,7 @@
     height:41px;
     width:156px;
     border-radius:30px;
-    margin: 20px 0 45px 0;
+    margin: 30px 0 30px 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -439,7 +477,7 @@
     justify-content: space-between;
     width: 740px;
     height: 60px;
-    margin-bottom: 45px;
+    margin-bottom: 100px;
 }
 
 /* 댓글 입력 */
@@ -468,15 +506,14 @@
     display: flex;
     flex-direction: column;
     width: 720px;
-    margin: 0 20px 0 20px;
+    margin: 0px 20px 30px 20px;
 }
 
 /* 압정 아이콘 */
 .view_show_icon{
     width: 25px;
     height: 25px;
-    margin-bottom: 5px;
-    margin-left: -10px;
+    margin-bottom: -30px;
 }
 
 /* 프사 */
@@ -484,6 +521,7 @@
     width: 25px;
     height: 25px;
     margin-right: 5px;
+    margin-top: -20px;
 }
 
 /* 전문가 닉 */
@@ -509,4 +547,13 @@
     font-size: 15px;
     font-weight: blod;
     margin-right: 10px;
+}
+
+.No_postList{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    margin : auto;
 }

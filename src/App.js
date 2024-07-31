@@ -23,6 +23,8 @@ import CommList from './pages/Community/CommList';
 import CommView from './pages/Community/CommView';
 // 마이페이지 부분
 import Profile from "./pages/Mypage/Profile";
+import MyComment from './pages/Mypage/MyComment';
+import MyBookmark from './pages/Mypage/MyBookmark';
 import MyPost from "./pages/Mypage/MyPost";
 import HospitalMap from "./pages/map/HospitalMap";
 import BlueSave from './pages/Mypage/BlueSave';
@@ -74,11 +76,11 @@ function App() {
           <Route path="/pro_signup" element={<ProSignUp />} />
           {/* 커뮤니티 */}
           <Route path="/comm_list" element={<CommList />} />
-          <Route path="/comm_view" element={<CommView />} />
+          <Route path="/comm_view/:id" element={<CommView />} />
           <Route path="/comm_write" element={<CommWrite />} />
           {/* 전문가가 올린 커뮤니티 */}
           <Route path="/pro_comm_list" element={<ProCommList />} />
-          <Route path="/pro_comm_view" element={<ProCommView />} />
+          <Route path="/pro_comm_view/:id" element={<ProCommView />} />
           <Route path="/pro_comm_write" element={<ProCommWrite />} />
           {/* 마이페이지 */}
           {/* <Route path="/profile/:userId" element={<PrivateRoute  component={Profile}/>} />
@@ -87,7 +89,10 @@ function App() {
           <Route path="/stressSave" element={<PrivateRoute  component={StressSave}/>} />
           <Route path="/anxietySave" element={<PrivateRoute  component={AnxietySave}/>} />
           <Route path="/hospital_map" element={<PrivateRoute component={HospitalMap} />} /> */}
-           <Route path="/profile/:userId" element={<Profile />} />
+          <Route path="/profile/:userId" element={<Profile />} />
+          <Route path="/mypost" element={<MyPost/>} /> {/* 작성한 게시글 */}
+          <Route path="/mycomment" element={<MyComment/>} />{/* 작성한 댓글 */}
+          <Route path="/mybookmark" element={<MyBookmark/>} />{/* 저장한 북마크 */}
           <Route path="/mypost" element={<MyPost/>} />
           <Route path="/blueSave" element={<BlueSave/>} />
           <Route path="/stressSave" element={<StressSave/>} />

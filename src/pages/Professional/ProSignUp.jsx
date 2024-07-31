@@ -12,7 +12,7 @@ export default function ProSignUp() {
     num, setNum, showPw2, setShowPw2, handlePw, handlePw2, postProData,
     handleFieldChange, isIdAvailable, setIsIdAvailable, isNickAvailable,
     setIsNickAvailable, btn, agree, setAgree, handleAgree, certified, setCertified ,
-    email , setEmail , image , setImage , handleFile , handleFileUpload, checkNum
+    email , setEmail , image , setImage , handleFile , handleFileUpload, checkNum, setFile, file
   } = ProSignupContext();
 
   return (

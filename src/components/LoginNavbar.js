@@ -29,6 +29,14 @@ const LoginNav = () => {
     Navigate("hospital_map")
   }
 
+  //로그아웃
+  const handleLogout = () => {
+    localStorage.removeItem('memberToken');
+    localStorage.removeItem('savedId');
+    sessionStorage.removeItem('isLoggedIn');
+    Navigate('/login'); // 또는 로그아웃 후 이동할 페이지
+  };
+
   return (
 
   <header> 
@@ -37,7 +45,7 @@ const LoginNav = () => {
 
       <div className={styles.textalign2}>
         <div className={styles.text2margin}>
-          <div onClick={goToLogin}>로그아웃</div>
+          <div onClick={handleLogout}>로그아웃</div>
         </div>
 
         <div className={styles.text2margin}>
