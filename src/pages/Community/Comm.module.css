@@ -296,7 +296,7 @@
 .write_title3{
     font-family: 'Pretendard', sans-serif;
     margin-right: 5px;
-    margin-top: -1px;
+    margin-top: 45px;
     font-size: 20px;
     width: 8%;
 }
@@ -321,7 +321,7 @@
 }
 
 .write_input{
-    padding-left: 60px;
+    padding-left: 40px;
     background-color:#ffffff;
     height:51px;
     width:760px;

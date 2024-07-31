@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect , useContext } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import styles from '../Community/Comm.module.css';
 import 'pretendard/dist/web/static/pretendard.css';
 import { FaAngleRight } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { category, category2  , CategoryContext , handleCategory , selectedCategory} from '../../components/Comm/Comm_context';
 
 export default function ProCommWrite() {
   
@@ -13,18 +14,27 @@ export default function ProCommWrite() {
   const goToComm = () => { navigate('/comm_list') };
 
 
-  const generalToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuamgxMjM0IiwiaWF0IjoxNzIxOTgxMDAwLCJyb2xlIjoiR2VuZXJhbCIsImV4cCI6MTcyMTk4NDYwMH0.4QcgdIbkbmJtnuqIuZXfexcVT-piyUB-ZZo-QJpXhSBHur6KyC_HqSdlxjHCJYykIsCXmENIMqILmwOZLbuaTQ';
+  ///const generalToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuamgxMjM0IiwiaWF0IjoxNzIxOTgxMDAwLCJyb2xlIjoiR2VuZXJhbCIsImV4cCI6MTcyMTk4NDYwMH0.4QcgdIbkbmJtnuqIuZXfexcVT-piyUB-ZZo-QJpXhSBHur6KyC_HqSdlxjHCJYykIsCXmENIMqILmwOZLbuaTQ';
 
   const [role, setRole] = useState(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
-  useEffect(() => {
-    if (generalToken) {
-      const decodedToken = jwtDecode(generalToken);
-      setRole(decodedToken.role);
+  
+
+   //로그인 토큰 가져오기
+   useEffect(() => {
+    const memberToken = localStorage.getItem('memberToken');
+    if (memberToken) {
+      try {
+        console.log('사용자 토큰:', memberToken);
+        const decodedmemberToken = jwtDecode(memberToken);
+        setRole(decodedmemberToken.role);
+      } catch (error) {
+        console.error('토큰 해독 실패', error);
+      }
     }
-  }, [generalToken]);
+  }, []);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -41,10 +51,14 @@ export default function ProCommWrite() {
       return;
     }
     try {
-      const response = await axios.post('http://52.78.131.56:8080/expert/post', {
+      console.log('제목:', title);
+      console.log('내용:', content);
+      console.log('카테고리:', selectedCategory);
+      const response = await axios.post('http://52.78.131.56:8080/general/post', {
         title,
         content,
-        token: generalToken,
+        category : selectedCategory,
+        token: localStorage.getItem('memberToken'),
       });
       alert('글이 성공적으로 등록되었습니다.');
       navigate('/comm_list');  // 성공 후 목록 페이지로 이동
@@ -53,7 +67,7 @@ export default function ProCommWrite() {
       alert('데이터를 전송하지 못했습니다.');
     }
   };
-  
+  const {  ClickCategory , data, handleCategory , selectedCategory }= useContext(CategoryContext);
 
   return (
     <div className={styles.CommList_container}>
@@ -83,6 +97,23 @@ export default function ProCommWrite() {
         {/* 글 쓰는 부분 메인 */}
         <div className={styles.write_container}>
           <h2 className={styles.CommList_left_h22} style={{marginBottom:'40px'}}>고민 끄적끄적</h2>
+
+           {/* 카테고리 고르는 부분 */}
+           <div className={styles.write_header}>
+                <p className={styles.write_title}>게시판</p>
+                <select className={styles.write_select} onChange={handleCategory} value={selectedCategory}>
+              {Array.isArray(category) && category.map((cat) => (
+                <option key={cat.key} value={cat.key}>
+                  {cat.label}
+                </option>
+              ))}
+              {Array.isArray(category2) && category2.map((cat) => (
+                <option key={cat.key} value={cat.key}>
+                  {cat.label}
+                </option>
+              ))}
+            </select>
+            </div>
 
           {/* 제목 부분 */}
           <div className={styles.write_header}>

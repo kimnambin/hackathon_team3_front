@@ -18,9 +18,11 @@ import { CategoryProvider } from './components/Comm/Comm_context';
 import ProCommList from "./pages/Community/Professional/ProCommList";
 import ProCommView from "./pages/Community/Professional/ProCommView";
 import ProCommWrite from "./pages/Community/Professional/ProCommWrite";
+import ProCommTrans from './pages/Community/Professional/ProCommTrans';
 import CommWrite from './pages/Community/CommWrite';
 import CommList from './pages/Community/CommList';
 import CommView from './pages/Community/CommView';
+import CommTrans from './pages/Community/CommTrans';
 // 마이페이지 부분
 import Profile from "./pages/Mypage/Profile";
 import MyComment from './pages/Mypage/MyComment';
@@ -53,6 +55,7 @@ import Manager from './pages/manager/Manager';
 import 'pretendard/dist/web/static/pretendard.css';
 import Test from './test/Test';
 
+
 function App() {
 
   const location = useLocation();
@@ -78,10 +81,12 @@ function App() {
           {/* 커뮤니티 */}
           <Route path="/comm_list" element={<CommList />} />
           <Route path="/comm_view/:id" element={<CommView />} />
+          <Route path="/comm_trans/:id" element={<CommTrans />} /> {/* 게시글 수정 */}
           <Route path="/comm_write" element={<CommWrite />} />
           {/* 전문가가 올린 커뮤니티 */}
           <Route path="/pro_comm_list" element={<ProCommList />} />
           <Route path="/pro_comm_view/:id" element={<ProCommView />} />
+          <Route path="/pro_comm_trans/:id" element={<ProCommTrans />} /> {/* 게시글 수정 */}
           <Route path="/pro_comm_write" element={<ProCommWrite />} />
           {/* 마이페이지 */}
           {/* <Route path="/profile/:userId" element={<PrivateRoute  component={Profile}/>} />

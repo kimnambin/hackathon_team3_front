@@ -12,7 +12,7 @@ export default function CommList(props) {
 
   //끄적이기 로그인 여부 확인 계속 true 상태, 오류 잡아야 됨
   const [isLogined, setIsLogined] = useState(false);
-  const navigate =useNavigate()
+  
 
   useEffect(() => {
       const loggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
@@ -34,28 +34,31 @@ export default function CommList(props) {
   const goToMain=()=>{
     navigate('/')
   }
-  const { categoryBtn, ClickCategory , data} = useContext(CategoryContext);
 
 
+  const [role, setRole] = useState(null);
+  const navigate = useNavigate();
+  const { categoryBtn, ClickCategory, data } = useContext(CategoryContext);
 
-
-const generalToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuamgxMjM0IiwiaWF0IjoxNzIxOTgxMDAwLCJyb2xlIjoiR2VuZXJhbCIsImV4cCI6MTcyMTk4NDYwMH0.4QcgdIbkbmJtnuqIuZXfexcVT-piyUB-ZZo-QJpXhSBHur6KyC_HqSdlxjHCJYykIsCXmENIMqILmwOZLbuaTQ';
-
-const [role, setRole] = useState(null);
-
-useEffect(() => {
-  if (generalToken) {
-    try {
-      const decodedToken = jwtDecode(generalToken);
-      setRole(decodedToken.role);
-    } catch (error) {
-      console.error('토큰을 디코딩하는데 실패했습니다', error);
+  // 로그인 상태 확인
+  useEffect(() => {
+    const memberToken = localStorage.getItem('memberToken');
+    if (memberToken) {
+      try {
+        const decodedmemberToken = jwtDecode(memberToken);
+        setRole(decodedmemberToken.role);
+        setIsLogined(true); // 로그인 상태 업데이트
+      } catch (error) {
+        console.error('토큰 해독 실패', error);
+        setIsLogined(false);
+      }
+    } else {
+      setIsLogined(false);
     }
-  }
-}, [generalToken]);
+  }, []);
 
-
-
+ 
+  
   return (
     <div className={styles.CommList_container}>
       

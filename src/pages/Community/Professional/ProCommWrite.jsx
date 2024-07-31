@@ -13,18 +13,25 @@ export default function ProCommWrite() {
   const goToComm = () => { navigate('/comm_list') };
   const goToproComm = () => { navigate('/pro_comm_list') };
 
-  const proToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3bmdsMTIzIiwiaWF0IjoxNzIxODI4MjA4LCJyb2xlIjoiRXhwZXJ0IiwiZXhwIjoxNzIxODMxODA4fQ.9IZnTQVTHd0OKxrDwyPUu72DAaTIEKXFK9hu7Md45JAr8ZR8yUKphDKXIxshvxOVa2-Ojrpvh05HUQWRN5bWrA';
+  
 
   const [role, setRole] = useState(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-
-  useEffect(() => {
-    if (proToken) {
-      const decodedToken = jwtDecode(proToken);
-      setRole(decodedToken.role);
+  const proToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3bmdsMTIzIiwiaWF0IjoxNzIxODI4MjA4LCJyb2xlIjoiRXhwZXJ0IiwiZXhwIjoxNzIxODMxODA4fQ.9IZnTQVTHd0OKxrDwyPUu72DAaTIEKXFK9hu7Md45JAr8ZR8yUKphDKXIxshvxOVa2-Ojrpvh05HUQWRN5bWrA';
+ //로그인 토큰 가져오기
+ useEffect(() => {
+  const memberToken = localStorage.getItem('memberToken');
+  if (memberToken) {
+    try {
+      const decodedmemberToken = jwtDecode(memberToken);
+      setRole(decodedmemberToken.role);
+    } catch (error) {
+      console.error('토큰 해독 실패', error);
     }
-  }, [proToken]);
+  }
+}, []);
+//=============================================================
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);

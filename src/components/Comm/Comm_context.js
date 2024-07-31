@@ -28,8 +28,10 @@ export const CategoryProvider = ({ children }) => {
   const [categoryBtn, setCategoryBtn] = useState(초깃값);
   const [data, setData] = useState([]); // 데이터를 저장
   const [noData , setNoData] = useState(null);
+
   // 카테고리 데이터 가져오기
   const getCategoryData = async (category) => {
+    
     try {
       const response = await axios.get(`http://52.78.131.56:8080/general/postall/${category}`, {
         // headers: { Authorization: `Bearer ${proToken}` },
@@ -48,16 +50,23 @@ export const CategoryProvider = ({ children }) => {
     }
   };
 
-  // 전체 카테고리 객체를 받도록 수정
-  const ClickCategory = (category) => {
-    console.log('선택한 카테고리', category);
-    
 
+
+  // 전체 카테고리 객체를 받도록 수정
+  const ClickCategory = (category) => {   
     // 카테고리 버튼 상태 업데이트
     setCategoryBtn(category);
     
     // 카테고리 데이터 가져오기
     getCategoryData(category.key); 
+  };
+  const [selectedCategory, setSelectedCategory] = useState('a');
+
+  const handleCategory = (e) => {
+    const selectedValue = e.target.value;
+    setSelectedCategory(selectedValue); 
+    setSelectedCategory(category.key);
+    ClickCategory(selectedValue); 
   };
 
   useEffect(() => {
@@ -67,7 +76,7 @@ export const CategoryProvider = ({ children }) => {
   }, [categoryBtn]);
 
   return (
-    <CategoryContext.Provider value={{ categoryBtn, data, ClickCategory ,data }}>
+    <CategoryContext.Provider value={{ categoryBtn, data, ClickCategory ,data , handleCategory , selectedCategory }}>
       {children}
     </CategoryContext.Provider>
   );

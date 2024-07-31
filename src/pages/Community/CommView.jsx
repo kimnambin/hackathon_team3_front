@@ -14,6 +14,7 @@ export default function CommView() {
     const getPost = async () => {
       try {
         const response = await axios.get(`http://52.78.131.56:8080/general/post/${id}`);
+        console.log('서버 응답 데이터:', response.data);
         setPost(response.data);
       } catch (error) {
         setError(error);
@@ -74,7 +75,9 @@ export default function CommView() {
             <img className={styles.view_img} alt='' src='../img/profile.jpg' />
             <p className={styles.view_p}>여기에 닉네임</p>
             <p className={styles.view_p2}>YYYY-MM-DD hh:ss</p>
-            <p className={styles.view_p3}>수정</p>
+            <p className={styles.view_p3}>
+            <Link to={`/comm_trans/${post.id}`}>수정</Link>
+            </p>
             <p className={styles.view_p3}>삭제</p>
           </div>
 
