@@ -36,9 +36,7 @@ const Manager = () => {
   const fetchExpertCheck = async () => {
     try {
       const response = await axios.get('http://52.78.131.56:8080/admin/expertCheck', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('memberToken')}`  // 실제 토큰 사용
-        }
+        
       });
       setExpertCheck(response.data);
     } catch (error) {
@@ -55,7 +53,7 @@ const Manager = () => {
     console.log(`Sending request to: ${url} with isExpert: true`);
 
     try {
-      const response = await axios.post(url, { isExpert: true }, {
+      const response = await axios.post(url, { isExpert: false }, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${localStorage.getItem('memberToken')}`  // 실제 토큰 사용

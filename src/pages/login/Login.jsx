@@ -15,6 +15,8 @@ export default function Login() {
   const [showPw, handlePw] = usePWContext();
   const navigate = useNavigate();
 
+
+  //로그인 유지
   useEffect(() => {
     const savedId = localStorage.getItem('savedId');
     if (savedId) {
