@@ -7,31 +7,27 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function ProCommWrite() {
-  
   const navigate = useNavigate();
   const goToMain = () => { navigate('/') };
   const goToComm = () => { navigate('/comm_list') };
   const goToproComm = () => { navigate('/pro_comm_list') };
 
-  const proToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3bmdsMTIzIiwiaWF0IjoxNzIxODI4MjA4LCJyb2xlIjoiRXhwZXJ0IiwiZXhwIjoxNzIxODMxODA4fQ.9IZnTQVTHd0OKxrDwyPUu72DAaTIEKXFK9hu7Md45JAr8ZR8yUKphDKXIxshvxOVa2-Ojrpvh05HUQWRN5bWrA';
-
   const [role, setRole] = useState(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
- //로그인 토큰 가져오기
- useEffect(() => {
-  const memberToken = localStorage.getItem('memberToken');
-  if (memberToken) {
-    try {
-      const decodedmemberToken = jwtDecode(memberToken);
-      setRole(decodedmemberToken.role);
-    } catch (error) {
-      console.error('토큰 해독 실패', error);
+  // 로그인 토큰 가져오기
+  useEffect(() => {
+    const memberToken = localStorage.getItem('memberToken');
+    if (memberToken) {
+      try {
+        const decodedmemberToken = jwtDecode(memberToken);
+        setRole(decodedmemberToken.role);
+      } catch (error) {
+        console.error('토큰 해독 실패', error);
+      }
     }
-  }
-}, []);
-//=============================================================
+  }, []);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -41,6 +37,8 @@ export default function ProCommWrite() {
     setContent(e.target.value);
   };
 
+  //작성
+
   const handleSubmit = async () => {
     if (role !== 'Expert') {
       console.error('전문가 회원이 아닙니다');
@@ -48,10 +46,11 @@ export default function ProCommWrite() {
       return;
     }
     try {
+      const memberToken = localStorage.getItem('memberToken'); // 토큰 가져오기
       const response = await axios.post('http://52.78.131.56:8080/expert/post', {
         title,
         content,
-        token: proToken,
+        token: localStorage.getItem('memberToken'),
       });
       alert('글이 성공적으로 등록되었습니다.');
       navigate('/pro_comm_list');  // 성공 후 목록 페이지로 이동
@@ -60,7 +59,6 @@ export default function ProCommWrite() {
       alert('데이터를 전송하지 못했습니다.');
     }
   };
-  
 
   return (
     <div className={styles.CommList_container}>
@@ -82,34 +80,34 @@ export default function ProCommWrite() {
         {/* 여기가 글 쓰는 부분 상단 */}
         <div className={styles.CommList_right_header}>
           <p className={styles.header_p}>
-            <span onClick={goToMain}>홈</span> <FaAngleRight/> <span onClick={goToComm}>커뮤니티</span> <FaAngleRight /><span onClick={goToproComm}>전문의 정보 끄적끄적</span> <FaAngleRight />
+            <span onClick={goToMain}>홈</span> <FaAngleRight /> <span onClick={goToComm}>커뮤니티</span> <FaAngleRight /> <span onClick={goToproComm}>전문의 정보 끄적끄적</span> <FaAngleRight />
           </p>
           <p className={styles.header_p2}>끄적이기</p>
         </div>
 
         {/* 글 쓰는 부분 메인 */}
         <div className={styles.write_container}>
-          <h2 className={styles.CommList_left_h22} style={{marginBottom:'40px'}}>전문의 귀한 정보 끄적끄적</h2>
+          <h2 className={styles.CommList_left_h22} style={{ marginBottom: '40px' }}>전문의 귀한 정보 끄적끄적</h2>
 
           {/* 제목 부분 */}
           <div className={styles.write_header}>
             <p className={styles.write_title2}>제목</p>
-            <input 
-              type='text' 
-              className={styles.write_input} 
-              value={title} 
-              onChange={handleTitleChange} 
+            <input
+              type='text'
+              className={styles.write_input}
+              value={title}
+              onChange={handleTitleChange}
             />
           </div>
 
           {/* 내용 부분 */}
           <div className={styles.write_header2}>
             <p className={styles.write_title3}>본문</p>
-            <textarea 
-              className={styles.write_textarea} 
-              placeholder='비하/욕설 등과 같은 게시글은 관리자에 의해 블라인드 처리될 수 있습니다.' 
-              value={content} 
-              onChange={handleContentChange} 
+            <textarea
+              className={styles.write_textarea}
+              placeholder='비하/욕설 등과 같은 게시글은 관리자에 의해 블라인드 처리될 수 있습니다.'
+              value={content}
+              onChange={handleContentChange}
             />
           </div>
 
