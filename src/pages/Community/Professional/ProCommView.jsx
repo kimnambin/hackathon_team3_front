@@ -51,8 +51,7 @@ export default function ProCommView() {
       await axios.put(`http://52.78.131.56:8080/expert/post/${id}`, {
         title: newTitle,
         content: newContent,
-      }, {
-        headers: { Authorization: `Bearer ${proToken}` },
+        token: localStorage.getItem('memberToken'),
       });
       alert('게시글이 성공적으로 수정되었습니다.');
       fetchPost(); // 수정 후 게시글 새로고침
