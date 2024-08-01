@@ -30,10 +30,10 @@ export const CategoryProvider = ({ children }) => {
   const [noData , setNoData] = useState(null);
 
   // 카테고리 데이터 가져오기
-  const getCategoryData = async (category) => {
+  const getCategoryData = async (categoryKey) => {
     
     try {
-      const response = await axios.get(`http://52.78.131.56:8080/general/postall/${category}`, {
+      const response = await axios.get(`http://52.78.131.56:8080/general/postall/${categoryKey}`, {
         // headers: { Authorization: `Bearer ${proToken}` },
       });
        // 데이터가 비어있는 경우
@@ -64,9 +64,13 @@ export const CategoryProvider = ({ children }) => {
 
   const handleCategory = (e) => {
     const selectedValue = e.target.value;
-    setSelectedCategory(selectedValue); 
-    setSelectedCategory(category.key);
-    ClickCategory(selectedValue); 
+    setSelectedCategory(categoryKey); 
+    const categoryKey = getCategoryData(categoryKey);
+    if (categoryKey) {
+      ClickCategory({ key: categoryKey, label: selectedValue });
+    } else {
+      console.error('카테고리 키를 찾을 수 없습니다.');
+    }
   };
 
   useEffect(() => {
@@ -76,7 +80,7 @@ export const CategoryProvider = ({ children }) => {
   }, [categoryBtn]);
 
   return (
-    <CategoryContext.Provider value={{ categoryBtn, data, ClickCategory ,data , handleCategory , selectedCategory }}>
+    <CategoryContext.Provider value={{ categoryBtn, data, ClickCategory  , handleCategory , selectedCategory , getCategoryData }}>
       {children}
     </CategoryContext.Provider>
   );

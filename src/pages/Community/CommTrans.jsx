@@ -7,6 +7,31 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { CategoryContext } from '../../components/Comm/Comm_context'; // import only CategoryContext
 
+
+// 카테고리 매핑 객체
+const categoryMapping = {
+  '일반 고민': 'a',
+  '진로/취업': 'b',
+  '학교': 'c',
+  '직장': 'd',
+  '대인 관계': 'e',
+  '썸/연애': 'f',
+  '결혼/육아': 'g',
+  '이별/이혼': 'h',
+  '가족': 'i',
+  '성 생활': 'j',
+  '외모': 'k',
+  '금전': 'l',
+  'LGBT': 'm'
+};
+
+
+// label을 key로 변환하는 함수
+const mapCategoryLabelToKey = (categoryLabel) => {
+  return categoryMapping[categoryLabel] || 'unknown';
+};
+
+
 export default function CommTrans() {
   const navigate = useNavigate();
   const goToMain = () => { navigate('/') };
@@ -16,6 +41,7 @@ export default function CommTrans() {
   const [post, setPost] = useState(null);
   const [newTitle, setNewTitle] = useState('');
   const [newContent, setNewContent] = useState('');
+  const [newCategory, setNewCategory] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [memberToken, setMemberToken] = useState('');
@@ -35,48 +61,66 @@ export default function CommTrans() {
   }, []);
 
   // CategoryContext에서 selectedCategory 값 가져오기
-  const { selectedCategory } = useContext(CategoryContext);
+  const { selectedCategory ,getCategoryData } = useContext(CategoryContext);
 
-  useEffect(() => {
-    const getPost = async () => {
-      try {
-        const response = await axios.get(`http://52.78.131.56:8080/general/post/${id}`);
-        setPost(response.data);
-        console.log('가져온 게시글 데이터:', response.data);
-        setNewTitle(response.data.title);
-        setNewContent(response.data.content);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
 
-    getPost();
-  }, [id]);
 
-  const handleEdit = async () => {
-    console.log('수정할 데이터:', {
-      title: newTitle,
-      content: newContent,
-      category: selectedCategory, 
-    });
+useEffect(() => {
+  const getPost = async () => {
     try {
-      await axios.put(`http://52.78.131.56:8080/general/post/${id}`, {
-        title: newTitle,
-        content: newContent,
-        category: selectedCategory, 
-      }, {
-        headers: { Authorization: `Bearer ${memberToken}` },
-      });
+      const response = await axios.get(`http://52.78.131.56:8080/general/post/${id}`);
+      const postData = response.data;
 
-      alert('게시글이 성공적으로 수정되었습니다.');
-      navigate(`/comm_trans/${id}`);
+      // 카테고리 레이블을 key로 변환
+      const categoryKey = mapCategoryLabelToKey(postData.category);
+
+      setPost(postData);
+      console.log('가져온 게시글 데이터:', postData);
+      setNewTitle(postData.title);
+      setNewContent(postData.content);
+      setNewCategory(categoryKey);
     } catch (error) {
-      console.error('게시글 수정에 실패했습니다:', error);
-      alert('게시글을 수정하지 못했습니다.');
+      setError(error);
+    } finally {
+      setLoading(false);
     }
   };
+
+  getPost();
+}, [id]);
+
+
+const handleEdit = async () => {
+  // 변환된 카테고리 키를 가져오기
+  const categoryKey = mapCategoryLabelToKey(newCategory);
+
+  console.log('수정할 내용들:', {
+    title: newTitle,
+    content: newContent,
+    category: categoryKey, // 변환된 카테고리 키를 전달
+  });
+
+  try {
+    await axios.put(
+      `http://52.78.131.56:8080/general/post/${id}`,
+      {
+        title: newTitle,
+        content: newContent,
+        category: categoryKey, // 변환된 카테고리 키를 전달
+      },
+      {
+        headers: { Authorization: `Bearer ${memberToken}` },
+      }
+    );
+
+    alert('게시글이 성공적으로 수정되었습니다.');
+    navigate(`/comm_trans/${id}`);
+  } catch (error) {
+    console.error('게시글 수정에 실패했습니다:', error);
+    alert('게시글을 수정하지 못했습니다.');
+  }
+};
+
 
   if (loading) {
     return <p>Loading...</p>;

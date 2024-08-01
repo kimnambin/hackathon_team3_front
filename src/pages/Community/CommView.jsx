@@ -14,17 +14,43 @@ export default function CommView() {
     const getPost = async () => {
       try {
         const response = await axios.get(`http://52.78.131.56:8080/general/post/${id}`);
-        console.log('서버 응답 데이터:', response.data);
-        setPost(response.data);
+        const postData = response.data;
+
+        // 카테고리 키로 변환
+        const categoryKeyResult = {
+          '일반 고민': 'a',
+          '진로/취업': 'b',
+          '학교': 'c',
+          '직장': 'd',
+          '대인 관계': 'e',
+          '썸/연애': 'f',
+          '결혼/육아': 'g',
+          '이별/이혼': 'h',
+          '가족': 'i',
+          '성 생활': 'j',
+          '외모': 'k',
+          '금전': 'l',
+          'LGBT': 'm'
+        };
+
+        const transCategoryKey = categoryKeyResult[postData.category] || 'unknown';
+
+        // 변환된 카테고리 키를 포함한 게시글 데이터 로깅
+        console.log('게시글 제목:', postData.title);
+        console.log('게시글 내용:', postData.content);
+        console.log('카테고리 키:', transCategoryKey);
+
+        // 변환된 카테고리 키로 게시글 데이터 업데이트
+        setPost({ ...postData, category: transCategoryKey });
       } catch (error) {
         setError(error);
       } finally {
         setLoading(false);
       }
     };
-
     getPost();
   }, [id]);
+  
 
   if (loading) {
     return <p>Loading...</p>;
