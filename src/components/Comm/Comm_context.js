@@ -27,11 +27,12 @@ export const CategoryProvider = ({ children }) => {
   const [categoryBtn, setCategoryBtn] = useState(category.find(cat => cat.key === 'a'));
   const [data, setData] = useState([]);
   const [noData, setNoData] = useState(null);
+  const [order, setOrder] = useState('1'); // Default order value
 
   // 카테고리 데이터 가져오기
-  const getCategoryData = async (categoryKey) => {
+  const getCategoryData = async (categoryKey, order) => {
     try {
-      const response = await axios.get(`http://52.78.131.56:8080/general/postall/${categoryKey}`);
+      const response = await axios.get(`http://52.78.131.56:8080/general/postall/${categoryKey}/${order}`);
       if (response.data && response.data.length > 0) {
         setData(response.data);
         setNoData(null);
@@ -46,9 +47,17 @@ export const CategoryProvider = ({ children }) => {
   };
 
   // 카테고리 클릭 처리
-  const ClickCategory = (category) => {   
+  const ClickCategory = (category) => {
     setCategoryBtn(category);
-    getCategoryData(category.key);
+    getCategoryData(category.key, order);
+  };
+
+  // Order 변경 처리
+  const handleOrderChange = (newOrder) => {
+    setOrder(newOrder);
+    if (categoryBtn) {
+      getCategoryData(categoryBtn.key, newOrder);
+    }
   };
 
   const [selectedCategory, setSelectedCategory] = useState('a');
@@ -57,10 +66,10 @@ export const CategoryProvider = ({ children }) => {
   const handleCategory = (e) => {
     const selectedValue = e.target.value;
     const selectedCategoryObj = [...category, ...category2].find(cat => cat.key === selectedValue);
-    
+
     if (selectedCategoryObj) {
       setSelectedCategory(selectedCategoryObj.key);
-      ClickCategory(selectedCategoryObj); 
+      ClickCategory(selectedCategoryObj);
     } else {
       console.error('카테고리 키를 찾을 수 없습니다.');
     }
@@ -68,12 +77,12 @@ export const CategoryProvider = ({ children }) => {
 
   useEffect(() => {
     if (categoryBtn) {
-      getCategoryData(categoryBtn.key);
+      getCategoryData(categoryBtn.key, order);
     }
-  }, [categoryBtn]);
+  }, [categoryBtn, order]);
 
   return (
-    <CategoryContext.Provider value={{ categoryBtn, data, ClickCategory, handleCategory, selectedCategory, getCategoryData }}>
+    <CategoryContext.Provider value={{ categoryBtn, data, ClickCategory, handleCategory, selectedCategory, handleOrderChange }}>
       {children}
     </CategoryContext.Provider>
   );

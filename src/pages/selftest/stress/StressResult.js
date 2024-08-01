@@ -2,7 +2,7 @@ import React from 'react'
 import { Container } from 'react-bootstrap'
 import styles from './Stress.module.css'
 import { useNavigate , useLocation} from 'react-router-dom';
-import StressTemp from './StressTemp'
+import StressTemp from './StressTest'
 
 
 const StressResult = () => {

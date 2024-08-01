@@ -2,7 +2,7 @@ import React from 'react'
 import { Container } from 'react-bootstrap'
 import styles from './Anxiety.module.css'
 import { useLocation , useNavigate } from 'react-router-dom';
-import AnxietyTest from './AnxietyTest'
+import AnxietyTest from './Anxiety'
 
 const AnxietyResult = () => {
     

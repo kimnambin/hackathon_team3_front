@@ -19,7 +19,8 @@ export default function ProCommWrite() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const proToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3bmdsMTIzIiwiaWF0IjoxNzIxODI4MjA4LCJyb2xlIjoiRXhwZXJ0IiwiZXhwIjoxNzIxODMxODA4fQ.9IZnTQVTHd0OKxrDwyPUu72DAaTIEKXFK9hu7Md45JAr8ZR8yUKphDKXIxshvxOVa2-Ojrpvh05HUQWRN5bWrA';
- //로그인 토큰 가져오기
+ 
+  //로그인 토큰 가져오기
  useEffect(() => {
   const memberToken = localStorage.getItem('memberToken');
   if (memberToken) {

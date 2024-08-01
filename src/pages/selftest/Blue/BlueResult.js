@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation , useNavigate } from 'react-router-dom';
 import styles from './Blue.module.css';
 import { Container } from 'react-bootstrap'
-import BlueTest from './BlueTest';
+import BlueTest from './Blue'
 
 const BlueResult = () => {
 

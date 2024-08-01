@@ -3,6 +3,7 @@ import './App.css';
 import {BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 //메인 페이지
 import Main1 from './pages/Mainpages/Main1';
+import LoginMain from './pages/Mainpages/LoginMain'
 import Navbar from './components/Navbar';
 import LoginNavbar from './components/LoginNavbar';
 import Footer from './components/Footer';
@@ -107,6 +108,7 @@ function App() {
           <Route path='/AnxietyResult' element={<AnxietyResult />} />
           {/* 관리자 페이지 */}
           <Route path='/' element={<Main1 />} />
+          <Route path='/main' element={<LoginMain />} />
           <Route path='/manager' element={<Manager />} />
           
         </Routes>
