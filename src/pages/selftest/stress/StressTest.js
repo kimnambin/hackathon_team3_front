@@ -26,48 +26,77 @@ const TestPart = ({ number, text, buttonStates, handleButtonClick, isLast }) => 
 );
 
 const StressTest = () => {
-    // 네비게이트 함수
-    const Navigate = useNavigate();
+   
+    const navigate = useNavigate();
 
-    const goToMain=()=>{
-        Navigate('/')
-    }
+    //페이지를 관리
+    const [nowPage, setNowPage] = useState(0);
 
-    const goToBlue=()=>{
-        Navigate('/blue')
-    }
+    const goToMain = () => navigate('/');
+    const goToBlue = () => navigate('/blue');
+    const goToStress = () => navigate('/StressTest');
+    const goToAnxiety = () => navigate('/anxiety');
 
-    const goToStress=()=>{
-        Navigate('/StressTest')
-    }
+    const 결과보기 = () => {
+        const queryParams = new URLSearchParams();
+        queryParams.set('buttonStates', JSON.stringify(buttonStates));
+        navigate(`/blueResult?${queryParams.toString()}`);
+    };
     
-    const goToAnxiety=()=>{
-        Navigate('/anxiety')
-    }
-
-    const nextPage=()=>{
-        Navigate('/StressTest2')
-    }
+    const 이전페이지 = () => {
+        if (nowPage > 0) {
+            setNowPage(prevPage => {
+                //  스크롤을 맨 위로 이동
+                window.scrollTo({ top: 200, behavior: 'smooth' });
+                return prevPage - 1;
+            });
+        }
+    };
     
+    const 다음페이지 = () => {
+        if (nowPage < Math.ceil(testData.length / 5) - 1) {
+            setNowPage(prevPage => {
+                //  스크롤을 맨 위로 이동
+                window.scrollTo({ top: 200, behavior: 'smooth' });
+                return prevPage + 1;
+            });
+        }
+    };
+    
+    
+    //첫번째 페이지와 마지막 페이지는 다르게 보여주기 위함!!
+    const firstPage = nowPage === 0;
+    const lastPage = nowPage === 1;
+
+    //현재 페이지를 보기 위함
+    useEffect(() => {
+        console.log(`현재 페이지: ${nowPage + 1}`);
+    }, []);
+
     // 상태 초기화
     const [testData, setTestData] = useState([]);
     const [buttonStates, setButtonStates] = useState([]);
 
-     // 로컬 스토리지에서 상태 복원
-     useEffect(() => {
+    // 로컬 스토리지에서 상태 복원
+    useEffect(() => {
         const savedStates = JSON.parse(localStorage.getItem('buttonStates'));
         if (savedStates) {
             setButtonStates(savedStates);
         }
 
-        // 테스트 데이터 설정 (예제)
-        const exampleTestData = [
+        // 문제 항목들
+        const exampleTestData  = [
             { number: 1, text: '예상치 못했던 일 때문에 당황했던 적이 있다.' },
             { number: 2, text: '인생에서 중요한 일들을 조절할 수 없다는 느낌을 경험했다.' },
             { number: 3, text: '신경이 예민해지고 스트레스를 받고 있다는 느낌을 받았다.' },
             { number: 4, text: '개인적 문제들을 다루는 데 있어서 자신감을 잃었다.' },
-            { number: 5, text: '일상의 일들이 내가 생각한 대로 진행되고 있다는 느낌을 받은 적이 드물다.' }
-        ];
+            { number: 5, text: '일상의 일들이 내가 생각한 대로 진행되고 있다는 느낌을 받은 적이 드물다.' },
+            { number: 6, text: '꼭 해야 하는 일을 처리할 수 없다고 자주 생각이 든다.' },
+            { number: 7, text: '일상생활의 짜증을 잘 다스릴 수 있다.' },
+            { number: 8, text: '최상의 컨디션이라고 느낀 적이 드물다.' },
+            { number: 9, text: '통제할 수 없는 일 때문에 자주 화가 나는 경험을 한다.' },
+            { number: 10, text: '어려운 일들이 너무 많이 쌓여서 극복하지 못할 것 같은 느낌을 자주 받는다.' }
+          ];
         setTestData(exampleTestData);
 
         // 초기 버튼 상태 설정
@@ -80,7 +109,7 @@ const StressTest = () => {
 
     // 버튼 클릭 핸들러 함수
     const handleButtonClick = (questionIndex, buttonIndex) => {
-        console.log(`Button clicked - Question Index: ${questionIndex}, Button Index: ${buttonIndex}`);
+        console.log(`문제 번호: ${questionIndex+1}, 선택한 값: ${buttonIndex}`);
         setButtonStates(prevState => {
             const updatedStates = prevState.map((buttons, qIndex) =>
                 qIndex === questionIndex
@@ -94,6 +123,9 @@ const StressTest = () => {
             return updatedStates;
         });
     };
+
+    const currentTestData = testData.slice(nowPage * 5, (nowPage + 1) * 5);
+    const isLastPage = nowPage === Math.ceil(testData.length / 5) - 1;
 
   return (
     <Container>
@@ -129,24 +161,46 @@ const StressTest = () => {
         </div>
 
         <div>
-                {testData.map((data, index) => (
+                {currentTestData.map((data, index) => (
                     <TestPart
                         key={index}
                         number={data.number}
                         text={data.text}
-                        buttonStates={buttonStates[index]}
+                        buttonStates={buttonStates[nowPage * 5 + index]}
                         handleButtonClick={handleButtonClick}
-                        isLast={index === testData.length - 1}
+                        isLast={index === currentTestData.length - 1 && isLastPage}
                     />
                 ))}
             </div>
+            {firstPage && (
+                    <button className={styles.nextPage} onClick={다음페이지} style={{ marginLeft: '52vh' }}>
+                        <p>다음 페이지</p> <span className={styles.nextPageline}></span> <span className={styles.nextPageArrow}></span>
+                    </button>
+                )} 
+            {lastPage && (
+                    <button className={styles.nextPage} onClick={결과보기} style={{ marginLeft: '52vh' }}>
+                        <p>결과보기</p> <span className={styles.nextPageline}></span> <span className={styles.nextPageArrow}></span>
+                    </button>
+                )}    
 
-        <button className={styles.nextPage} onClick={nextPage} style={{marginLeft: '52vh'}}>
-            <p>다음 페이지</p> <span className={styles.nextPageline}></span> <span className={styles.nextPageArrow}></span>
-        </button>
+            {!lastPage && !firstPage &&(
+            <div className={styles.pageButtonBox}>
+                <button className={styles.nextPage} onClick={이전페이지} disabled={nowPage === 0}>
+                    <span className={styles.priviousPageline}></span>
+                    <p>이전 페이지</p>
+                    <span className={styles.priviousPageArrow}></span>
+                </button>
 
-    </Container>
-  )
+                <button className={styles.nextPage} onClick={다음페이지} disabled={isLastPage}>
+                    <p>다음 페이지</p>
+                    <span className={styles.nextPageline}></span>
+                    <span className={styles.nextPageArrow}></span>
+                </button>
+            </div>
+            )}
+               
+        </Container>
+    );
 }
 
 export default StressTest

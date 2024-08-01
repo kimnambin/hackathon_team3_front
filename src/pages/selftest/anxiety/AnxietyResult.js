@@ -1,9 +1,11 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
 import styles from './Anxiety.module.css'
-import { useNavigate } from 'react-router-dom';
+import { useLocation , useNavigate } from 'react-router-dom';
+import AnxietyTest from './AnxietyTest'
 
 const AnxietyResult = () => {
+    
     // 네비게이트 함수
     const Navigate = useNavigate();
 
@@ -23,37 +25,53 @@ const AnxietyResult = () => {
         Navigate('/anxiety')
     }
 
-  return (
-    <Container>
-      <div className={styles.topText}>
-            <div className={styles.topTextCusor} onClick={goToMain}>홈</div>
-            <div className={styles.Arrow}></div>
-            <div className={styles.topTextCusor} onClick={goToBlue}>자가진단</div>
-            <div className={styles.Arrow}></div>
-            <div className={styles.topTextCusor} onClick={goToAnxiety}>불안</div>
-        </div>
+    //url에 나타내기 위함
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
 
-        <div style={{fontSize: 20, fontWeight: "bold"}}>나의 마음 들여다보기</div>
+    //선택한 값을 가져오기 위함
+    const buttonStates = JSON.parse(queryParams.get('buttonStates')) || [];
 
-        <div className={styles.topSetion2}>
-            <button className={styles.section2dsign2} onClick={goToBlue}><span >우울증</span></button>
-            <button className={styles.section2dsign2} onClick={goToStress}><span >스트레스</span></button>
-            <button className={styles.section2dsign} onClick={goToAnxiety}><span >불안</span></button>
-        </div>
+    // 총합 
+    const sum = buttonStates.reduce((total, buttons) => {
+        const selectedButton = buttons.find(button => button.active);
+        return total + (selectedButton ? selectedButton.value : 0);
+    }, 0);
+
+    console.log(`총 결과값: ${sum}`);
+
+    return (
+        <Container>
+        <div className={styles.topText}>
+              <div className={styles.topTextCusor} onClick={goToMain}>홈</div>
+              <div className={styles.Arrow}></div>
+              <div className={styles.topTextCusor} onClick={goToBlue}>자가진단</div>
+              <div className={styles.Arrow}></div>
+              <div className={styles.topTextCusor} onClick={goToAnxiety}>불안</div>
+          </div>
+  
+          <div style={{fontSize: 20, fontWeight: "bold"}}>나의 마음 들여다보기</div>
+  
+          <div className={styles.topSetion2}>
+              <button className={styles.section2dsign2} onClick={goToBlue}><span >우울증</span></button>
+              <button className={styles.section2dsign2} onClick={goToStress}><span >스트레스</span></button>
+              <button className={styles.section2dsign} onClick={goToAnxiety}><span >불안</span></button>
+          </div>
         {/* 결과 박스 */}
-
-        <div className={styles.resultBox}>
+        <AnxietyTest sum={sum} />
+        {/* <div className={styles.resultBox}>
             <div className={styles.resultText}>
                 <p>'유저'님의 검사 결과</p>
             </div>
             <div>
                 <div className={styles.resultScoreLine}> <img img src={process.env.PUBLIC_URL + "/imges/pol.png"} alt=""/></div> <br/>
-                <p className={styles.scoreText}><span>0</span> <span>10</span> <span>20</span> <span>30</span> <span>40</span>
+                <p className={styles.scoreText}><span>0</span> <span>5</span> <span>10</span> <span>15</span> <span>20</span>
                 </p>
             </div>
             <div className={styles.resultIntro}>
-                <p>현재 '유저'님은 <span className={styles.resultHighlight}>'40점'</span>으로 <span className={styles.resultHighlight}>'심각한 불안 상태'</span>에 있어보입니다. <img src={process.env.PUBLIC_URL + "/imges/cloud.png"} alt="" /> <br/>
-                   <span>가능한 한 빨리 전문가의 도움을 받는 것을 추천드립니다.</span><img src={process.env.PUBLIC_URL + "/imges/amble.png"} alt="" />
+                <p>현재 '유저'님은 <span className={styles.resultHighlight}>{sum}</span>으로 <span className={styles.resultHighlight}>'우울증'</span>이 의심되는 단계입니다. <img src={process.env.PUBLIC_URL + "/imges/cloud.png"} alt="" /> <br/>
+                   <span>'우울증'</span>은 마음의 감기라고도 불립니다. <br/>
+                   <span>주변 의료기관을 방문해 보시는 것을 추천드립니다.</span>
                 </p>
             </div>
 
@@ -62,7 +80,7 @@ const AnxietyResult = () => {
                 <div className={styles.plusline}></div>
                 <div className={styles.resultArrow2}></div>
             </div>
-        </div>
+        </div> */}
 
         {/* 추천 영상 */}
 
@@ -94,10 +112,10 @@ const AnxietyResult = () => {
 
         <div className={styles.resultButtonBox}>
             <button className={styles.resultButton1}>결과 저장하기</button>
-            <button className={styles.resultButton2} onClick={goToAnxiety}>다시 검사하기</button>
+            <button className={styles.resultButton2} onClick={goToBlue}>다시 검사하기</button>
         </div>
     </Container>
-  )
-}
+    );
+};
 
-export default AnxietyResult
+export default AnxietyResult;

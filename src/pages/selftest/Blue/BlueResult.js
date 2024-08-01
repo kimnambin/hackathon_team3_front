@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation , useNavigate } from 'react-router-dom';
 import styles from './Blue.module.css';
 import { Container } from 'react-bootstrap'
-import TestResult from '../../../test/TestResult';
+import BlueTest from './BlueTest';
 
 const BlueResult = () => {
 
@@ -58,7 +58,7 @@ const BlueResult = () => {
             <button className={styles.section2dsign2} onClick={goToAnxiety}><span >불안</span></button>
         </div>
         {/* 결과 박스 */}
-        <TestResult sum={sum} />
+        <BlueTest sum={sum} />
         {/* <div className={styles.resultBox}>
             <div className={styles.resultText}>
                 <p>'유저'님의 검사 결과</p>

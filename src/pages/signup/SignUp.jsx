@@ -121,6 +121,9 @@ export default function SignUp() {
       </div>
 
       {/* 생년월일 입력 부분 */}
+      <div className={styles.signup_label}>
+        <p className={styles.signup_p}>생년월일</p>
+      </div>
       <div className={styles.signup_date_contanier}>
   <input 
     type='number' 

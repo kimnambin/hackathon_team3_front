@@ -61,7 +61,7 @@ export default function ProCommWrite() {
         token: localStorage.getItem('memberToken'),
       });
       alert('글이 성공적으로 등록되었습니다.');
-      navigate('/comm_list');  // 성공 후 목록 페이지로 이동
+      window.location.href = '/comm_list';  
     } catch (error) {
       console.error('데이터를 전송하는데 실패했습니다', error);
       alert('데이터를 전송하지 못했습니다.');

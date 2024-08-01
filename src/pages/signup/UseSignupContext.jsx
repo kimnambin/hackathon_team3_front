@@ -247,12 +247,6 @@ const showcheckMsg = async () => {
         })
       });
   
-      const contentType = response.headers.get('Content-Type');
-      if (!contentType || !contentType.includes('application/json')) {
-        throw new Error('서버에서 JSON 형식의 응답이 아닙니다.');
-      }
-  
-      const data = await response.json();
       const confirmed = window.confirm('회원가입이 완료되었습니다. 메인 페이지로 이동하시겠습니까?');
       if (confirmed) navigate('/');
     } catch (error) {

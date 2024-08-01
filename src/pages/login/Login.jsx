@@ -11,6 +11,8 @@ export default function Login() {
   const [pw, setPw] = useState('');
   const [saveId, setSaveId] = useState(false);
   const [memberToken, setMemberToken] = useState('');
+  const [adminId, setadminId] = useState('');
+  const [adminPw, setadminPw] = useState('');
 
   const [showPw, handlePw] = usePWContext();
   const navigate = useNavigate();
@@ -26,6 +28,7 @@ export default function Login() {
     if (token) {
       setMemberToken(token);
 
+      // JWT 디코딩 전 토큰 형식 확인
       if (token && token.split('.').length === 3) {
         try {
           const decodedToken = jwtDecode(token);
@@ -38,7 +41,7 @@ export default function Login() {
         }
       } else {
         console.error('유효하지 않은 토큰 형식:', token);
-        alert('권한이 없습니다 일반인 또는 전문가 로그인을 해주세요.');
+        alert('유효하지 않은 토큰 형식입니다.');
       }
     }
   }, [navigate]);
@@ -59,37 +62,16 @@ export default function Login() {
 
   //로그인
   const submitLogin = async () => {
-    if (id === 'kkeujeogim12' && pw === 'kkeujeogim12!!') {
-      // 특정 아이디와 비밀번호의 경우 자동 로그인 처리
-      const token = 'dummy.token.for.testing'; // 적절한 토큰을 설정
-      localStorage.setItem('memberToken', token);
-      setMemberToken(token);
-
-      if (saveId) {
-        localStorage.setItem('savedId', id);
-      } else {
-        localStorage.removeItem('savedId');
-      }
-
-      sessionStorage.setItem('isLoggedIn', 'true');
-
-      const redirectPath = sessionStorage.getItem('redirectPath') || '/'; // 기본 리다이렉트 경로 설정
-      sessionStorage.removeItem('redirectPath');
-      navigate(redirectPath);
-      return;
-    }
-
     try {
-      // API URL 및 데이터 설정
-      const isAdmin = id.startsWith('admin'); // 관리자 ID의 기준을 설정 (여기서는 "admin"으로 시작하는 ID를 관리자 ID로 가정)
-      const apiUrl = isAdmin ? 'http://52.78.131.56:8080/admin/login' : 'http://52.78.131.56:8080/login';
-      const loginData = isAdmin ? { Id: id, Password: pw } : { userId: id, password: pw };
-
-      const response = await axios.post(apiUrl, loginData);
+      const response = await axios.post('http://52.78.131.56:8080/login', {
+        userId: id,
+        password: pw
+      });
 
       if (response.status === 200 && response.data) {
         const token = response.data;
 
+        // JWT 형식 확인 및 저장
         if (typeof token === 'string' && token.split('.').length === 3) {
           localStorage.setItem('memberToken', token);
           setMemberToken(token);
@@ -102,7 +84,7 @@ export default function Login() {
 
           sessionStorage.setItem('isLoggedIn', 'true');
 
-          const redirectPath = sessionStorage.getItem('redirectPath') || (isAdmin ? '/manager' : '/');
+          const redirectPath = sessionStorage.getItem('redirectPath') || '/';
           sessionStorage.removeItem('redirectPath');
           navigate(redirectPath);
         } else {
@@ -118,6 +100,37 @@ export default function Login() {
         console.error('로그인 요청 에러:', error.message || error);
         alert('서버와 연결하는 데 문제가 발생했습니다.');
       }
+    }
+  };
+
+  // admin/login 부분(어디에 어떻게 써야 될지 사실 모르겠음)
+  const adminLogin = async () => {
+    try {
+      const response = await axios.post('http://52.78.131.56:8080/admin/login', {
+        Id: adminId,
+        Password: adminPw
+      }, {
+        headers: {
+          'Authorization': `Bearer ${memberToken}`
+        }
+      });
+
+      const user = response.data;
+      if (user) {
+        if (saveId) {
+          localStorage.setItem('savedId', id);
+        } else {
+          localStorage.removeItem('savedId');
+        }
+        const redirectPath = sessionStorage.getItem('redirectPath') || `/`;
+        sessionStorage.removeItem('redirectPath');
+        navigate(redirectPath);
+      } else {
+        alert('아이디 또는 비밀번호가 잘못되었습니다.');
+      }
+    } catch (error) {
+      console.error('로그인 요청 에러:', error.message || error);
+      alert('서버와 연결하는 데 문제가 발생했습니다.');
     }
   };
 

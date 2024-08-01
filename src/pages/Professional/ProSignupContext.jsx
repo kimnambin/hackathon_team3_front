@@ -317,10 +317,6 @@ export default function ProSignupContext() {
         body: formData, // FormData 객체를 body로 설정
       });
   
-      const contentType = response.headers.get('Content-Type');
-      if (!contentType || !contentType.includes('application/json')) {
-        throw new Error('서버에서 JSON 형식의 응답이 아닙니다.');
-      }
   
       if (!response.ok) {
         throw new Error('회원가입 요청이 실패했습니다.');

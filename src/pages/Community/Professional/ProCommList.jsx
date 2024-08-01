@@ -117,10 +117,10 @@ export default function ProCommList() {
           <div className={styles.right_mid}>
             <button className={styles.right_mid_btn} onClick={handleLoginClick}>끄적이기</button>
             <select className={styles.right_mid_select}>
-              <option>최신순</option>
-              <option>인기순</option>
-              <option>끄덕임 많은순</option>
-              <option>끄덕임 적은순</option>
+                    <option >최신순</option>
+                    <option >좋아요순</option>
+                    <option >댓글순</option>
+                    <option >저장순</option>
             </select>
           </div>
         </div>

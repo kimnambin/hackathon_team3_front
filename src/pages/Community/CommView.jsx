@@ -1,15 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import { FaAngleRight } from 'react-icons/fa';
 import styles from './Comm.module.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams ,useNavigate} from 'react-router-dom';
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 
 export default function CommView() {
   const { id } = useParams();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [role, setRole] = useState(null);
+  const navigate = useNavigate();
+  const [content, setContent] = useState('');
 
+  //끄적이기 로그인 여부 확인 계속 true 상태, 오류 잡아야 됨
+  const [isLogined, setIsLogined] = useState(false);
+  
+  
+  useEffect(() => {
+      const loggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+      setIsLogined(loggedIn);
+  }, []);
+
+  //로그인 여부 확인 후 링크 이동
+  const handleLoginClick = () => {
+    console.log('Handle Login Click - Is Logined:', isLogined); // 추가된 로그
+    if (!isLogined) {
+        sessionStorage.setItem('redirectPath', '/comm_write');
+        navigate('/login');
+    } else {
+        navigate('/comm_write');
+    }
+};
+
+// 로그인 상태 확인
+useEffect(() => {
+  const memberToken = localStorage.getItem('memberToken');
+  if (memberToken) {
+    try {
+      const decodedmemberToken = jwtDecode(memberToken);
+      setRole(decodedmemberToken.role);
+      setIsLogined(true); // 로그인 상태 업데이트
+    } catch (error) {
+      console.error('토큰 해독 실패', error);
+      setIsLogined(false);
+    }
+  } else {
+    setIsLogined(false);
+  }
+}, []);
+
+  // 글 불러오기
   useEffect(() => {
     const getPost = async () => {
       try {
@@ -35,12 +77,12 @@ export default function CommView() {
 
         const transCategoryKey = categoryKeyResult[postData.category] || 'unknown';
 
-        // 변환된 카테고리 키를 포함한 게시글 데이터 로깅
-        console.log('게시글 제목:', postData.title);
-        console.log('게시글 내용:', postData.content);
-        console.log('카테고리 키:', transCategoryKey);
+       
+        // console.log('게시글 제목:', postData.title);
+        // console.log('게시글 내용:', postData.content);
+        // console.log('카테고리 키:', transCategoryKey);
 
-        // 변환된 카테고리 키로 게시글 데이터 업데이트
+        
         setPost({ ...postData, category: transCategoryKey });
       } catch (error) {
         setError(error);
@@ -64,6 +106,45 @@ export default function CommView() {
     return <p>게시글을 찾을 수 없다</p>;
   }
 
+  // =======================================================================================
+  const proToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3bmdsMTIzIiwiaWF0IjoxNzIxODI4MjA4LCJyb2xlIjoiRXhwZXJ0IiwiZXhwIjoxNzIxODMxODA4fQ.9IZnTQVTHd0OKxrDwyPUu72DAaTIEKXFK9hu7Md45JAr8ZR8yUKphDKXIxshvxOVa2-Ojrpvh05HUQWRN5bWrA';
+  // 댓글 달기
+  const handleComent = async () => {
+
+    if (role == 'Expert') {
+      console.log('전문가 회원이다.');
+      try {
+        console.log(`내용 : ${content}`);
+        console.log(`내용 : ${proToken}`);
+        const res = await axios.post(`http://52.78.131.56:8080/general/comment/${id}`, {
+          token: localStorage.getItem('proToken'),
+          content
+        });
+        alert('댓글 등록!!');
+        window.location.reload();
+      } catch (error) {
+        console.error('데이터를 전송하는데 실패했습니다', error);
+        alert('데이터를 전송하지 못했습니다.');
+      }
+    } else {
+      console.log('일반 회원이다.');
+      try {
+        console.log(`댓글내용 : ${content}`);
+        console.log(`댓글 토큰 : ${proToken}`);
+        const res = await axios.post(`http://52.78.131.56:8080/general/comment/${id}`, {
+          token: localStorage.getItem('memberToken'),
+          content
+        });
+        alert('댓글 등록!!');
+        window.location.reload();
+      } catch (error) {
+        console.error('데이터를 전송하는데 실패했습니다', error);
+        alert('데이터를 전송하지 못했습니다.');
+      }
+    }
+  }
+
+  // =======================================================================================
   return (
     <div className={styles.CommList_container}>
       {/* 왼쪽 */}
@@ -95,12 +176,12 @@ export default function CommView() {
             <h4 className={styles.view_h4}>{post.title}</h4>
             <img className={styles.main_icon} src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADsSURBVHgB7ZThDYIwEIWvxgEcATfACaQbMIIbiBPgBuIIjuAEtRO4AiOwAb4zNFED7WFq5AcvufRIufeR3hWiWf+WGtowxiRKqTvSFQXUtu1Ba1317S08dUeJOQsfsh/a8wGiSApocAxnhEVec86rpFAEgOEGZ1wgMpfzyuAYgBqGtXtA3rgVkGuoWAJIeKL6NtDcLUUAsBEY5m2irLUnhodqpU1OXiEwL3E8haRwSXKlDIH5TWo+FvCEwDwdUzCZi/Z7AM88QiPWiAsJb3KoB033W6jcBeu06yYqR+NL+kYwyD5n3/NuTrMmqwf5GGsmO2z7xQAAAABJRU5ErkJggg==' alt='' />
           </div>
-
+          
           {/* 닉네임 날짜 수정 삭제 */}
           <div className={styles.view_nick}>
             <img className={styles.view_img} alt='' src='../img/profile.jpg' />
-            <p className={styles.view_p}>여기에 닉네임</p>
-            <p className={styles.view_p2}>YYYY-MM-DD hh:ss</p>
+            <p className={styles.view_p}>{post.writer}</p>
+            <p className={styles.view_p2}>{post.createDate}</p>
             <p className={styles.view_p3}>
             <Link to={`/comm_trans/${post.id}`}>수정</Link>
             </p>
@@ -121,8 +202,10 @@ export default function CommView() {
 
         {/* 댓글 다는 부분 */}
         <div className={styles.view_comment}>
-          <input placeholder='댓글을 통해 따뜻한 손길을 건네보세요.' className={styles.view_input} />
-          <button className={styles.add_btn}>등록하기</button>
+          <input placeholder='댓글을 통해 따뜻한 손길을 건네보세요.' className={styles.view_input} 
+          value={content}
+          onChange={(e) => setContent(e.target.value)}/>
+          <button className={styles.add_btn} onClick={handleComent}>등록하기</button>
         </div>
 
         {/* 댓글 보이는 부분 */}

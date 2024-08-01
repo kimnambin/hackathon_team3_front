@@ -303,20 +303,44 @@
     font-weight: bold;
 }
 
-.resultScoreLine{
+.resultScoreLine1{
     display: inline-block;
     background-color: black;
     height: 2px; /* 줄의 두께 */
-    width: 70vh; /* 줄의 길이 */
+    width: 100px; /* 줄의 길이 */
     margin-top: 70px;
 }
 
-.resultScoreLine img{
-    float: right;
-    position: relative;
-    top: -20px;
-    left: 24px;
-    width: 30px;
+.resultScoreLine2{
+    display: inline-block;
+    background-color: black;
+    height: 2px; /* 줄의 두께 */
+    width: 35vh; /* 줄의 길이 */
+    margin-top: 70px;
+}
+
+.resultScoreLine3{
+    display: inline-block;
+    background-color: black;
+    height: 2px; /* 줄의 두께 */
+    width: 60vh; /* 줄의 길이 */
+    margin-top: 70px;
+}
+
+.resultScoreLine4{
+    display: inline-block;
+    background-color: black;
+    height: 2px; /* 줄의 두께 */
+    width: 85vh; /* 줄의 길이 */
+    margin-top: 70px;
+}
+
+.resultScoreLine5{
+    display: inline-block;
+    background-color: black;
+    height: 2px; /* 줄의 두께 */
+    width: 95vh; /* 줄의 길이 */
+    margin-top: 70px;
 }
 
 .scoreText{

@@ -132,6 +132,7 @@
     width: 600px;
     display: flex;
     justify-content: space-evenly;
+    margin-bottom: 20px;
 }
 
 .input_date{
@@ -164,6 +165,7 @@
     justify-content: space-around;
     align-items: center;
     padding: 0 10px 0 10px;
+    margin-bottom: 20px;
 }
 
 .signup_for{
