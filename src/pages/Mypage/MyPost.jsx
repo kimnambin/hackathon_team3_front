@@ -16,7 +16,7 @@ export default function MyPost() {
   const handleTest = () => {
     setTest(!test);
   };
-
+//
   // 로그인 유지
   useEffect(() => {
     const loggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
