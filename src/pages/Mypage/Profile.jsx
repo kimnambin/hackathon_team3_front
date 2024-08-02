@@ -2,31 +2,18 @@ import React, { useEffect, useState } from 'react';
 import styles from './Mypage.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import {jwtDecode} from 'jwt-decode'; // 수정된 부분
 
 export default function Profile() {
-
-    //사용자 정보 가져오기
-    // const [userInfo, setUserInfo] = useState(null);
-    // const { Id } = useParams(); // 현재 페이지의 Id를 사용
+    //링크 이동
     const navigate = useNavigate();
+    const goToBlue = () => {navigate('/blue');};
+    const goToStress = () => {navigate('/StressTest');};
+    const goToAnxiety = () => {navigate('/anxiety');};
+    const goToPost = () => {navigate('/mypost');};
+    const goToComment = () => {navigate('/mycomment');};
+    const goToBookmark = () => {navigate('/mybookmark');};
 
-    // useEffect(() => {
-    //     if (Id) {
-    //         axios.get(`http://52.78.131.56:8080/login`)
-    //             .then(response => {
-    //                 // 사용자 데이터를 필터링
-    //                 const user = response.data.find(member => member.Id === Id);
-    //                 if (user) {
-    //                     setUserInfo(user);
-    //                 } else {
-    //                     console.log('사용자를 찾을 수 없습니다.');
-    //                 }
-    //             })
-    //             .catch(error => {
-    //                 console.log('에러:', error);
-    //             });
-    //     }
-    // }, [Id]);
     //아이콘 이미지들
     const iconImages = [
         {
@@ -49,39 +36,32 @@ export default function Profile() {
 
     // 기분 상태 (아이콘 선택 부분)
     const [activeIconIndex, setActiveIconIndex] = useState(null);
+    const clickIcon = (index) => {console.log(`선택된 아이콘: ${index}`);setActiveIconIndex(index);};
+
+    // 로그인 유지
+    const [isLogined, setIsLogined] = useState(false);
+    const [role, setRole] = useState(null);
+        
+    useEffect(() => {
+        const loggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+        setIsLogined(loggedIn);
+    }, []);
     
-    const clickIcon = (index) => {
-        console.log(`선택된 아이콘: ${index}`);
-        setActiveIconIndex(index);
-    };
-
-    const goToBlue = () => {
-        navigate('/blue');
-    };
-
-    const goToStress = () => {
-        navigate('/StressTest');
-    };
-
-    const goToAnxiety = () => {
-        navigate('/anxiety');
-    };
-
-    const goToPost = () => {
-        navigate('/mypost');
-    };
-
-    const goToComment = () => {
-        navigate('/mycomment');
-    };
-
-    const goToBookmark = () => {
-        navigate('/mybookmark');
-    };
-
-    // if (!userInfo) {
-    //     return <div>Loading...</div>;
-    // }
+    useEffect(() => {
+        const memberToken = localStorage.getItem('memberToken');
+        if (memberToken) {
+        try {
+            const decodedmemberToken = jwtDecode(memberToken);
+            setRole(decodedmemberToken.role);
+            setIsLogined(true); // 로그인 상태 업데이트
+        } catch (error) {
+            console.error('토큰 해독 실패', error);
+            setIsLogined(false);
+        }
+        } else {
+        setIsLogined(false);
+        }
+    }, []);
 
     return (
         <div className={styles.Profile_container}>

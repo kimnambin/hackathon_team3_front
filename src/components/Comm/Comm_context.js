@@ -23,13 +23,17 @@ export const category2 = [
   { key: 'm', label: 'LGBT' },
 ];
 
+
+
 export const CategoryProvider = ({ children }) => {
   const [categoryBtn, setCategoryBtn] = useState(category.find(cat => cat.key === 'a'));
   const [data, setData] = useState([]);
+  const [proData, setProData] = useState([]);
   const [noData, setNoData] = useState(null);
-  const [order, setOrder] = useState('1'); // Default order value
+  const [order, setOrder] = useState(1);  //일반인용 오더
+  const [order2, setOrder2] = useState(1);  //전문가용 오더
 
-  // 카테고리 데이터 가져오기
+  // 일반인 게시글
   const getCategoryData = async (categoryKey, order) => {
     try {
       const response = await axios.get(`http://52.78.131.56:8080/general/postall/${categoryKey}/${order}`);
@@ -52,13 +56,39 @@ export const CategoryProvider = ({ children }) => {
     getCategoryData(category.key, order);
   };
 
-  // Order 변경 처리
-  const handleOrderChange = (newOrder) => {
-    setOrder(newOrder);
-    if (categoryBtn) {
-      getCategoryData(categoryBtn.key, newOrder);
+  // Order 변경 처리 (일반인용)
+  const clickOrder = (event) => {
+    const selectedValue = event.target.value;
+    console.log(`클릭한 오더: ${selectedValue}`)
+    setOrder(selectedValue);
+  };
+
+  // 전문가 게시글
+  const getProData = async (order2) => {
+    try {
+      const response = await axios.get(`http://52.78.131.56:8080/expert/postall/${order2}`);
+      if (response.data && response.data.length > 0) {
+        setProData(response.data);
+        setNoData(null);
+      } else {
+        setProData([]);
+        setNoData('비어있음');
+      }
+    } catch (error) {
+      console.error('데이터를 불러오는데 실패했습니다', error);
+      alert('데이터를 불러오지 못했습니다.');
     }
   };
+  
+  
+
+  const proClickOrder = (event) => {
+    const selectedValue = event.target.value;
+    console.log(`클릭한 오더: ${selectedValue}`);
+    setOrder2(selectedValue);
+    getProData(order2)
+  };
+  
 
   const [selectedCategory, setSelectedCategory] = useState('a');
 
@@ -80,9 +110,14 @@ export const CategoryProvider = ({ children }) => {
       getCategoryData(categoryBtn.key, order);
     }
   }, [categoryBtn, order]);
+  
+  useEffect(() => {
+    getProData(order2);
+  }, [order2]);
 
   return (
-    <CategoryContext.Provider value={{ categoryBtn, data, ClickCategory, handleCategory, selectedCategory, handleOrderChange }}>
+    <CategoryContext.Provider value={{ categoryBtn, data, ClickCategory, handleCategory, selectedCategory,  clickOrder , 
+    order , proClickOrder ,order2 , proData , getProData}}>
       {children}
     </CategoryContext.Provider>
   );

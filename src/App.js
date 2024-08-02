@@ -50,7 +50,7 @@ import 'pretendard/dist/web/static/pretendard.css';
 
 
 function App() {
-
+<div className='App' pretendard-font></div>
   const location = useLocation();
 
   // 로그인하기 전 페이지들
