@@ -33,7 +33,7 @@ export default function Login() {
         try {
           const decodedToken = jwtDecode(token);
           if (decodedToken.role) {
-            navigate(`/profile/${decodedToken.sub}`);
+            navigate(`/member/${decodedToken.sub}`);
           }
         } catch (error) {
           console.error('JWT 디코딩 오류:', error.message || error);
@@ -60,31 +60,35 @@ export default function Login() {
 
   const no_btn = id !== '' && pw !== '';
 
-  //로그인
   const submitLogin = async () => {
     try {
       const response = await axios.post('http://52.78.131.56:8080/login', {
         userId: id,
         password: pw
       });
-
+  
       if (response.status === 200 && response.data) {
         const token = response.data;
-
+  
         // JWT 형식 확인 및 저장
         if (typeof token === 'string' && token.split('.').length === 3) {
           localStorage.setItem('memberToken', token);
           setMemberToken(token);
-
+  
+          // JWT에서 사용자 ID 추출
+          const decodedToken = jwtDecode(token);
+          const userId = decodedToken.sub;
+          localStorage.setItem('userId', userId);
+  
           if (saveId) {
             localStorage.setItem('savedId', id);
           } else {
             localStorage.removeItem('savedId');
           }
-
+  
           sessionStorage.setItem('isLoggedIn', 'true');
-
-          const redirectPath = sessionStorage.getItem('redirectPath') || '/main';
+  
+          const redirectPath = sessionStorage.getItem('redirectPath') || `/member/${userId}`;
           sessionStorage.removeItem('redirectPath');
           navigate(redirectPath);
         } else {

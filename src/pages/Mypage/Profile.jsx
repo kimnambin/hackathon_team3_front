@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './Mypage.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import {jwtDecode} from 'jwt-decode'; // 수정된 부분
+import {jwtDecode} from 'jwt-decode';
 
 export default function Profile() {
     //링크 이동
@@ -63,6 +63,50 @@ export default function Profile() {
         }
     }, []);
 
+    //프로필 회원정보가져오기
+
+  const { id } = useParams(); // URL 파라미터에서 id 가져오기
+  const [profile, setProfile] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+
+  const fetchProfile = async (id) => {
+    const memberToken = localStorage.getItem('memberToken');
+    if (!id) {
+      setError('사용자 ID가 제공되지 않았습니다.');
+      setLoading(false);
+      return;
+    }
+    
+    const url = `http://52.78.131.56:8080/member/${id}`; // URL 확인
+    try {
+      const response = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${memberToken}`
+        }
+      });
+      setProfile(response.data);
+    } catch (error) {
+      console.error('데이터를 불러오는데 실패했습니다', error);
+      setError('데이터를 불러오지 못했습니다.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    console.log('ID from useParams:', id); // URL 파라미터 확인
+  
+    if (isLogined && id) {
+      fetchProfile(id);
+    } else if (!isLogined) {
+      setError('로그인 정보가 없습니다.');
+      setLoading(false);
+    }
+  }, [isLogined, id]);
+
+
     return (
         <div className={styles.Profile_container}>
             {/* 상단 부분 */}
@@ -78,7 +122,7 @@ export default function Profile() {
 
                 {/* 중간 부분 */}
                 <div className={styles.Profile_top02}>
-                    {/* <p className={styles.Profile_top02_p1}>{userInfo.nickname}</p> */}
+                    <p className={styles.Profile_top02_p1}>{profile.nickname}</p>
                     <p className={styles.Profile_top02_p2}>닉네임 변경하기</p>
                 </div>
 
@@ -109,7 +153,7 @@ export default function Profile() {
                  <div className={styles.Profile_mid_content}>
                     <div className={styles.Profile_mid_content01} onClick={goToPost}>
                         <p className={styles.Profile_mid_content_p}>작성한 게시글</p>
-                        <p>0개</p>
+                        <p>{profile.length}개</p>
                     </div>
 
                     <div className={styles.Profile_mid_content_line}></div>
