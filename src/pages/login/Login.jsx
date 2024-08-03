@@ -91,10 +91,13 @@ export default function Login() {
           const redirectPath = sessionStorage.getItem('redirectPath') || `/member/${userId}`;
           sessionStorage.removeItem('redirectPath');
           navigate(redirectPath);
-        } else {
+        }else if (token === '전문가 자격 승인 요청이 처리되지 않았습니다.') {
+          console.log('전문가 자격 승인 요청이 처리되지 않았습니다:', token);
+          alert('전문가 자격 승인 요청이 처리되지 않았습니다.');
+      } else {
           console.log('잘못된 토큰 데이터:', token);
           alert('아이디 또는 비밀번호가 잘못되었습니다.');
-        }
+      }
       }
     } catch (error) {
       if (error.response) {

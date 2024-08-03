@@ -53,7 +53,7 @@ const Main1 = () => {
           </div>
           
           <div className={styles.main3Box1Section2}>       
-            <div style={{marginLeft: 30, color: "gray"}}>유저님의 마음을 들여다 볼 자가진단</div>
+            <div style={{marginLeft: 30}}>유저님의 마음을 들여다 볼 자가진단</div>
             <div className={styles.line}></div>
             <div className={styles.Arrow}></div>
             <img src={process.env.PUBLIC_URL + "/imges/main1.png"} alt="" />

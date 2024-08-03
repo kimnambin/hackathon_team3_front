@@ -331,8 +331,8 @@
     display: inline-block;
     background-color: black;
     height: 2px; /* 줄의 두께 */
-    width: 85vh; /* 줄의 길이 */
-    margin-top: 70px;
+    width: 70vh; /* 줄의 길이 */
+    margin-top: 71px;
 }
 
 .resultScoreLine5{
