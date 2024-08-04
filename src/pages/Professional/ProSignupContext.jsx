@@ -228,11 +228,12 @@ export default function ProSignupContext() {
     };
     
     const handleFileUpload = () => {
-        if (!image) {
-            alert('파일을 선택하세요');
-            return;
-        }
-      };
+      if (!image) {
+        alert('파일을 선택하세요');
+        return;
+      }else if(image)
+      alert('업로드 되었습니다');
+    };
     
       //회원가입
       const postProData = async () => {

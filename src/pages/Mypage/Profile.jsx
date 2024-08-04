@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState , useContext } from 'react';
+import React, { useEffect, useRef, useState  } from 'react';
 import styles from './Mypage.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import {jwtDecode} from 'jwt-decode';
 import UseProfileContext from './UseProfileContext'
+
 
 export default function Profile() {
 
@@ -217,7 +218,7 @@ const [nickName, setNickName] = useState('');
                         value={nickName}
                         onChange={handleInputChange}
                         placeholder="새 닉네임 입력"
-                        style ={{borderRadius:'30px'}}
+                        style ={{borderRadius:'30px' , marginTop:'15px'}}
                     />
                     <button onClick={handleSave} className={styles.Profile_footer_btn}>수정</button>
                 </div>

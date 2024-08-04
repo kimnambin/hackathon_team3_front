@@ -5,6 +5,7 @@ import styles2 from './Mypage.module.css'; // 마이페이지에서 가져온 �
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import {jwtDecode} from 'jwt-decode'; // 수정된 부분
+import UseProfileContext from './UseProfileContext'
 
 export default function MyComment() {
   const [isLogined, setIsLogined] = useState(false);
@@ -12,8 +13,8 @@ export default function MyComment() {
   const [mycomment, setmycomment] = useState([]);
   const { id } = useParams();
 
+  const  {fetchmypost,  post} = UseProfileContext()
 
-//
   // 로그인 유지
   useEffect(() => {
     const loggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
@@ -27,6 +28,7 @@ export default function MyComment() {
         const decodedmemberToken = jwtDecode(memberToken);
         setRole(decodedmemberToken.role);
         setIsLogined(true); // 로그인 상태 업데이트
+        fetchmypost();
       } catch (error) {
         console.error('토큰 해독 실패', error);
         setIsLogined(false);
@@ -35,8 +37,6 @@ export default function MyComment() {
       setIsLogined(false);
     }
   }, []);
-
-  //댓글 불러오기
 
   const fetchmycomment = async () => {
     const memberToken = localStorage.getItem('memberToken'); // 여기서 가져옴
@@ -71,9 +71,9 @@ export default function MyComment() {
           <p className={styles.MyPost_top_p2}>댓글 단 게시글 {mycomment.length}건</p>
         </div>
         <div className={styles2.Profile_top02}>
-          {mycomment.length > 0 && (
-            <p className={styles2.Profile_top02_p1}>{mycomment[0].writer}</p>
-          )}
+        {post.length > 0 && (
+            <p className={styles2.Profile_top02_p1}>{post[0].writer}</p>
+        )}
         </div>
       </div>
 

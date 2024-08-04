@@ -38,12 +38,12 @@ export default function Profile() {
     // 로그인 유지
     const [isLogined, setIsLogined] = useState(false);
     const [role, setRole] = useState(null);
-        
+
     useEffect(() => {
         const loggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
         setIsLogined(loggedIn);
     }, []);
-    
+
     useEffect(() => {
         const memberToken = localStorage.getItem('memberToken');
         if (memberToken) {
@@ -78,7 +78,7 @@ export default function Profile() {
       setLoading(false);
       return;
     }
-    
+
     const url = `http://52.78.131.56:8080/member/${id}`; // URL 확인
     try {
       const response = await axios.get(url, {
@@ -96,7 +96,7 @@ export default function Profile() {
   };
 
   useEffect(() => {
-  
+
     if (isLogined && id) {
       fetchProfile(id);
     } else if (!isLogined) {
@@ -203,6 +203,56 @@ export default function Profile() {
   // 로그인한 아이디
   const loggedInUserId = localStorage.getItem('userId'); // 로그인한 사용자의 아이디
 
+  // =============================================================================
+
+//닉네임 변경부분
+const [nickInput, setNickInput] = useState(false); //닉네임 입력부분
+const [nickName, setNickName] = useState('');
+
+    //닉네임 입력
+    const handleInputChange = (e) => {
+        setNickName(e.target.value);
+    };
+
+    //닉네임 입력 부분 true로
+    const changeNick = () => {
+        setNickInput(true);
+    };
+
+    //닉네임 수정
+    const handleSave = async () => {
+        try {
+            await axios.put('http://52.78.131.56:8080/member/changeName', {
+                token: localStorage.getItem('memberToken'),
+                nickname: nickName
+            });
+            alert('닉네임 수정이 성공적으로 변경되었습니다.');
+            console.log('닉네임 수정이 성공적으로 변경됨')
+            window.location.reload()
+            setNickInput(false); 
+        } catch (error) {
+            console.error('데이터를 전송하는데 실패했습니다', error);
+            alert('닉네임 변경에 실패했습니다. 다시 시도해주세요.');
+        }
+    };
+
+       //엔터 이번트 추가
+        useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Enter') {
+        handleSave();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [nickName] );
+
+// =============================================================================
+
   return (
       <div className={styles.Profile_container}>
           {/* 상단 부분 */}
@@ -215,11 +265,27 @@ export default function Profile() {
                   </label>
               </div>
 
+
               <div className={styles.Profile_top02}>
-                  <p className={styles.Profile_top02_p3}>전문의</p>
-                  <p className={styles.Profile_top02_p1} style={{ marginTop: 5 }}>{profile.nickname}</p>
-                  <p className={styles.Profile_top02_p2}>닉네임 변경하기</p>
-              </div>
+              <p className={styles.Profile_top02_p3}>전문의</p>
+                    <p className={styles.Profile_top02_p1} style={{ marginTop: 5 }}>{profile.nickname}</p>
+                    <div>
+            {!nickInput ? (
+                <p className={styles.Profile_top02_p2} onClick={changeNick}>닉네임 변경하기</p>
+            ) : (
+                <div>
+                    <input
+                        type="text"
+                        value={nickName}
+                        onChange={handleInputChange}
+                        placeholder="새 닉네임 입력"
+                        style ={{borderRadius:'30px' , marginLeft:'15px' ,marginTop:'15px'}}
+                    />
+                    <button onClick={handleSave} className={styles.Profile_footer_btn}>수정</button>
+                </div>
+            )}
+        </div>
+                </div>
           </div>
 
           <div className={styles.Profile_mid}>

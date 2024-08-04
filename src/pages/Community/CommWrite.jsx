@@ -70,6 +70,22 @@ export default function ProCommWrite() {
   };
   const {  ClickCategory , data, handleCategory , selectedCategory }= useContext(CategoryContext);
 
+   //엔터 이번트 추가
+   useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Enter') {
+        handleSubmit();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [title,
+    content,category] );
+
   return (
     <div className={styles.CommList_container}>
       {/* 왼쪽 */}

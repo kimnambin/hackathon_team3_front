@@ -5,11 +5,14 @@ import styles2 from './Mypage.module.css'; // 마이페이지에서 가져온 �
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import {jwtDecode} from 'jwt-decode'; // 수정된 부분
+import UseProfileContext from './UseProfileContext'
 
 export default function MyPost() {
   const [isLogined, setIsLogined] = useState(false);
   const [role, setRole] = useState(null);
   const [mybookmark, setbookmark] = useState([]);
+
+  const  {fetchmypost,  post} = UseProfileContext()
 
   // 로그인 유지
   useEffect(() => {
@@ -24,6 +27,7 @@ export default function MyPost() {
         const decodedmemberToken = jwtDecode(memberToken);
         setRole(decodedmemberToken.role);
         setIsLogined(true); // 로그인 상태 업데이트
+        fetchmypost();
       } catch (error) {
         console.error('토큰 해독 실패', error);
         setIsLogined(false);
@@ -72,8 +76,8 @@ export default function MyPost() {
           <p className={styles.MyPost_top_p2}>북마크 게시글 {mybookmark.length}건</p>
         </div>
         <div className={styles2.Profile_top02}>
-          {mybookmark.length > 0 && (
-            <p className={styles2.Profile_top02_p1}>{mybookmark[0].writer}</p>
+          {post.length > 0 && (
+            <p className={styles2.Profile_top02_p1}>{post[0].writer}</p>
           )}
         </div>
       </div>

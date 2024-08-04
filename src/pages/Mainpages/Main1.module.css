@@ -1,27 +1,82 @@
 .mainBox {
-    box-sizing: border-box;
     width: 170vh;
-    height: 200px;
+    height: 250px;
     background-color:#84a67f;
     border-radius: 20px;
     margin: 230px auto 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
 }
 
-.mainTitleText {
+/* .mainTitleText {
     font-size: 23px;
     color: white;
     margin-left: 50px;
     padding-top: 30px;
     font-weight: bold;
+} */
+
+.mainTitleText{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 120vh;
+    padding-left: 80px;
 }
 
-.mainText {
+.왼쪽끄적임{
+    font-size: 23px;
+    color: white;
+    margin-bottom: 40px;
+    margin-top: -10px;
+    /* padding-top: 10px; */
+    font-weight: bold;
+    text-align: left;
+}
+
+.끄적임밑{
+    font-size: 40px;
+    color: white;
+    text-align: left;
+    padding: 0%;
+    margin-bottom: -10px;
+}
+
+/* .mainText {
     font-size: 30px;
     color: white;
     margin-left: 45vh;
     line-height: 130%;
     margin-top: -10px;
+} */
+
+.mainText{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50vh;
+    margin-right: 200px;
+    margin-bottom: -80px;
 }
+
+.오른쪽끄적임{
+    color:white;
+    font-size: 100px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.클로버그림{
+    display: flex;
+    flex-direction: row;
+    margin : 0 0 -30px 250px;
+}
+
 
 .main2Container {
     box-sizing: border-box;
@@ -143,12 +198,13 @@
     font-size: 22px;
     margin-top: 10px;
     margin-left: 20px;
+    line-height: 5px;
 }
 
 .line2 {
     content: "";
-    width: 20vh;
-    margin-top: 17px;
+    width: 28vh;
+    margin-top: 5px;
     margin-left: 20px;
     background: black;
     height: 0.3px;
@@ -163,6 +219,18 @@
     border-left: 0.5px solid black;
     border-bottom: 0.5px solid black;
     transform: rotate(-135deg);
-    margin-top: 11px;
+    margin-top: -1px;
     margin-left: -11px;
+}
+
+.go{
+    font-size: 11px;
+    margin-left: 73.5vh;
+    margin-top: -15px;
+}
+
+.go2{
+    font-size: 11px;
+    margin-left: 325px;
+    margin-top: 5px;
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Main1.module.css'
 import { useNavigate } from 'react-router-dom'
+import { Container } from 'react-bootstrap';
 
 
 const Main1 = () => {
@@ -26,12 +27,29 @@ const Main1 = () => {
     <div>
       
       <div className={styles.mainBox}>
-            <div></div>
-            <div className={styles.mainTitleText}>끄적임</div>
-            <div className={styles.mainText}>시들어가는 나의 마음,<br/>
-                따뜻하게 보듬어줄 손길을 찾는다면, <span style={{fontSize: 75 , fontWeight: 'bold', marginLeft: 30}}>끄적임</span>
+
+            <div className={styles.mainTitleText}>
+            <p className={styles.왼쪽끄적임}>끄적임</p>
+            <span className={styles.끄적임밑}>
+            시들어가는 나의 마음</span>
+            <span className={styles.끄적임밑}>
+              따뜻하게 보듬어줄 손길을 찾는다면,
+              </span>
+            </div>
+
+            <div className={styles.mainText}>
+              <div className={styles.클로버그림}>
+            <img style={{width:'32px' , height:'32px'}}
+            src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqCAYAAADFw8lbAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAALPSURBVHgB7Vc9b9RAEJ1DMRIpQIIiFElxFC5IEQooUkDD76ZJc0VScEVSXIGLUCQSV+SQcsVFOubFs2RvY3tmfHaa+Ekr2+vx7tv5NtGAAQOeF0bUI9br9Tu+HPD4w2M+Go2W1BK9EWWSOV/yaOqWx4RK4mMeCx6XTP63Zb1eiDLJV3z5XvFqxSNL5mZMdkYKXlA/eFMzn1XM5eIijeiL6A75kHe6IJ8c8rtUambFJltQN3itCZiJSnAgCLJoDgEyZcLzRNx7gEwTMJmeCX2m0jzpgtDusRwihjcNqfIqUSaxz5f3ihgCYhweWMOI7jnZcakJWDT6gWw4TKL32vgdtKnm0q6j/kgCDoCW7hR5vJ+wBW4VORPRKdl9Dj57bwExf5NJseaJhSRgIbomXxrLpTIBBVVrFW5hJgk0EpUNj8mQPhLcB5YQicsjtAhTn4rGzdA0BTN6SQJ/ww0T+sUHxi0KxCNX4Hdwl7eyD8YNy117iXqBlHTBG93EkyBLm+SQHfao7KQeKUIKyVlc+Rq7JzntN9IPBIKzigpFFQRRHNQmhMpO6weveacSpQeyR8ni+Bhag4mutKCQlPWFbARjnAStqqYXEhPeLPjQqi4QpIpBY+jmpzKHb75Smbq8+J8xzD4q5OoIQlMf6aEP3eW5BX9T4Du+X7YgOosttXVlYhKHVKawtFnOoyqldvAJirTrb00UJKSrGteIwOShSiHITP9GgnHa9W+j0U+kd1XxIc5Jr/0xDuKHVkSl/9RIAlnQjPj4KdmxkeraanTfIbsXbsQFLP6K4LuKJ9xERUOeCN7QvATJRYN86Ac2MkzXJbQKSFU7ocIAUv+hseBC4IFUhIArqvJ0G6KurkfwkpJAkhz5k4xwm15KWle/yWa0DaZzj7CnQa5DK6I10buk6l8WT6Kv35O2gHRWIakXco07LRzozNvNPxmQwuQQAwZsi39HDAKCB0KiPgAAAABJRU5ErkJggg==' alt=''>
+            </img>
+            <img style={{transform: 'scaleX(-1)'}}
+            src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqCAYAAADFw8lbAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAALPSURBVHgB7Vc9b9RAEJ1DMRIpQIIiFElxFC5IEQooUkDD76ZJc0VScEVSXIGLUCQSV+SQcsVFOubFs2RvY3tmfHaa+Ekr2+vx7tv5NtGAAQOeF0bUI9br9Tu+HPD4w2M+Go2W1BK9EWWSOV/yaOqWx4RK4mMeCx6XTP63Zb1eiDLJV3z5XvFqxSNL5mZMdkYKXlA/eFMzn1XM5eIijeiL6A75kHe6IJ8c8rtUambFJltQN3itCZiJSnAgCLJoDgEyZcLzRNx7gEwTMJmeCX2m0jzpgtDusRwihjcNqfIqUSaxz5f3ihgCYhweWMOI7jnZcakJWDT6gWw4TKL32vgdtKnm0q6j/kgCDoCW7hR5vJ+wBW4VORPRKdl9Dj57bwExf5NJseaJhSRgIbomXxrLpTIBBVVrFW5hJgk0EpUNj8mQPhLcB5YQicsjtAhTn4rGzdA0BTN6SQJ/ww0T+sUHxi0KxCNX4Hdwl7eyD8YNy117iXqBlHTBG93EkyBLm+SQHfao7KQeKUIKyVlc+Rq7JzntN9IPBIKzigpFFQRRHNQmhMpO6weveacSpQeyR8ni+Bhag4mutKCQlPWFbARjnAStqqYXEhPeLPjQqi4QpIpBY+jmpzKHb75Smbq8+J8xzD4q5OoIQlMf6aEP3eW5BX9T4Du+X7YgOosttXVlYhKHVKawtFnOoyqldvAJirTrb00UJKSrGteIwOShSiHITP9GgnHa9W+j0U+kd1XxIc5Jr/0xDuKHVkSl/9RIAlnQjPj4KdmxkeraanTfIbsXbsQFLP6K4LuKJ9xERUOeCN7QvATJRYN86Ac2MkzXJbQKSFU7ocIAUv+hseBC4IFUhIArqvJ0G6KurkfwkpJAkhz5k4xwm15KWle/yWa0DaZzj7CnQa5DK6I10buk6l8WT6Kv35O2gHRWIakXco07LRzozNvNPxmQwuQQAwZsi39HDAKCB0KiPgAAAABJRU5ErkJggg==' alt=''>
+            </img>
+            </div> 
+              <span className={styles.오른쪽끄적임}>끄적임</span>
             </div>
       </div>
+
 
       <div className={styles.main2Container}>
         <div className={styles.main2Text}>
@@ -57,7 +75,8 @@ const Main1 = () => {
             <div className={styles.line}></div>
             <div className={styles.Arrow}></div>
             <img src={process.env.PUBLIC_URL + "/imges/main1.png"} alt="" />
-          </div>        
+          </div> 
+            <div className={styles.go}>검사 바로가기</div>       
         </div>
 
 
@@ -72,6 +91,7 @@ const Main1 = () => {
             <div className={styles.line2}></div>
             <div className={styles.Arrow2}></div>
           </div>
+            <div className={styles.go2}>검색하러 가기</div>
         </div>
 
       </div>
