@@ -8,14 +8,16 @@ import { category, category2  , CategoryContext} from '../../components/Comm/Com
 
 
 export default function CommList(props) {
+  
   const [isLogined, setIsLogined] = useState(false);
   const [role, setRole] = useState(null);
   const navigate = useNavigate();
-  const { categoryBtn, ClickCategory, data } = useContext(CategoryContext);
+  const { categoryBtn, ClickCategory, data , clickOrder ,order} = useContext(CategoryContext);
 
   useEffect(() => {
     const loggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
     setIsLogined(loggedIn);
+    
   }, []);
 
   const handleLoginClick = () => {
@@ -104,11 +106,11 @@ export default function CommList(props) {
           <p className={styles.right_mid_p}>총 건 {data.length}</p>
           <div className={styles.right_mid}>
             <button className={styles.right_mid_btn} onClick={handleLoginClick}>끄적이기</button>
-            <select className={styles.right_mid_select}>
-              <option>최신순</option>
-              <option>좋아요순</option>
-              <option>댓글순</option>
-              <option>저장순</option>
+            <select className={styles.right_mid_select} onChange={clickOrder} value={order}>
+              <option value={1}>최신순</option>
+              <option value={2}>좋아요순</option>
+              <option value={3}>댓글순</option>
+              <option value={4}>저장순</option>
             </select>
           </div>
         </div>

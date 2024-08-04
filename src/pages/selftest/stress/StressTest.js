@@ -134,10 +134,10 @@ const StressTest = () => {
             <div className={styles.Arrow}></div>
             <div className={styles.topTextCusor} onClick={goToBlue}>자가진단</div>
             <div className={styles.Arrow}></div>
-            <div className={styles.topTextCusor} onClick={goToStress}>스트레스</div>
+            <div className={styles.topTextCusor1} onClick={goToStress}>스트레스</div>
         </div>
 
-        <div style={{fontSize: 20, fontWeight: "bold"}}>나의 마음 들여다보기</div>
+        <div style={{fontSize: 20, fontWeight: 900}}>나의 마음 들여다보기</div>
 
         <div className={styles.topSetion2}>
             <button className={styles.section2dsign2} onClick={goToBlue}><span >우울증</span></button>

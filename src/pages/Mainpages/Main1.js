@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Main1.module.css'
 import { useNavigate } from 'react-router-dom'
-import { Container } from 'react-bootstrap';
+
 
 
 const Main1 = () => {
