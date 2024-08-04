@@ -26,13 +26,14 @@
 
 .btn{
     background-color:#61885b;
-    height:110px;
-    width:270px;
+    height:150px;
+    width:300px;
     border-radius:10px;
     display: flex;
     flex-direction: column;
     margin-right: 90px;
     padding: auto;
+    border: none;
 }
 
 .btn:hover,
@@ -41,33 +42,34 @@
 }
 
 .proBtn{
-    background-color:#ffd620;
-    height:120px;
-    width:290px;
+    background-color:#eacf58;
+    height:150px;
+    width:320px;
     border-radius:10px;
     display: flex;
     flex-direction: column;
+    border: none;
 }
 
 strong{
     color: white;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 21px;
 }
 
 .btnP{
     color: white;
-    font-size: 12px;
-    margin-top: 20px;
+    font-size: 15px;
+    margin-top: 25px;
 }
 
 .btnP2{
     display: block;
     color: white;
-    font-size: 9px;
+    font-size: 12px;
     text-align: left;
-    margin-left: 15px;
-    margin-bottom: 45px;
+    margin-left: 35px;
+    margin-bottom: 40px;
 }
 
 .btnpContanier{
@@ -75,6 +77,6 @@ strong{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-left: 15px;
-    margin-top: 5px;
+    margin-left: 35px;
+    margin-top: 15px;
 }

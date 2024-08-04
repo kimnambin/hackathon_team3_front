@@ -178,25 +178,33 @@ const StressTest = () => {
                     </button>
                 )} 
             {lastPage && (
-                    <button className={styles.nextPage} onClick={결과보기} style={{ marginLeft: '52vh' }}>
-                        <p>결과보기</p> <span className={styles.nextPageline}></span> <span className={styles.nextPageArrow}></span>
-                    </button>
-                )}    
-
-            {!lastPage && !firstPage &&(
-            <div className={styles.pageButtonBox}>
-                <button className={styles.nextPage} onClick={이전페이지} disabled={nowPage === 0}>
+                <div className={styles.pageButtonBox}>
+                    <button className={styles.nextPage} onClick={이전페이지} disabled={nowPage === 1}>
                     <span className={styles.priviousPageline}></span>
                     <p>이전 페이지</p>
                     <span className={styles.priviousPageArrow}></span>
-                </button>
+                    </button>
 
-                <button className={styles.nextPage} onClick={다음페이지} disabled={isLastPage}>
-                    <p>다음 페이지</p>
-                    <span className={styles.nextPageline}></span>
-                    <span className={styles.nextPageArrow}></span>
-                </button>
-            </div>
+                    <button className={styles.nextPage} onClick={결과보기} >
+                        <p>결과보기</p> <span className={styles.nextPageline}></span> <span className={styles.nextPageArrow}></span>
+                    </button>
+                </div>
+                )}    
+
+            {!lastPage && !firstPage && (
+                <div className={styles.pageButtonBox}>
+                    <button className={styles.nextPage} onClick={이전페이지} disabled={nowPage === 0}>
+                        <span className={styles.priviousPageline}></span>
+                        <p>이전 페이지</p>
+                        <span className={styles.priviousPageArrow}></span>
+                    </button>
+
+                    <button className={styles.nextPage} onClick={다음페이지} disabled={lastPage}>
+                        <p>다음 페이지</p>
+                        <span className={styles.nextPageline}></span>
+                        <span className={styles.nextPageArrow}></span>
+                    </button>
+                </div>
             )}
             </div>
         </Container>
