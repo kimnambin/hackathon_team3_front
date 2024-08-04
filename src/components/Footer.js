@@ -5,9 +5,17 @@ import { useNavigate } from 'react-router-dom'
 const Footer = () => {
   const Navigate = useNavigate()
 
-  const goToManager=()=>{
-    Navigate('/manager')
-  }
+  const goToManager = () => {
+    const userId = localStorage.getItem('userId');
+  
+    if (userId === 'kkeujeogim12') {
+      Navigate('/manager');
+    } else {
+      alert('관리자만 접근 가능합니다');
+    }
+  };
+
+
   return (
     <footer>
 

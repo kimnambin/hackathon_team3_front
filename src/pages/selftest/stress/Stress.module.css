@@ -349,6 +349,14 @@
     margin-top: 70px;
 }
 
+.resultScoreLine1 img,.resultScoreLine2 img,.resultScoreLine3 img,.resultScoreLine4 img,.resultScoreLine5 img{
+    float: right;
+    position: relative;
+    top: -20px;
+    left: 5px;
+    width: 30px;
+}
+
 .scoreText{
     font-size: 20px;
     font-weight: bold;
@@ -462,7 +470,7 @@
 }
 
 .resultButton1{
-    background-color: rgb(93, 109, 98);
+    background-color:#84a67f;
     color: white;
     border-radius: 30px;
     border: none;

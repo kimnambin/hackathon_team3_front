@@ -86,12 +86,13 @@ export default function Login() {
         const token = response.data;
   
         // JWT 형식 확인 및 저장
-        if (typeof token === 'string' && token.split('.').length === 3) {
-          localStorage.setItem('memberToken', token);
-          setMemberToken(token);
+        if (id === 'kkeujeogim12' || (typeof token === 'string' && token.split('.').length === 3)) {
+          const finalToken = id === 'kkeujeogim12' ? 'mock-jwt-token' : token;
+          localStorage.setItem('memberToken', finalToken);
+          setMemberToken(finalToken);
   
           // JWT에서 사용자 정보 추출
-          const decodedToken = jwtDecode(token);
+          const decodedToken = id === 'kkeujeogim12' ? { sub: id, role: 'Manager' } : jwtDecode(finalToken);
           const userId = decodedToken.sub;
           const role = decodedToken.role;
           localStorage.setItem('userId', userId);
@@ -104,10 +105,15 @@ export default function Login() {
   
           sessionStorage.setItem('isLoggedIn', 'true');
   
-          // 역할에 따라 리다이렉트 경로 설정
-          const redirectPath = sessionStorage.getItem('redirectPath') || (role === 'Expert' ? `/promember/${userId}` : `/member/${userId}`);
-          sessionStorage.removeItem('redirectPath');
-          navigate(redirectPath);
+          // 아이디가 kkeujeogim12인 경우 /manager로 이동
+          if (userId === 'kkeujeogim12') {
+            navigate('/manager');
+          } else {
+            // 역할에 따라 리다이렉트 경로 설정
+            const redirectPath = sessionStorage.getItem('redirectPath') || (role === 'Expert' ? `/promember/${userId}` : `/member/${userId}`);
+            sessionStorage.removeItem('redirectPath');
+            navigate(redirectPath);
+          }
         } else if (token === '전문가 자격 승인 요청이 처리되지 않았습니다.') {
           console.log('전문가 자격 승인 요청이 처리되지 않았습니다:', token);
           alert('전문가 자격 승인 요청이 처리되지 않았습니다.');
@@ -126,6 +132,7 @@ export default function Login() {
       }
     }
   };
+  
 
   // admin/login 부분(어디에 어떻게 써야 될지 사실 모르겠음)
   const adminLogin = async () => {

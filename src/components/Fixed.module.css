@@ -16,9 +16,10 @@ header {
 }
 
 .textalign1{
-    padding-top: 40px;
-    padding-left: 210px;
+    position: absolute;
     font-weight: bolder;
+    top: 40px;
+    left: 100px;
     font-size: 30px;
     cursor: pointer;
 }
@@ -28,7 +29,7 @@ header {
     height: 30px;
     position: absolute;
     top: 60px;
-    right: 190px;
+    right: 100px;
     display: flex;
     justify-content: end;
     cursor: pointer;
@@ -57,7 +58,6 @@ header {
     cursor: pointer;
     font-size: 13px;
     margin-top: 5px;
-    margin-left: 110px;
 }
 
 .navTextMargin{
@@ -68,14 +68,13 @@ header {
     list-style: none;
 }
 
-
 footer .inner1 {
     display: flex;
     justify-content: start;
     max-width: var(--layout-max-width);
     width: 100%;
     margin: 0 auto;
-    padding: 20px 215px;
+    padding: 20px 60px;
     color:#84a67f;
     position: absolute;
     bottom: auto;
@@ -91,7 +90,7 @@ footer .inner2{
     max-width: var(--layout-max-width);
     width: 100%;
     margin: 0 auto;
-    padding: 0px 215px;
+    padding: 0px 60px;
     color: #676358;
     position: absolute;
     bottom: auto;
@@ -105,7 +104,7 @@ footer .inner3{
     max-width: var(--layout-max-width);
     width: 100%;
     margin: 0 auto;
-    padding: -0px 215px;
+    padding: 0px 60px;
     color: #676358;
     position: absolute;
     bottom: auto;
@@ -114,7 +113,7 @@ footer .inner3{
 
 footer .inner3 p{
     margin-right: 20px;
-    font-size: 11px;
+    font-size: 13px;
     cursor: pointer;
 }
 

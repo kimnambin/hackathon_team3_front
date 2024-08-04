@@ -15,6 +15,7 @@ export default function UseProfileContext() {
             }
           });
           setPost(response.data);
+          console.log('ggggg', response.data)
         } catch (error) {
           console.error('데이터를 불러오는데 실패했습니다', error);
           alert('데이터를 불러오지 못했습니다.');
@@ -72,7 +73,9 @@ export default function UseProfileContext() {
       //   ========================================================================================
       //진단 결과 보기
 
-      const [test , setTest] =useState([])
+      const [test , setTest] =useState([]) //우울
+      const [test02 , setTest02] =useState([]) //스트레스
+      const [test03 , setTest03] =useState([]) //불안
 
       const getTestResult = async () => {
         const memberToken = localStorage.getItem('memberToken');
@@ -82,17 +85,21 @@ export default function UseProfileContext() {
               Authorization: `Bearer ${memberToken}`
             }
           });
-          setTest(response.data[0]); 
-          console.log('자가진단 카테고리',response.data);
+          setTest(response.data[0]);
+          setTest02(response.data[1]);
+          setTest03(response.data[2]); 
+          console.log('자가진단 카테고리',response.data[1]);
         } catch (err) {
         }
       };
    
+      // ========================================================================================
 
 
   return {fetchmypost , post,
     fetchmycomment ,coment,
     bookMark, fetchmybookmark,
-    test, getTestResult}
-
+    test, getTestResult , test02 , test03
+    }
+    
   }

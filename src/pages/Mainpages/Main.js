@@ -3,7 +3,7 @@ import styles from './Main1.module.css'
 import { useNavigate } from 'react-router-dom'
 
 
-const Main1 = () => {
+const Main = () => {
   const navgate = useNavigate();
 
   const goToBlue =()=>{
@@ -99,7 +99,7 @@ const Main1 = () => {
         <div className={styles.main3Box2} onClick={goToMap}>
 
           <div className={styles.main3Box2Text}>
-            <span style={{color:'#4d4d4d' ,fontSize:22 , fontWeight:600}}>내 집 주변</span>  
+            <span style={{color:'#4d4d4d' ,fontSize:22 , fontWeight:600 , marginLeft:-15}}>내 집 주변</span>  
             <img src={process.env.PUBLIC_URL + "/imges/main2.png"} alt="" className={styles.이미지22}/>
           </div>
 
@@ -130,4 +130,4 @@ const Main1 = () => {
   )
 }
 
-export default Main1
+export default Main

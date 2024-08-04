@@ -49,7 +49,7 @@ export default function StressTemp({sum}) {
                     </div>
                     <div>
                         <div className={styles.resultScoreLine1}>
-                            <img src={process.env.PUBLIC_URL + "/imges/clover.png"} alt=""/>
+                            <img src={process.env.PUBLIC_URL + "/imges/clover.png"} alt="" />
                         </div>
                         <br />
                         <p className={styles.scoreText}>

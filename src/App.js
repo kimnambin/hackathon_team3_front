@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Routes, Route, useLocation} from 'react-router-
 
 //메인 페이지
 import Main1 from './pages/Mainpages/Main1';
+import Main from './pages/Mainpages/Main';
 import Navbar from './components/Navbar';
 import LoginNavbar from './components/LoginNavbar';
 import Footer from './components/Footer';
@@ -17,13 +18,16 @@ import SignUp from "./pages/signup/SignUp";
 // 커뮤니티 부분
 import { CategoryProvider } from './components/Comm/Comm_context';
 import ProCommList from "./pages/Community/Professional/ProCommList";
+import ProCommList2 from "./pages/Community/Professional/ProCommList2";
 import ProCommView from "./pages/Community/Professional/ProCommView";
 import ProCommWrite from "./pages/Community/Professional/ProCommWrite";
 import ProCommTrans from './pages/Community/Professional/ProCommTrans';
 import CommWrite from './pages/Community/CommWrite';
 import CommList from './pages/Community/CommList';
+import CommList2 from './pages/Community/CommList2';
 import CommView from './pages/Community/CommView';
 import CommTrans from './pages/Community/CommTrans';
+
 // 마이페이지 부분
 import Profile from "./pages/Mypage/Profile";
 import ExpertProfile from "./pages/Mypage/ExpertProfile"
@@ -55,7 +59,7 @@ function App() {
   const location = useLocation();
 
   // 로그인하기 전 페이지들
-  const authPages = ['/login', '/firstsignup', '/signup', '/findPw', '/pro_signup', '/'];
+  const authPages = ['/login', '/firstsignup', '/signup', '/findPw', '/pro_signup', '/', '/pro_comm_list', '/comm_list'];
 
   // 현재 페이지가 로그인한건지 아닌지 
   const showNavbar = authPages.includes(location.pathname);
@@ -76,42 +80,39 @@ function App() {
           <Route path="/pro_signup" element={<ProSignUp />} />
           {/* 커뮤니티 */}
           <Route path="/comm_list" element={<CommList />} />
+          <Route path="/comm_list2" element={<CommList2 />} />
           <Route path="/comm_view/:id" element={<CommView />} />
           <Route path="/comm_trans/:id" element={<CommTrans />} /> {/* 게시글 수정 */}
           <Route path="/comm_write" element={<CommWrite />} />
           {/* 전문가가 올린 커뮤니티 */}
           <Route path="/pro_comm_list" element={<ProCommList />} />
+          <Route path="/pro_comm_list2" element={<ProCommList2 />} />
           <Route path="/pro_comm_view/:id" element={<ProCommView />} />
           <Route path="/pro_comm_trans/:id" element={<ProCommTrans />} /> {/* 게시글 수정 */}
           <Route path="/pro_comm_write" element={<ProCommWrite />} />
           {/* 마이페이지 */}
-          {/* <Route path="/mypost" element={<PrivateRoute  component={MyPost}/>} />
+          <Route path="/mypost" element={<PrivateRoute  component={MyPost}/>} />
           <Route path="/blueSave" element={<PrivateRoute  component={BlueSave}/>} />
           <Route path="/stressSave" element={<PrivateRoute  component={StressSave}/>} />
-          <Route path="/anxietySave" element={<PrivateRoute  component={AnxietySave}/>} /> */}
+          <Route path="/anxietySave" element={<PrivateRoute  component={AnxietySave}/>} />
           <Route path="/hospital_map" element={<PrivateRoute component={HospitalMap} />} />
           <Route path="/member/:id" element={<Profile />} />
           <Route path="/promember/:id" element={<ExpertProfile />} />
-          <Route path="/mypost" element={<MyPost/>} /> {/* 작성한 게시글 */}
-          <Route path="/mycomment" element={<MyComment/>} />{/* 작성한 댓글 */}
-          <Route path="/mybookmark" element={<MyBookmark/>} />{/* 저장한 북마크 */}
-          <Route path="/mypost" element={<MyPost/>} />
-          <Route path="/blueSave" element={<BlueSave/>} />
-          <Route path="/stressSave" element={<StressSave/>} />
-          <Route path="/anxietySave" element={<AnxietySave/>} />
-          <Route path="/hospital_map" element={<HospitalMap />} />
+          <Route path="/mycomment" element={<PrivateRoute component={MyComment} />}  />{/* 작성한 댓글 */}
+          <Route path="/mybookmark" element={<PrivateRoute component={MyBookmark} />}  />{/* 저장한 북마크 */}
           {/* 우울증 자가진단 */}
-          <Route path='/blue' element={<Blue/>} />
-          <Route path='/blueResult' element={<BlueResult/>} />
+          <Route path='/blue' element={<PrivateRoute component={Blue} />}  />
+          <Route path='/blueResult' element={<PrivateRoute component={BlueResult} />}  />
           {/* 스트레스 자가진단 */}
-          <Route path='/StressTest' element={<StressTest />} />
-          <Route path='/stressResult' element={<StressResult />} />
+          <Route path='/StressTest' element={<PrivateRoute component={StressTest} />}  />
+          <Route path='/stressResult' element={<PrivateRoute component={StressResult} />}  />
           {/* 불안 자가진단 */}
-          <Route path='/anxiety' element={<Anxiety />} />
-          <Route path='/AnxietyResult' element={<AnxietyResult />} />
+          <Route path='/anxiety' element={<PrivateRoute component={Anxiety} />}  />
+          <Route path='/AnxietyResult' element={<PrivateRoute component={AnxietyResult} />}  />
           {/* 관리자 페이지 */}
           <Route path='/' element={<Main1 />} />
-          <Route path='/manager' element={<Manager />} />
+          <Route path='/main' element={<Main />} />
+          <Route path='/manager' element={<PrivateRoute component={Manager} />} />
           
         </Routes>
       </CategoryProvider>
