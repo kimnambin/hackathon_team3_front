@@ -32,21 +32,28 @@ const Main = () => {
                     <p className={styles.왼쪽끄적임}>끄적임</p>
                     <span className={styles.끄적임밑}>
                     시들어가는 나의 마음</span>
-                    <span className={styles.끄적임밑}>
+                    <span className={styles.끄적임밑2}>
                     따뜻하게 보듬어줄 손길을 찾는다면,
                     </span>
                     </div>
 
-                    <div className={styles.mainText}>
+                    <div className={styles.클로버그림컨테이너}>
                         <div className={styles.클로버그림}>
-                        <img style={{width:'32px' , height:'32px'}}
+                        <img style={{width:'32px' , height:'32px' ,
+                          marginTop: 280 , marginRight : 0 , marginBottom : -20, marginLeft : 300
+                        }}
                         src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqCAYAAADFw8lbAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAALPSURBVHgB7Vc9b9RAEJ1DMRIpQIIiFElxFC5IEQooUkDD76ZJc0VScEVSXIGLUCQSV+SQcsVFOubFs2RvY3tmfHaa+Ekr2+vx7tv5NtGAAQOeF0bUI9br9Tu+HPD4w2M+Go2W1BK9EWWSOV/yaOqWx4RK4mMeCx6XTP63Zb1eiDLJV3z5XvFqxSNL5mZMdkYKXlA/eFMzn1XM5eIijeiL6A75kHe6IJ8c8rtUambFJltQN3itCZiJSnAgCLJoDgEyZcLzRNx7gEwTMJmeCX2m0jzpgtDusRwihjcNqfIqUSaxz5f3ihgCYhweWMOI7jnZcakJWDT6gWw4TKL32vgdtKnm0q6j/kgCDoCW7hR5vJ+wBW4VORPRKdl9Dj57bwExf5NJseaJhSRgIbomXxrLpTIBBVVrFW5hJgk0EpUNj8mQPhLcB5YQicsjtAhTn4rGzdA0BTN6SQJ/ww0T+sUHxi0KxCNX4Hdwl7eyD8YNy117iXqBlHTBG93EkyBLm+SQHfao7KQeKUIKyVlc+Rq7JzntN9IPBIKzigpFFQRRHNQmhMpO6weveacSpQeyR8ni+Bhag4mutKCQlPWFbARjnAStqqYXEhPeLPjQqi4QpIpBY+jmpzKHb75Smbq8+J8xzD4q5OoIQlMf6aEP3eW5BX9T4Du+X7YgOosttXVlYhKHVKawtFnOoyqldvAJirTrb00UJKSrGteIwOShSiHITP9GgnHa9W+j0U+kd1XxIc5Jr/0xDuKHVkSl/9RIAlnQjPj4KdmxkeraanTfIbsXbsQFLP6K4LuKJ9xERUOeCN7QvATJRYN86Ac2MkzXJbQKSFU7ocIAUv+hseBC4IFUhIArqvJ0G6KurkfwkpJAkhz5k4xwm15KWle/yWa0DaZzj7CnQa5DK6I10buk6l8WT6Kv35O2gHRWIakXco07LRzozNvNPxmQwuQQAwZsi39HDAKCB0KiPgAAAABJRU5ErkJggg==' alt=''>
                         </img>
-                        <img style={{transform: 'scaleX(-1)'}}
+                        <img style={{transform: 'scaleX(-1)' , width:'36px' , height:'36px',
+                          marginTop: 280 , marginRight : 0 , marginBottom : -40, marginLeft : 0
+                        }}
                         src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqCAYAAADFw8lbAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAALPSURBVHgB7Vc9b9RAEJ1DMRIpQIIiFElxFC5IEQooUkDD76ZJc0VScEVSXIGLUCQSV+SQcsVFOubFs2RvY3tmfHaa+Ekr2+vx7tv5NtGAAQOeF0bUI9br9Tu+HPD4w2M+Go2W1BK9EWWSOV/yaOqWx4RK4mMeCx6XTP63Zb1eiDLJV3z5XvFqxSNL5mZMdkYKXlA/eFMzn1XM5eIijeiL6A75kHe6IJ8c8rtUambFJltQN3itCZiJSnAgCLJoDgEyZcLzRNx7gEwTMJmeCX2m0jzpgtDusRwihjcNqfIqUSaxz5f3ihgCYhweWMOI7jnZcakJWDT6gWw4TKL32vgdtKnm0q6j/kgCDoCW7hR5vJ+wBW4VORPRKdl9Dj57bwExf5NJseaJhSRgIbomXxrLpTIBBVVrFW5hJgk0EpUNj8mQPhLcB5YQicsjtAhTn4rGzdA0BTN6SQJ/ww0T+sUHxi0KxCNX4Hdwl7eyD8YNy117iXqBlHTBG93EkyBLm+SQHfao7KQeKUIKyVlc+Rq7JzntN9IPBIKzigpFFQRRHNQmhMpO6weveacSpQeyR8ni+Bhag4mutKCQlPWFbARjnAStqqYXEhPeLPjQqi4QpIpBY+jmpzKHb75Smbq8+J8xzD4q5OoIQlMf6aEP3eW5BX9T4Du+X7YgOosttXVlYhKHVKawtFnOoyqldvAJirTrb00UJKSrGteIwOShSiHITP9GgnHa9W+j0U+kd1XxIc5Jr/0xDuKHVkSl/9RIAlnQjPj4KdmxkeraanTfIbsXbsQFLP6K4LuKJ9xERUOeCN7QvATJRYN86Ac2MkzXJbQKSFU7ocIAUv+hseBC4IFUhIArqvJ0G6KurkfwkpJAkhz5k4xwm15KWle/yWa0DaZzj7CnQa5DK6I10buk6l8WT6Kv35O2gHRWIakXco07LRzozNvNPxmQwuQQAwZsi39HDAKCB0KiPgAAAABJRU5ErkJggg==' alt=''>
                         </img>
                         </div> 
-                        <span className={styles.오른쪽끄적임}>끄적임</span>
+                        <div 
+                        // style={{marginBottom: 80}}
+                        >
+                        <span className={styles.오른쪽끄적임}>끄적임</span></div>
                         </div>
                     </div>
     {/*여기부터 중간==================================================================================================== */}
@@ -79,7 +86,7 @@ const Main = () => {
             <span>시들어가는 기분이 든다면,</span>
             </div>
 
-            <div className={styles.유저님의마음을22}>
+          <div className={styles.유저님의마음을22}>
             <div style={{marginRight:1 , width:'240px' , fontSize:15}}>유저님의 마음을 들여다 볼 자가진단</div>
             <div>
             <div className={styles.line}></div>
@@ -87,7 +94,7 @@ const Main = () => {
             </div>
             <div className={styles.Arrow}></div>
             
-            </div>
+          </div>
     </div>
             <img src={process.env.PUBLIC_URL + "/imges/main1.png"} alt="" className={styles.이미지11}
             />
@@ -96,17 +103,17 @@ const Main = () => {
 
 
     {/* 오른쪽 */}
-        <div className={styles.main3Box2} onClick={goToMap}>
+      <div className={styles.main3Box2} onClick={goToMap}>
 
           <div className={styles.main3Box2Text}>
-            <span style={{color:'#4d4d4d' ,fontSize:22 , fontWeight:600 , marginLeft:-15}}>내 집 주변</span>  
+            <span style={{color:'#4d4d4d' ,fontSize:22 , fontWeight:600, marginLeft:50 , marginRight:100 }}>내 집 주변</span>  
             <img src={process.env.PUBLIC_URL + "/imges/main2.png"} alt="" className={styles.이미지22}/>
           </div>
 
           <div className={styles.main2Text2}>
-            <span style={{color:'#4d4d4d' ,fontSize:22 , fontWeight:600}}>가까운 정신의학과</span>
+            <span style={{color:'#4d4d4d' ,fontSize:22 , fontWeight:600 , marginLeft:50}}>가까운 정신의학과</span>
             <div className={styles.아래쪽}>
-                <p style={{color:'#4d4d4d' ,fontSize:22 , fontWeight:600}}>찾아보기</p>
+                <p style={{color:'#4d4d4d' ,fontSize:22 , fontWeight:600 , marginLeft:50}}>찾아보기</p>
                 
                 <div>
                 <div className={styles.line2}></div>
@@ -114,11 +121,12 @@ const Main = () => {
                 </div>
                 
                 <div className={styles.Arrow2}></div>
-            </div>
-           
           </div>
-            
         </div>
+        
+    </div>
+
+
 
     </div>
     
