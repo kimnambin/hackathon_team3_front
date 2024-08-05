@@ -27,7 +27,18 @@ const Nav = () => {
   };
 
   const goToBlue = () => {
-    navigate('/blue');
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      if (role === 'Expert') {
+        alert('전문가는 자가진단을 이용할 수 없습니다.')
+      } else {
+        navigate('/blue');
+      }
+    } else {
+      alert('로그인이 필요한 서비스 입니다.')
+      navigate('/login');
+      console.error('사용자 ID를 찾을 수 없습니다.');
+    }
   };
 
   const goToMain = () => {

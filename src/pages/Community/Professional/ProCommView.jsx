@@ -20,6 +20,10 @@ export default function ProCommView() {
   const [save ,setSave] = useState(false); //게시글 저장
   const [loginId , setLoginId] = useState(''); //현재 로그인 한 아이디 보기용
 
+  const goToMain = () => { navigate('/') };
+  const goToComm = () => { navigate('/comm_list') };
+  const goToPro = () => { navigate('/pro_comm_list') };
+
   //끄적이기 로그인 여부 확인 계속 true 상태, 오류 잡아야 됨
   const [isLogined, setIsLogined] = useState(false);
   
@@ -245,7 +249,6 @@ const clickLike = async () => {
     await axios.post(`http://52.78.131.56:8080/post/like/${id}`, {
       token: localStorage.getItem('memberToken'),
     });
-    alert('끄덕 끄덕');
     window.location.reload();
   } catch (e) {
     console.error('실패', e);
@@ -271,7 +274,7 @@ const clickLike = async () => {
 
       <div className={styles.view_right}>
         <div className={styles.CommList_right_header}>
-          <p className={styles.header_p}>홈 <FaAngleRight /> 커뮤니티 <FaAngleRight /> 고민 끄적끄적 <FaAngleRight /></p>
+          <p className={styles.header_p}><span onClick={goToMain}>홈</span> <FaAngleRight /> <span onClick={goToComm}>커뮤니티</span> <FaAngleRight /> <span onClick={goToComm}>고민 끄적끄적</span> <FaAngleRight /></p>
           <p className={styles.header_p2}>전문의 정보 끄적끄적</p>
         </div>
 

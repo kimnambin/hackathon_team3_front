@@ -59,7 +59,7 @@ const HospitalMap = () => {
   useEffect(() => {
     const script = document.createElement('script');
     script.async = true;
-    script.src = '//dapi.kakao.com/v2/maps/sdk.js?appkey=31fe1ee21bc1d16dcb5eb09b81091e8f&libraries=services,clusterer,drawing';
+    script.src = '//dapi.kakao.com/v2/maps/sdk.js?appkey=eb4ecfef9266823351c5b14fef490c8f&libraries=services,clusterer,drawing';
     script.onload = () => {
       // API 로드 후, 현재 위치가 설정되어야 하므로 여기서 초기화 작업을 수행할 수 있습니다.
       if (currentPosition.latitude && currentPosition.longitude) {

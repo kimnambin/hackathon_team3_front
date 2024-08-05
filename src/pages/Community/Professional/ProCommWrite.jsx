@@ -85,21 +85,21 @@ const handleLoginClick = () => {
     }
 };
   
-//엔터 이번트 추가
-useEffect(() => {
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      handleSubmit();
-    }
-  };
+// //엔터 이번트 추가
+// useEffect(() => {
+//   const handleKeyDown = (e) => {
+//     if (e.key === 'Enter') {
+//       handleSubmit();
+//     }
+//   };
 
-  window.addEventListener('keydown', handleKeyDown);
+//   window.addEventListener('keydown', handleKeyDown);
 
-  return () => {
-    window.removeEventListener('keydown', handleKeyDown);
-  };
-}, [title,
-  content] );
+//   return () => {
+//     window.removeEventListener('keydown', handleKeyDown);
+//   };
+// }, [title,
+//   content] );
 
   return (
     <div className={styles.CommList_container}>

@@ -15,6 +15,8 @@ const LoginNav = () => {
         navigate('/blue');
       }
     } else {
+      alert('로그인이 필요한 서비스 입니다.')
+      navigate('/login');
       console.error('사용자 ID를 찾을 수 없습니다.');
     }
   };

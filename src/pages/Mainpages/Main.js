@@ -1,14 +1,45 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Main1.module.css'
 import { useNavigate } from 'react-router-dom'
+import {jwtDecode} from 'jwt-decode';
 
 
 const Main = () => {
   const navgate = useNavigate();
 
-  const goToBlue =()=>{
-    navgate('/blue')
-  }
+  const goToBlue = () => {
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      if (role === 'Expert') {
+        alert('전문가는 자가진단을 이용할 수 없습니다.')
+      } else {
+        navgate('/blue');
+      }
+    } else {
+      alert('로그인이 필요한 서비스 입니다.')
+      navgate('/login');
+      console.error('사용자 ID를 찾을 수 없습니다.');
+    }
+  };
+
+  //로그인 토큰 가져오기
+  const [role, setRole] = useState(null);
+
+  useEffect(() => {
+   const memberToken = localStorage.getItem('memberToken');
+   if (memberToken) {
+     try {
+       const decodedmemberToken = jwtDecode(memberToken);
+       setRole(decodedmemberToken.role);
+       setIsLogined(true);
+     } catch (error) {
+       console.error('토큰 해독 실패', error);
+       setIsLogined(false);
+     }
+   } else {
+     setIsLogined(false);
+   }
+ }, []);
 
   const goToMap=()=>{
     navgate('/hospital_map')

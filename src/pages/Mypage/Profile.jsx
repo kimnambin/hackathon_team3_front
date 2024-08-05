@@ -134,20 +134,26 @@ const [nickName, setNickName] = useState('');
 
     //닉네임 수정
     const handleSave = async () => {
-        try {
-            await axios.put('http://52.78.131.56:8080/member/changeName', {
-                token: localStorage.getItem('memberToken'),
-                nickname: nickName
-            });
-            alert('닉네임 수정이 성공적으로 변경되었습니다.');
-            console.log('닉네임 수정이 성공적으로 변경됨')
-            window.location.reload()
-            setNickInput(false); 
-        } catch (error) {
-            console.error('데이터를 전송하는데 실패했습니다', error);
-            alert('닉네임 변경에 실패했습니다. 다시 시도해주세요.');
-        }
-    };
+      if (!nickName.trim()) {
+          alert('닉네임을 입력해주세요!');
+          return;
+      }
+ 
+      try {
+          await axios.put('http://52.78.131.56:8080/member/changeName', {
+              token: localStorage.getItem('memberToken'),
+              nickname: nickName
+          });
+          alert('닉네임 수정이 성공적으로 변경되었습니다.');
+          console.log('닉네임 수정이 성공적으로 변경됨');
+          window.location.reload();
+          setNickInput(false); 
+      } catch (error) {
+          console.error('데이터를 전송하는데 실패했습니다', error);
+          alert('닉네임 변경에 실패했습니다. 다시 시도해주세요.');
+      }
+  };
+  
 
      //엔터 이번트 추가
  useEffect(() => {

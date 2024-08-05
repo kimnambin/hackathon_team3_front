@@ -420,6 +420,15 @@
     cursor: pointer;
 }
 
+.search_location li{
+    list-style: none;
+    line-height: 30px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 /* 자가진단 결과부분 */
 .resultContainer{
     display: flex;
