@@ -27,7 +27,7 @@ export default function AnxietyTest({sum}) {
                     </div>
                     <div className={styles.resultIntro}>
                         <p>
-                            현재 '유저'님은 <span className={styles.resultHighlight}>{sum}</span>으로 
+                            현재 <span className={styles.resultHighlight}>'{post}'</span>님은 <span className={styles.resultHighlight}>{sum}점 </span>으로 
                             현재 불안하지 않은 상태입니다.👒  
                             <img src={process.env.PUBLIC_URL + "/imges/cloudcloud.png"} alt="" /> <br />
                         </p>
