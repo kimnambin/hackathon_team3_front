@@ -27,7 +27,7 @@ const BlueSave = () => {
 
     const getTestResult = async () => {
       try {
-        const response = await axios.get('http://52.78.131.56:8080/test/result', {
+        const response = await axios.get('https://team3back.sku-sku.com/test/result', {
           headers: {
             Authorization: `Bearer ${memberToken}`
           }

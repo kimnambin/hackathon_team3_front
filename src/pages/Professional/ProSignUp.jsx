@@ -101,8 +101,8 @@ export default function ProSignUp() {
 
         <div className={styles.signup_id_container}>
           <p className={styles.signup_p}>닉네임</p>
-          <p className={styles.signup_check_p}
-          onClick={showcheckMsg}>중복 확인하기</p>
+          {/* <p className={styles.signup_check_p}
+          onClick={showcheckMsg}>중복 확인하기</p> */}
         </div>
 
         <input type='text' className={styles.signup_input} value={nickname}

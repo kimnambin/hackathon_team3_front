@@ -51,11 +51,6 @@ export default function UseProfileContext() {
 
     const fetchmybookmark = async () => {
         const memberToken = localStorage.getItem('memberToken'); // 실제 토큰을 가져옴
-        if (!memberToken) {
-          console.error('로그인 토큰이 없습니다.');
-          alert('로그인 상태가 아닙니다.');
-          return;
-        }
     
         try {
           const response = await axios.get('https://team3back.sku-sku.com/post/saves', {
@@ -93,13 +88,14 @@ export default function UseProfileContext() {
         }
       };
    
-      // ========================================================================================
+     
 
 
   return {fetchmypost , post,
     fetchmycomment ,coment,
     bookMark, fetchmybookmark,
     test, getTestResult , test02 , test03
+    
     }
     
   }

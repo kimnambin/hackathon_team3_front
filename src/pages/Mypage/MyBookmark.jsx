@@ -11,6 +11,7 @@ export default function MyPost() {
   const [isLogined, setIsLogined] = useState(false);
   const [role, setRole] = useState(null);
   const [mybookmark, setbookmark] = useState([]);
+  const [isExpertPost , setIsExpertPost] = useState('');
 
   const  {fetchmypost,  post} = UseProfileContext()
 
@@ -52,6 +53,7 @@ export default function MyPost() {
         }
       });
       setbookmark(response.data);
+      console.log('gkgkgkgkgkkgkdsaewq',response.data)
     } catch (error) {
       console.error('데이터를 불러오는데 실패했습니다', error);
       alert('데이터를 불러오지 못했습니다.');
@@ -88,7 +90,7 @@ export default function MyPost() {
           mybookmark.map((mybookmark, i) => (
             <Link 
               key={mybookmark.id} 
-              to={role === 'Expert' ? `/pro_comm_view/${mybookmark.id}` : `/comm_view/${mybookmark.id}`} 
+              to={mybookmark.isExpertPost ? `/pro_comm_view/${mybookmark.id}` : `/comm_view/${mybookmark.id}`} 
               className={styles.CommList_main}
             >
               <div className={styles2.List} style={{ display:'flex'}}>

@@ -299,8 +299,7 @@
     height: 500px;
     border-radius: 30px;
     background-color: rgb(197, 231, 207);
-    margin-left: 28vh;
-    margin-top: 130px;
+    margin: 130px auto 0 auto;
     padding: 70px 70px;
 }
 
@@ -321,7 +320,7 @@
     display: inline-block;
     background-color: black;
     height: 2px; /* 줄의 두께 */
-    width: 35vh; /* 줄의 길이 */
+    width: 250px; /* 줄의 길이 */
     margin-top: 70px;
 }
 
@@ -329,7 +328,7 @@
     display: inline-block;
     background-color: black;
     height: 2px; /* 줄의 두께 */
-    width: 60vh; /* 줄의 길이 */
+    width: 400px; /* 줄의 길이 */
     margin-top: 70px;
 }
 
@@ -337,15 +336,15 @@
     display: inline-block;
     background-color: black;
     height: 2px; /* 줄의 두께 */
-    width: 85vh; /* 줄의 길이 */
-    margin-top: 70px;
+    width: 580px; /* 줄의 길이 */
+    margin-top: 71px;
 }
 
 .resultScoreLine5{
     display: inline-block;
     background-color: black;
     height: 2px; /* 줄의 두께 */
-    width: 95vh; /* 줄의 길이 */
+    width: 660px; /* 줄의 길이 */
     margin-top: 70px;
 }
 
@@ -420,8 +419,7 @@
     height: 350px;
     padding: 20px 40px;
     background-color: rgb(223, 221, 221);
-    margin-left: 31.5vh;
-    margin-top: 100px;
+    margin: 100px auto 0 auto;
     border-radius: 10px;
 }
 
@@ -466,7 +464,8 @@
 .resultButtonBox{
     margin-top: 100px;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    margin-left: 25px;
 }
 
 .resultButton1{
@@ -491,3 +490,11 @@
     font-weight: bold;
 }
 
+.resultContainer{
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0 auto -10px auto;
+}

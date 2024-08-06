@@ -425,6 +425,7 @@
 .view_content{
     width: 720px;
     font-family: 'Pretendard', sans-serif;
+    white-space: pre-line;
 }
 
 /* 끄덕임 버튼 */

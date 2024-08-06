@@ -38,22 +38,29 @@ const StressTest = () => {
     const goToAnxiety = () => navigate('/anxiety');
 
     const 결과보기 = () => {
+        if (!isPageComplete()) {
+            alert("모든 항목을 선택해주세요");
+            return;
+        }
         const queryParams = new URLSearchParams();
         queryParams.set('buttonStates', JSON.stringify(buttonStates));
         navigate(`/stressResult?${queryParams.toString()}`);
+        
     };
     
     const 이전페이지 = () => {
-        if (nowPage > 0) {
-            setNowPage(prevPage => {
-                //  스크롤을 맨 위로 이동
-                window.scrollTo({ top: 200, behavior: 'smooth' });
-                return prevPage - 1;
-            });
-        }
+        setNowPage(() => {
+            window.scrollTo({ top: 200, behavior: 'smooth' });
+            return 0;
+        });
     };
     
+    
     const 다음페이지 = () => {
+        if (!isPageComplete()) {
+            alert("모든 항목을 선택해주세요");
+            return;
+        }
         if (nowPage < Math.ceil(testData.length / 5) - 1) {
             setNowPage(prevPage => {
                 //  스크롤을 맨 위로 이동
@@ -63,16 +70,19 @@ const StressTest = () => {
         }
     };
     
-    
-    //첫번째 페이지와 마지막 페이지는 다르게 보여주기 위함!!
-    const firstPage = nowPage === 0;
-    const lastPage = nowPage === 1;
+     const isPageComplete = () => {
+        const currentButtons = buttonStates.slice(nowPage * 2, (nowPage + 1) * 2);
+        return currentButtons.every(buttonGroup =>
+            buttonGroup.some(button => button.active)
+        );
+    };
 
     //현재 페이지를 보기 위함
     useEffect(() => {
         console.log(`현재 페이지: ${nowPage + 1}`);
     }, []);
 
+   
     // 상태 초기화
     const [testData, setTestData] = useState([]);
     const [buttonStates, setButtonStates] = useState([]);
@@ -125,7 +135,11 @@ const StressTest = () => {
     };
 
     const currentTestData = testData.slice(nowPage * 5, (nowPage + 1) * 5);
-    const isLastPage = nowPage === Math.ceil(testData.length / 5) - 1;
+   
+    
+    //첫번째 페이지와 마지막 페이지는 다르게 보여주기 위함!!
+    const firstPage = nowPage === 0;
+    const lastPage = nowPage === Math.ceil(testData.length / 5) - 1;
 
   return (
     <Container>
@@ -168,7 +182,7 @@ const StressTest = () => {
                         text={data.text}
                         buttonStates={buttonStates[nowPage * 5 + index]}
                         handleButtonClick={handleButtonClick}
-                        isLast={index === currentTestData.length - 1 && isLastPage}
+                        isLast={index === currentTestData.length - 1 && lastPage}
                     />
                 ))}
             
@@ -179,33 +193,19 @@ const StressTest = () => {
                 )} 
             {lastPage && (
                 <div className={styles.pageButtonBox}>
-                    <button className={styles.nextPage} onClick={이전페이지} disabled={nowPage === 1}>
+                    <button className={styles.nextPage} onClick={이전페이지} disabled={nowPage === 0}>
                     <span className={styles.priviousPageline}></span>
                     <p>이전 페이지</p>
                     <span className={styles.priviousPageArrow}></span>
                     </button>
 
-                    <button className={styles.nextPage} onClick={결과보기} >
+                    <button className={styles.nextPage} onClick={결과보기}>
                         <p>결과보기</p> <span className={styles.nextPageline}></span> <span className={styles.nextPageArrow}></span>
                     </button>
                 </div>
                 )}    
 
-            {!lastPage && !firstPage && (
-                <div className={styles.pageButtonBox}>
-                    <button className={styles.nextPage} onClick={이전페이지} disabled={nowPage === 0}>
-                        <span className={styles.priviousPageline}></span>
-                        <p>이전 페이지</p>
-                        <span className={styles.priviousPageArrow}></span>
-                    </button>
-
-                    <button className={styles.nextPage} onClick={다음페이지} disabled={lastPage}>
-                        <p>다음 페이지</p>
-                        <span className={styles.nextPageline}></span>
-                        <span className={styles.nextPageArrow}></span>
-                    </button>
-                </div>
-            )}
+            
             </div>
         </Container>
     );

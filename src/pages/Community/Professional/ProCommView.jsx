@@ -215,7 +215,6 @@ const clickSave = async () => {
     await axios.post(`https://team3back.sku-sku.com/post/save/${id}`, {
       token: localStorage.getItem('memberToken'),
     });
-    alert('게시글 저장 완료!!');
   } catch (e) {
     console.error('게시글을 저장하지 못했습니다.', e);
     alert('게시글을 저장하지 못했습니다.');

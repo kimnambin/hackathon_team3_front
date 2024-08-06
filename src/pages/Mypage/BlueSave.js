@@ -25,7 +25,7 @@ const BlueSave = () => {
 
     const getTestResult = async () => {
       try {
-        const response = await axios.get('http://52.78.131.56:8080/test/result', {
+        const response = await axios.get('https://team3back.sku-sku.com/test/result', {
           headers: {
             Authorization: `Bearer ${memberToken}`
           }
@@ -56,7 +56,7 @@ const BlueSave = () => {
         <div className={styles2.Profile_top02}>
             
         <p className={styles2.Profile_top02_p1} style={{ marginLeft: '-80px' }}>
-          {show ? show.tester : (post.length > 0 ? post[0].writer : '')}
+          {show ? show.tester : (post.length > 0 ? show[0].writer : '')}
         </p>
 
             

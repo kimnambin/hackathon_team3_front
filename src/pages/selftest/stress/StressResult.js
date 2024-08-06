@@ -112,15 +112,17 @@ const StressResult = () => {
       <div className={styles.resultContainer}>
       <StressTemp sum={ sum } onClick={goToMap}/>
       <StressRecom sum={sum}/>
+
+      <div className={styles.resultButtonBox}>
+            <button className={styles.resultButton1} onClick={saveTest}>결과 저장하기</button>
+            <button className={styles.resultButton2} onClick={goToBlue}>다시 검사하기</button>
+        </div>
     </div>
         
 
        
 
-        <div className={styles.resultButtonBox}>
-            <button className={styles.resultButton1} onClick={saveTest}>결과 저장하기</button>
-            <button className={styles.resultButton2} onClick={goToBlue}>다시 검사하기</button>
-        </div>
+        
     </Container>
     );
 };

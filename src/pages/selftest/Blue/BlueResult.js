@@ -108,17 +108,19 @@ const BlueResult = () => {
 
         <div className={styles.resultContainer}>
         {/* 결과 박스 */}
-        <BlueTest sum={sum} onClick={goToMap}/>
+        <BlueTest sum={sum} onClick={goToMap} />
 
         {/* 추천 영상 */}
         <BlueRecom sum={sum} />
-        </div>
 
-        
         <div className={styles.resultButtonBox}>
             <button className={styles.resultButton1} onClick={saveTest}>결과 저장하기</button>
             <button className={styles.resultButton2} onClick={goToBlue}>다시 검사하기</button>
         </div>
+        </div>
+
+        
+       
     </Container>
     );
 };
