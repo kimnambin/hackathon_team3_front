@@ -42,9 +42,9 @@ export default function BlueTest ({ sum , onClick }) {
     const lv5 = sum > 21
    
     return (
-        <div onClick={goToMap}>
+        <div>
             {lv1 && (
-                <div className={styles.resultBox}>
+                <div className={styles.resultBox} onClick={goToMap}>
                     <div className={styles.resultText}>
                         <p>'{post}'님의 검사 결과</p>
                     </div>
@@ -75,7 +75,7 @@ export default function BlueTest ({ sum , onClick }) {
             )}
 
             {lv2 && (
-                <div className={styles.resultBox}>
+                <div className={styles.resultBox} onClick={goToMap}>
                     {/* lv2에 대한 내용 */}
                     <div className={styles.resultText}>
                         <p>'{post}'님의 검사 결과</p>
@@ -107,7 +107,7 @@ export default function BlueTest ({ sum , onClick }) {
             )}
 
             {lv3 && (
-                <div className={styles.resultBox}>
+                <div className={styles.resultBox} onClick={goToMap}>
                     {/* lv3에 대한 내용 */}
                     <div className={styles.resultText}>
                         <p>'{post}'님의 검사 결과</p>
@@ -139,7 +139,7 @@ export default function BlueTest ({ sum , onClick }) {
             )}
 
             {lv4 && (
-                <div className={styles.resultBox}>
+                <div className={styles.resultBox} onClick={goToMap}>
                     {/* lv4에 대한 내용 */}
                     <div className={styles.resultText}>
                         <p>'{post}'님의 검사 결과</p>
@@ -171,7 +171,7 @@ export default function BlueTest ({ sum , onClick }) {
             )}
 
             {lv5 && (
-                <div className={styles.resultBox}>
+                <div className={styles.resultBox} onClick={goToMap}>
                     {/* lv5에 대한 내용 */}
                     <div className={styles.resultText}>
                         <p>'{post}'님의 검사 결과</p>

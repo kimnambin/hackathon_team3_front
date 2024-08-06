@@ -236,6 +236,10 @@ const clickSave = async () => {
     navigate('/login');
     return; // navigate 후 함수 종료
   }
+  if (role === 'Expert') {
+    alert('전문가는 전문가 게시글을 저장할 수 없습니다.');
+    return; 
+  }
 
   setSave(prevSave => {
     const newSaveState = !prevSave;
@@ -325,7 +329,7 @@ const clickLike = async() => {
           {/* 닉네임 날짜 수정 삭제 */}
           <div className={styles.view_nick}>
             <img className={styles.view_img} alt='' src='../img/profile.jpg' />
-            <p className={styles.view_p}>{post.writer}</p>
+            <p className={styles.view_p}>{post.writer}({post.writerId})</p>
             <p className={styles.view_p2}>{post.createDate}</p>
             <p className={styles.view_p3} onClick={handleEdit}>
             수정
@@ -369,7 +373,7 @@ const clickLike = async() => {
       <div className={styles.view_nick2}>
         
         <img className={styles.show_comment_img} alt='' src='../img/profile.jpg' />
-        <p className={styles.pronick_comment}>{comment.writer}</p>
+        <p className={styles.pronick_comment}>{comment.writer} <span>({comment.writerId})</span></p>
         <p className={styles.view_p2}>{comment.createDate}</p>
       </div>
         <div className={styles.view_comment}>
@@ -381,7 +385,7 @@ const clickLike = async() => {
     <div key={comment.id} className={styles.view_show_comment}>
       <div className={styles.view_nick2}>
         <img className={styles.show_comment_img} alt="" src="../img/profile.jpg" />
-        <p className={styles.view_p}>{comment.writer}</p>
+        <p className={styles.view_p}>{comment.writer} <span>({comment.writerId})</span></p>
         <p className={styles.view_p2}>{comment.createDate}</p>
       </div>
       <div className={styles.view_comment}>

@@ -466,7 +466,6 @@
     height: 40px;
     border-radius: 30px;
     margin-top: 20px;
-    margin-left: 20vh;
  }
 
  .ExpertprofileBox{
@@ -513,4 +512,13 @@
 
 .BoxUnder2State p{
     margin-top: 3px;
+}
+
+.resultContainer3{
+    display: flex;
+    flex-direction: column;
+    margin: -130px auto 20px auto ;
+    justify-content: center;
+    align-items: center;
+    width: 1200px;
 }

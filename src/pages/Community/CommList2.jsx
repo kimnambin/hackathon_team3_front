@@ -129,7 +129,7 @@ export default function CommList2(props) {
                 <div className={styles.main_bottom}>
                   {/* 프로필 사진은 구현해야 함 */}
                   <img className={styles.main_img} alt='' src='./img/profile.jpg' />
-                  <p className={styles.main_p}>{item.writer}</p>
+                  <p className={styles.main_p}>{item.writer}({item.writerId})</p>
                   <p className={styles.p_line}></p>
                   <p className={styles.main_p2}>{item.createDate}</p>
                 </div>

@@ -70,19 +70,21 @@ const StressTest = () => {
         }
     };
     
-     const isPageComplete = () => {
-        const currentButtons = buttonStates.slice(nowPage * 2, (nowPage + 1) * 2);
-        return currentButtons.every(buttonGroup =>
-            buttonGroup.some(button => button.active)
-        );
-    };
+    
 
     //현재 페이지를 보기 위함
     useEffect(() => {
         console.log(`현재 페이지: ${nowPage + 1}`);
     }, []);
 
-   
+    const isPageComplete = () => {
+        const currentButtons = buttonStates.slice(nowPage * 2, (nowPage + 1) * 2);
+        return currentButtons.every(buttonGroup =>
+            buttonGroup.some(button => button.active)
+        );
+    };
+    
+
     // 상태 초기화
     const [testData, setTestData] = useState([]);
     const [buttonStates, setButtonStates] = useState([]);

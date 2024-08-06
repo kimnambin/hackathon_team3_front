@@ -203,6 +203,10 @@ const clickSave = async () => {
     navigate('/login');
     return; // navigate 후 함수 종료
   }
+  if (role === 'Expert') {
+    alert('전문가는 전문가 게시글을 저장할 수 없습니다.');
+    return; 
+  }
 
   setSave(prevSave => {
     const newSaveState = !prevSave;
@@ -215,9 +219,10 @@ const clickSave = async () => {
     await axios.post(`https://team3back.sku-sku.com/post/save/${id}`, {
       token: localStorage.getItem('memberToken'),
     });
+    alert('게시글 저장 완료!!');
   } catch (e) {
     console.error('게시글을 저장하지 못했습니다.', e);
-    alert('게시글을 저장하지 못했습니다.');
+    alert('전문가는 전문가 게시글을 저장할 수 없습니다.');
   }
 };
 
@@ -290,7 +295,7 @@ const clickLike = async () => {
           {/* 닉네임 날짜 수정 삭제 */}
           <div className={styles.view_nick}>
             <img className={styles.view_img} alt='' src='../img/profile.jpg' />
-            <p className={styles.view_pro_p}>{post.writer}  (전문의)</p>
+            <p className={styles.view_pro_p}>{post.writer}({post.writerId})(전문의)</p>
             <p className={styles.view_p2}>{post.createDate}</p>
             <p className={styles.view_p3} onClick={handleEdit}>
             수정
@@ -325,7 +330,7 @@ const clickLike = async () => {
     <div key={comment.id} className={styles.view_show_comment}>
       <div className={styles.view_nick2}>
         <img className={styles.show_comment_img} alt="" src="../img/profile.jpg" />
-        <p className={styles.view_p}>{comment.writer}</p>
+        <p className={styles.view_p}>{comment.writer}({comment.writerId})</p>
         <p className={styles.view_p2}>{comment.createDate}</p>
       </div>
       <div className={styles.view_comment}>

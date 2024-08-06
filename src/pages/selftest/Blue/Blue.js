@@ -37,10 +37,6 @@ export default function Blue() {
     const goToAnxiety = () => navigate('/anxiety');
 
     const 결과보기 = () => {
-        if (!isPageComplete()) {
-            alert("모든 항목을 선택해주세요");
-            return;
-        }
         const queryParams = new URLSearchParams();
         queryParams.set('buttonStates', JSON.stringify(buttonStates));
         navigate(`/blueResult?${queryParams.toString()}`);
@@ -57,10 +53,6 @@ export default function Blue() {
     };
     
     const 다음페이지 = () => {
-        if (!isPageComplete()) {
-            alert("모든 항목을 선택해주세요");
-            return;
-        }
         if (nowPage < Math.ceil(testData.length / 5) - 1) {
             setNowPage(prevPage => {
                 //  스크롤을 맨 위로 이동
@@ -68,13 +60,6 @@ export default function Blue() {
                 return prevPage + 1;
             });
         }
-    };
-
-    const isPageComplete = () => {
-        const currentButtons = buttonStates.slice(nowPage * 4, (nowPage + 1) * 4);
-        return currentButtons.every(buttonGroup =>
-            buttonGroup.some(button => button.active)
-        );
     };
     
     
