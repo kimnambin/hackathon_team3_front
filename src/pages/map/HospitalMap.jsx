@@ -272,7 +272,7 @@ const HospitalMap = () => {
               defaultValue={keyword}
               onChange={handleKeywordChange}
               className={styles.searchBar}
-              placeholder="본인 거주지 입력하기"
+              placeholder="검색어 하고 싶은 장소명을 입력하세요"
             />
           </div>
         </form>

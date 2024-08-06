@@ -78,7 +78,7 @@ const AnxietyResult = () => {
         try {
             await axios.post('https://team3back.sku-sku.com/test/result', {
               token: localStorage.getItem('memberToken'),
-              category,
+              category: 'unrest',
               score : sum
             });
             alert('저장 완료');

@@ -12,7 +12,7 @@ export default function Profile() {
         fetchmycomment , coment , 
         bookMark, fetchmybookmark,
         test, getTestResult,
-        test02 , test03} = UseProfileContext()
+      } = UseProfileContext()
 
     //링크 이동
     const navigate = useNavigate();
@@ -58,7 +58,7 @@ export default function Profile() {
         fetchmycomment();
         fetchmybookmark();
         getTestResult();
-        console.log('불안',test)
+        
         // console.log('스트레스',test02.category)
         // console.log('우울',test03.category)
         //이미지가 있을 시 화면에 보여주기 위함 
@@ -310,23 +310,25 @@ const [nickName, setNickName] = useState('');
                 <div className={styles.Profile_footer_content}>
                     <div className={styles.Profile_mid_content01}>
                         <p className={styles.Profile_mid_content_p}>우울증 자가진단</p>
-                        <p className={styles.Profile_mid_footer_p}>마지막 검사일자 :  
-                            {test && test.category === 'depress' ? new Date(test.testDate).toLocaleDateString() : ''}
-                            </p>
+                        {/* <p className={styles.Profile_mid_footer_p}>마지막 검사일자 :  
+                        {test && test.category === 'depress' ? new Date(test[0].testDate).toLocaleDateString() : ''}
+                            </p> */}
                         <button className={styles.Profile_footer_btn} onClick={goToBlue}>보러가기</button>
                     </div>
                     <div className={styles.Profile_mid_content_line}></div>
                     <div className={styles.Profile_mid_content01}>
                         <p className={styles.Profile_mid_content_p}>스트레스 자가진단</p>
-                        <p className={styles.Profile_mid_footer_p}>마지막 검사일자 :  
-                            {test02 && test02.category === 'stress' ? new Date(test02.testDate).toLocaleDateString() : ''}</p>
+                        {/* <p className={styles.Profile_mid_footer_p}>마지막 검사일자 :  
+                        {test && test.category === 'stress' ? new Date(test.testDate).toLocaleDateString() : ''}
+                            </p> */}
                         <button className={styles.Profile_footer_btn} onClick={goToStress}>보러가기</button>
                     </div>
                     <div className={styles.Profile_mid_content_line}></div>
                     <div className={styles.Profile_mid_content01}>
                     <p className={styles.Profile_mid_content_p}>불안 자가진단</p>
-                    <p className={styles.Profile_mid_footer_p}>마지막 검사일자 :  
-                        {test03 && test03.category === 'unrest' ? new Date(test03.testDate).toLocaleDateString() : ''}</p>
+                    {/* <p className={styles.Profile_mid_footer_p}>마지막 검사일자 :  
+                        {test  ? new Date(test[2].testDate).toLocaleDateString() : ''}
+                        </p> */}
                         <button className={styles.Profile_footer_btn} onClick={goToAnxiety}>보러가기</button>
                     </div>
                 </div>

@@ -56,7 +56,7 @@ const BlueSave = () => {
         <div className={styles2.Profile_top02}>
             
         <p className={styles2.Profile_top02_p1} style={{ marginLeft: '-80px' }}>
-          {show ? show.tester : (post.length > 0 ? show[0].writer : '')}
+          {show ? show.tester : ''}
         </p>
 
             
@@ -64,7 +64,7 @@ const BlueSave = () => {
       </div>
 
       
-        {show &&
+      {show &&
           <div className={styles2.resultContainer3}>
            <BlueTest sum={show.score} />
            <button className={styles2.inspectBut00} onClick={goToBlue}>검사하러 가기</button>
@@ -75,7 +75,7 @@ const BlueSave = () => {
       <>
         <div className={styles2.postList00}>
           <p>
-            <span>유저</span>님이 자가진단 결과의 저장내역이 없습니다. <br />
+            자가진단 결과의 저장내역이 없습니다. <br />
             혹시 마음이 고장난 게 느껴진다면 <br />
             검사를 통하여 내 마음을 들여다 볼 수 있습니다.🍃
           </p>
@@ -85,9 +85,9 @@ const BlueSave = () => {
         </div>
       </>
     )}
+      </div>
+  )
+}
 
-    </div>
-  );
-};
 
 export default BlueSave;

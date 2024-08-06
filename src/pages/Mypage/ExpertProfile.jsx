@@ -88,8 +88,8 @@ export default function Profile() {
       });
       setProfile(response.data);
     } catch (error) {
-      console.error('데이터를 불러오는데 실패했습니다', error);
-      setError('데이터를 불러오지 못했습니다.');
+      console.error('로그인 세션이 만료됐습니다. 다시 로그인 해주세요.', error);
+      setError('로그인 세션이 만료됐습니다. 다시 로그인 해주세요..');
     } finally {
       setLoading(false);
     }
@@ -116,8 +116,7 @@ export default function Profile() {
           const response = await axios.get('https://team3back.sku-sku.com/admin/expertCheck');
           setExpertCheck(response.data);
       } catch (error) {
-          console.error('데이터를 불러오는데 실패했습니다', error);
-          alert('데이터를 불러오지 못했습니다.');
+          console.error('로그인 세션이 만료됐습니다. 다시 로그인 해주세요.', error);
       } finally {
           setLoading(false);
       }
@@ -144,8 +143,7 @@ export default function Profile() {
           setmypost(response.data);
           console.log(`Number of posts: ${response.data.length}`);
       } catch (error) {
-          console.error('데이터를 불러오는데 실패했습니다', error);
-          alert('데이터를 불러오지 못했습니다.');
+          console.error('로그인 세션이 만료됐습니다. 다시 로그인 해주세요.', error);
       }
   };
 
@@ -168,8 +166,7 @@ export default function Profile() {
           });
           setmycomment(response.data);
       } catch (error) {
-          console.error('데이터를 불러오는데 실패했습니다', error);
-          alert('데이터를 불러오지 못했습니다.');
+          console.error('로그인 세션이 만료됐습니다. 다시 로그인 해주세요.', error);
       }
   };
 

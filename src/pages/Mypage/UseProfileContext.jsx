@@ -18,7 +18,7 @@ export default function UseProfileContext() {
           console.log('ggggg', response.data)
         } catch (error) {
           console.error('데이터를 불러오는데 실패했습니다', error);
-          alert('데이터를 불러오지 못했습니다.');
+          alert('세션이 만료 되었습니다. 다시 로그인 해주세요.');
         }
       };
 
@@ -39,7 +39,6 @@ export default function UseProfileContext() {
           setComent(response.data);
         } catch (error) {
           console.error('데이터를 불러오는데 실패했습니다', error);
-          alert('데이터를 불러오지 못했습니다.');
         }
       };
 
@@ -61,7 +60,6 @@ export default function UseProfileContext() {
           setBookMark(response.data);
         } catch (error) {
           console.error('데이터를 불러오는데 실패했습니다', error);
-          alert('데이터를 불러오지 못했습니다.');
         }
       };
 
