@@ -35,7 +35,7 @@ const Manager = () => {
   //전문가인지 확인
   const fetchExpertCheck = async () => {
     try {
-      const response = await axios.get('http://52.78.131.56:8080/admin/expertCheck', {
+      const response = await axios.get('https://team3back.sku-sku.com/admin/expertCheck', {
         
       });
       setExpertCheck(response.data);
@@ -49,7 +49,7 @@ const Manager = () => {
 
   //수락 버튼
   const handleExpertAccept = async id => {
-    const url = `http://52.78.131.56:8080/admin/changeIsExpert/${id}`;
+    const url = `https://team3back.sku-sku.com/admin/changeIsExpert/${id}`;
     console.log(`Sending request to: ${url} with value: true`);
 
     try {
@@ -73,7 +73,7 @@ const Manager = () => {
 
   //거절 버튼
   const handleExpertReject = async (id) => {
-    const url = `http://52.78.131.56:8080/admin/changeIsExpert/${id}`;
+    const url = `https://team3back.sku-sku.com/admin/changeIsExpert/${id}`;
 
     try {
       // 서버에 false 값을 전송

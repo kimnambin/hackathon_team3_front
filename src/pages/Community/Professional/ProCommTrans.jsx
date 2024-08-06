@@ -42,7 +42,7 @@ export default function ProCommTrans() {
   useEffect(() => {
     const getPost = async () => {
       try {
-        const response = await axios.get(`http://52.78.131.56:8080/expert/post/${id}`);
+        const response = await axios.get(`https://team3back.sku-sku.com/expert/post/${id}`);
         const postData = response.data;
 
         setPost(postData);
@@ -73,7 +73,7 @@ export default function ProCommTrans() {
     });
 
     try {
-      await axios.put(`http://52.78.131.56:8080/expert/post/${id}`, {
+      await axios.put(`https://team3back.sku-sku.com/expert/post/${id}`, {
         title: newTitle,
         content: newContent,
         token: memberToken, // 토큰을 바디에 포함

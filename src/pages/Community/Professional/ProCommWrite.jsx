@@ -71,7 +71,7 @@ const handleLoginClick = () => {
         return;
     }
     try {   
-        await axios.post('http://52.78.131.56:8080/expert/post', {
+        await axios.post('https://team3back.sku-sku.com/expert/post', {
             title,
             content,
             token: localStorage.getItem('memberToken'),

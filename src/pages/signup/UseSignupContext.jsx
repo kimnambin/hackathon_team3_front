@@ -46,7 +46,7 @@ export default function useSignupContext() {
   const handlePhone = async () => {
     setNum(true);
     try {
-      const response = await axios.post('http://52.78.131.56:8080/check/sendSMS', { phoneNumber: phoneNum });
+      const response = await axios.post('https://team3back.sku-sku.com/check/sendSMS', { phoneNumber: phoneNum });
       if (response.status === 200) {
         alert('SMS 발송 요청이 성공적으로 처리되었습니다.');
         setRandomNum(response.data.randomNumber);  // 서버로부터 랜덤번호를 받아서 상태에 저장
@@ -66,7 +66,7 @@ export default function useSignupContext() {
       const phoneNumStr = String(phoneNum);
       const certifiedStr = String(certified);
 
-      const response = await axios.post('http://52.78.131.56:8080/check/certification', {
+      const response = await axios.post('https://team3back.sku-sku.com/check/certification', {
         phoneNumber: phoneNumStr,
         randomNumber: certifiedStr
       }, {
@@ -96,7 +96,7 @@ const showcheckId = async () => {
   }
 
   try {
-    const response = await axios.get(`http://52.78.131.56:8080/signup/checkId/${userId}`);
+    const response = await axios.get(`https://team3back.sku-sku.com/signup/checkId/${userId}`);
     const message = response.data;
 
     if (typeof message === 'string') {
@@ -133,7 +133,7 @@ const showcheckMsg = async () => {
   }
 
   try {
-    const response = await axios.get(`http://52.78.131.56:8080/signup/checkId/${userId}`);
+    const response = await axios.get(`https://team3back.sku-sku.com/signup/checkId/${userId}`);
 
     // 응답 데이터 로그 출력
     console.log('API 응답 데이터:', response.data);
@@ -234,7 +234,7 @@ const showcheckMsg = async () => {
     }
   
     try {
-      const response = await fetch('http://52.78.131.56:8080/signup/general', {
+      const response = await fetch('https://team3back.sku-sku.com/signup/general', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -140,7 +140,7 @@ const [nickName, setNickName] = useState('');
       }
  
       try {
-          await axios.put('http://52.78.131.56:8080/member/changeName', {
+          await axios.put('https://team3back.sku-sku.com/member/changeName', {
               token: localStorage.getItem('memberToken'),
               nickname: nickName
           });
@@ -179,7 +179,7 @@ const [nickName, setNickName] = useState('');
       return;
     }
     
-    const url = `http://52.78.131.56:8080/member/${id}`; // URL 확인
+    const url = `https://team3back.sku-sku.com/member/${id}`; // URL 확인
     try {
       const response = await axios.get(url, {
         headers: {

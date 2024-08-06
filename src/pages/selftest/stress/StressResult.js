@@ -75,10 +75,10 @@ const StressResult = () => {
     //결과 저장하기
     const saveTest = async() => {
         try {
-            await axios.post('http://52.78.131.56:8080/test/result', {
+            await axios.post('https://team3back.sku-sku.com/test/result', {
               token: localStorage.getItem('memberToken'),
               category,
-              sum
+              score : sum
             });
             alert('저장 완료');
             // window.location.href = '/profile';  

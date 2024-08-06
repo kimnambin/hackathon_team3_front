@@ -77,7 +77,7 @@ export default function Login() {
 
   const submitLogin = async () => {
     try {
-      const response = await axios.post('http://52.78.131.56:8080/login', {
+      const response = await axios.post('https://team3back.sku-sku.com/login', {
         userId: id,
         password: pw
       });
@@ -137,7 +137,7 @@ export default function Login() {
   // admin/login 부분(어디에 어떻게 써야 될지 사실 모르겠음)
   const adminLogin = async () => {
     try {
-      const response = await axios.post('http://52.78.131.56:8080/admin/login', {
+      const response = await axios.post('https://team3back.sku-sku.com/admin/login', {
         Id: adminId,
         Password: adminPw
       }, {

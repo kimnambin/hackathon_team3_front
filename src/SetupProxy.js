@@ -4,7 +4,7 @@ module.exports = function(app) {
     app.use(
         '/signup',
         createProxyMiddleware({
-            target: 'http://52.78.131.56:8080',
+            target: 'https://team3back.sku-sku.com',
             changeOrigin: true,
         })
     );

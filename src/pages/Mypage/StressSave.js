@@ -69,7 +69,7 @@ const BlueSave = () => {
 
         {show &&
           <div className={styles2.resultContainer2}>
-           <StressTemp sum={sum} />
+           <StressTemp sum={show.score} />
            <button className={styles2.inspectBut00} onClick={goTostress}>검사하러 가기</button>
           </div>
         }

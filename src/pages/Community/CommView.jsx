@@ -71,7 +71,7 @@ useEffect(() => {
   useEffect(() => {
     const getPost = async () => {
       try {
-        const response = await axios.get(`http://52.78.131.56:8080/general/post/${id}`);
+        const response = await axios.get(`https://team3back.sku-sku.com/general/post/${id}`);
         const postData = response.data;
 
         // 카테고리 키로 변환
@@ -125,7 +125,7 @@ useEffect(() => {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const response = await axios.get(`http://52.78.131.56:8080/generalpost/comment/${id}`);
+        const response = await axios.get(`https://team3back.sku-sku.com/generalpost/comment/${id}`);
      
         setComments(response.data);
       } catch (err) {
@@ -169,7 +169,7 @@ const handleComent = async () => {
     console.log('전문가 회원이다.');
     try {
       console.log(`내용 : ${content}`);
-      const res = await axios.post(`http://52.78.131.56:8080/generalpost/comment/${id}`, {
+      const res = await axios.post(`https://team3back.sku-sku.com/generalpost/comment/${id}`, {
         token: localStorage.getItem('memberToken'),
         content
       });
@@ -183,7 +183,7 @@ const handleComent = async () => {
     console.log('일반 회원이다.');
     try {
       console.log(`댓글내용 : ${content}`);
-      const res = await axios.post(`http://52.78.131.56:8080/generalpost/comment/${id}`, {
+      const res = await axios.post(`https://team3back.sku-sku.com/generalpost/comment/${id}`, {
         token: localStorage.getItem('memberToken'),
         content
       });
@@ -203,7 +203,7 @@ const handleComent = async () => {
   const postDelete = async () => {
     if (loginId === post.writerId) {
       try {
-        await axios.delete(`http://52.78.131.56:8080/general/post/${id}`, {
+        await axios.delete(`https://team3back.sku-sku.com/general/post/${id}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('memberToken')}` },
         });
   
@@ -245,7 +245,7 @@ const clickSave = async () => {
   });
 
   try {
-    await axios.post(`http://52.78.131.56:8080/post/save/${id}`, {
+    await axios.post(`https://team3back.sku-sku.com/post/save/${id}`, {
       token: localStorage.getItem('memberToken'),
     });
     alert('게시글 저장 완료!!');
@@ -265,7 +265,7 @@ const clickLike = async() => {
   }
 
   try {
-    await axios.post(`http://52.78.131.56:8080/post/like/${id}`, {
+    await axios.post(`https://team3back.sku-sku.com/post/like/${id}`, {
       token: localStorage.getItem('memberToken'),
     });
     window.location.reload();

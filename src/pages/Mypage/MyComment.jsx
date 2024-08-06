@@ -41,7 +41,7 @@ export default function MyComment() {
   const fetchmycomment = async () => {
     const memberToken = localStorage.getItem('memberToken'); // 여기서 가져옴
     try {
-      const response = await axios.get('http://52.78.131.56:8080/post/mycommentposts', {
+      const response = await axios.get('https://team3back.sku-sku.com/post/mycommentposts', {
         headers: {
           Authorization: `Bearer ${memberToken}`
         }

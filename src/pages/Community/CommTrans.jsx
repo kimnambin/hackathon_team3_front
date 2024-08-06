@@ -68,7 +68,7 @@ export default function CommTrans() {
   useEffect(() => {
     const getPost = async () => {
       try {
-        const response = await axios.get(`http://52.78.131.56:8080/general/post/${id}`);
+        const response = await axios.get(`https://team3back.sku-sku.com/general/post/${id}`);
         const postData = response.data;
         const categoryKey = mapCategoryLabelToKey(postData.category);
 
@@ -105,7 +105,7 @@ export default function CommTrans() {
     });
 
     try {
-      await axios.put(`http://52.78.131.56:8080/general/post/${id}`, {
+      await axios.put(`https://team3back.sku-sku.com/general/post/${id}`, {
         title: newTitle,
         content: newContent,
         category: newCategory,

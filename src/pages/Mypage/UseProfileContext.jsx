@@ -9,7 +9,7 @@ export default function UseProfileContext() {
     const fetchmypost = async () => {
         const memberToken = localStorage.getItem('memberToken'); // 여기서 가져옴
         try {
-          const response = await axios.get('http://52.78.131.56:8080/post/myposts', {
+          const response = await axios.get('https://team3back.sku-sku.com/post/myposts', {
             headers: {
               Authorization: `Bearer ${memberToken}`
             }
@@ -31,7 +31,7 @@ export default function UseProfileContext() {
     const fetchmycomment = async () => {
         const memberToken = localStorage.getItem('memberToken'); // 여기서 가져옴
         try {
-          const response = await axios.get('http://52.78.131.56:8080/post/mycommentposts', {
+          const response = await axios.get('https://team3back.sku-sku.com/post/mycommentposts', {
             headers: {
               Authorization: `Bearer ${memberToken}`
             }
@@ -58,7 +58,7 @@ export default function UseProfileContext() {
         }
     
         try {
-          const response = await axios.get('http://52.78.131.56:8080/post/saves', {
+          const response = await axios.get('https://team3back.sku-sku.com/post/saves', {
             headers: {
               Authorization: `Bearer ${memberToken}` // 실제 토큰을 헤더에 설정
             }
@@ -80,7 +80,7 @@ export default function UseProfileContext() {
       const getTestResult = async () => {
         const memberToken = localStorage.getItem('memberToken');
         try {
-          const response = await axios.get('http://52.78.131.56:8080/test/result', {
+          const response = await axios.get('https://team3back.sku-sku.com/test/result', {
             headers: {
               Authorization: `Bearer ${memberToken}`
             }

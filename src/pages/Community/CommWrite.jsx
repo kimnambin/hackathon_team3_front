@@ -55,7 +55,7 @@ export default function ProCommWrite() {
       console.log('제목:', title);
       console.log('내용:', content);
       console.log('카테고리:', selectedCategory);
-      const response = await axios.post('http://52.78.131.56:8080/general/post', {
+      const response = await axios.post('https://team3back.sku-sku.com/general/post', {
         title,
         content,
         category : selectedCategory,

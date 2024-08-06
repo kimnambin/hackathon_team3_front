@@ -79,7 +79,7 @@ export default function Profile() {
       return;
     }
 
-    const url = `http://52.78.131.56:8080/member/${id}`; // URL 확인
+    const url = `https://team3back.sku-sku.com/member/${id}`; // URL 확인
     try {
       const response = await axios.get(url, {
         headers: {
@@ -113,7 +113,7 @@ export default function Profile() {
 
   const fetchExpertCheck = async () => {
       try {
-          const response = await axios.get('http://52.78.131.56:8080/admin/expertCheck');
+          const response = await axios.get('https://team3back.sku-sku.com/admin/expertCheck');
           setExpertCheck(response.data);
       } catch (error) {
           console.error('데이터를 불러오는데 실패했습니다', error);
@@ -136,7 +136,7 @@ export default function Profile() {
   const fetchmypost = async () => {
       const memberToken = localStorage.getItem('memberToken');
       try {
-          const response = await axios.get('http://52.78.131.56:8080/post/myposts', {
+          const response = await axios.get('https://team3back.sku-sku.com/post/myposts', {
               headers: {
                   Authorization: `Bearer ${memberToken}`
               }
@@ -161,7 +161,7 @@ export default function Profile() {
   const fetchmycomment = async () => {
       const memberToken = localStorage.getItem('memberToken');
       try {
-          const response = await axios.get('http://52.78.131.56:8080/post/mycommentposts', {
+          const response = await axios.get('https://team3back.sku-sku.com/post/mycommentposts', {
               headers: {
                   Authorization: `Bearer ${memberToken}`
               }
@@ -206,7 +206,7 @@ const [nickName, setNickName] = useState('');
         }
    
         try {
-            await axios.put('http://52.78.131.56:8080/member/changeName', {
+            await axios.put('https://team3back.sku-sku.com/member/changeName', {
                 token: localStorage.getItem('memberToken'),
                 nickname: nickName
             });

@@ -46,7 +46,7 @@ export default function MyPost() {
     }
 
     try {
-      const response = await axios.get('http://52.78.131.56:8080/post/saves', {
+      const response = await axios.get('https://team3back.sku-sku.com/post/saves', {
         headers: {
           Authorization: `Bearer ${memberToken}` // 실제 토큰을 헤더에 설정
         }

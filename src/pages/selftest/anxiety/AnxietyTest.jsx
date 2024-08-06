@@ -4,6 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 
 export default function AnxietyTest({sum}) {
+
     const [isLogined, setIsLogined] = useState(false);
     const [role, setRole] = useState(null);
     const [post ,setPost] = useState(null); //유저 닉
@@ -31,7 +32,9 @@ export default function AnxietyTest({sum}) {
           setIsLogined(false);
         }
       }, []);
-//================================================================================      
+    
+// ===============================================================================
+    
 
     const lv1 = sum < 10
     const lv2 = sum <=25 && sum > 10
@@ -40,7 +43,7 @@ export default function AnxietyTest({sum}) {
   
    
     return (
-        <div onClick={goToMap}>
+        <div>
             {lv1 && (
                 <div className={styles.resultBox}>
                     <div className={styles.resultText}>
@@ -57,7 +60,7 @@ export default function AnxietyTest({sum}) {
                     </div>
                     <div className={styles.resultIntro}>
                         <p>
-                            현재 <span className={styles.resultHighlight}>'{post}'</span>님은 <span className={styles.resultHighlight}>{sum}점 </span>으로 
+                            현재 '{post}'님은 <span className={styles.resultHighlight}>{sum}</span>으로 
                             현재 불안하지 않은 상태입니다.👒  
                             <img src={process.env.PUBLIC_URL + "/imges/cloudcloud.png"} alt="" /> <br />
                         </p>
@@ -87,7 +90,7 @@ export default function AnxietyTest({sum}) {
                     </div>
                     <div className={styles.resultIntro}>
                         <p>
-                            현재 <span className={styles.resultHighlight}>'{post}'</span>님은 <span className={styles.resultHighlight}>{sum}</span>으로 
+                            현재 '{post}'님은 <span className={styles.resultHighlight}>{sum}</span>으로 
                             가벼운 불안 상태에 있어 보입니다.  
                             <img src={process.env.PUBLIC_URL + "/imges/cloud.png"} alt="" /> <br />
                             <span>불안을 전환할 수 있는 활동을 하는 것을 추천드립니다.🎸 </span>
@@ -118,7 +121,7 @@ export default function AnxietyTest({sum}) {
                     </div>
                     <div className={styles.resultIntro}>
                         <p>
-                            현재 <span className={styles.resultHighlight}>'{post}'</span>님은 <span className={styles.resultHighlight}>{sum}</span>으로 
+                            현재 '{post}'님은 <span className={styles.resultHighlight}>{sum}</span>으로 
                             상당한 정도의 불안 상태로 나타납니다.   
                             <img src={process.env.PUBLIC_URL + "/imges/cloud.png"} alt="" /> <br />
                             이를 극복하기 위한 노력이 필요하다고 여겨집니다. <br />
@@ -150,7 +153,7 @@ export default function AnxietyTest({sum}) {
                     </div>
                     <div className={styles.resultIntro}>
                         <p>
-                            현재 <span className={styles.resultHighlight}>'{post}'</span>님은 <span className={styles.resultHighlight}>{sum}</span>으로 
+                            현재 '{post}'님은 <span className={styles.resultHighlight}>{sum}</span>으로 
                             심각한 불안 상태에 있어 보입니다.  
                             <img src={process.env.PUBLIC_URL + "/imges/cloud.png"} alt="" /> <br />
                             <span>가능한 한 빨리 전문가의 도움을 받으십시오.🚑 </span>

@@ -36,7 +36,7 @@ export const CategoryProvider = ({ children }) => {
   // 일반인 게시글
   const getCategoryData = async (categoryKey, order) => {
     try {
-      const response = await axios.get(`http://52.78.131.56:8080/general/postall/${categoryKey}/${order}`);
+      const response = await axios.get(`https://team3back.sku-sku.com/general/postall/${categoryKey}/${order}`);
       if (response.data && response.data.length > 0) {
         setData(response.data);
         setNoData(null);
@@ -66,7 +66,7 @@ export const CategoryProvider = ({ children }) => {
   // 전문가 게시글
   const getProData = async (order2) => {
     try {
-      const response = await axios.get(`http://52.78.131.56:8080/expert/postall/${order2}`);
+      const response = await axios.get(`https://team3back.sku-sku.com/expert/postall/${order2}`);
       if (response.data && response.data.length > 0) {
         setProData(response.data);
         setNoData(null);

@@ -69,7 +69,7 @@ const BlueSave = () => {
 
         {show &&
           <div className={styles2.resultContainer2}>
-           <AnxietyTest sum={sum} />
+           <AnxietyTest sum={show.score} />
            <button className={styles2.inspectBut00} onClick={goToAnxiety}>검사하러 가기</button>
           </div>
         }

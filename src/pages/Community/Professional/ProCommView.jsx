@@ -20,10 +20,6 @@ export default function ProCommView() {
   const [save ,setSave] = useState(false); //게시글 저장
   const [loginId , setLoginId] = useState(''); //현재 로그인 한 아이디 보기용
 
-  const goToMain = () => { navigate('/') };
-  const goToComm = () => { navigate('/comm_list') };
-  const goToPro = () => { navigate('/pro_comm_list') };
-
   //끄적이기 로그인 여부 확인 계속 true 상태, 오류 잡아야 됨
   const [isLogined, setIsLogined] = useState(false);
   
@@ -85,7 +81,7 @@ useEffect(() => {
   useEffect(() => {
   const fetchPost = async () => {
     try {
-      const response = await axios.get(`http://52.78.131.56:8080/expert/post/${id}`, {
+      const response = await axios.get(`https://team3back.sku-sku.com/expert/post/${id}`, {
         // headers: { Authorization: `Bearer ${memberToken}` },
       });
       const postData = response.data;
@@ -106,7 +102,7 @@ useEffect(() => {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const response = await axios.get(`http://52.78.131.56:8080/expertpost/comment/${id}`);
+        const response = await axios.get(`https://team3back.sku-sku.com/expertpost/comment/${id}`);
      
         setComments(response.data);
       } catch (err) {
@@ -144,25 +140,14 @@ const handleComent = async () => {
     return; // navigate 후 함수 종료
   }
 
-  if (role === 'EXPERT') {
+  if (role === 'Expert') {
     console.log('전문가 회원이다.');
-    try {
-      console.log(`내용 : ${content}`);
-      const res = await axios.post(`http://52.78.131.56:8080/expertpost/comment/${id}`, {
-        token: localStorage.getItem('memberToken'),
-        content
-      });
-      alert('댓글 등록!!');
-      window.location.reload();
-    } catch (error) {
-      console.error('데이터를 전송하는데 실패했습니다', error);
-      alert('데이터를 전송하지 못했습니다.');
-    }
+    alert('전문가 게시글엔 전문가가 댓글을 달 수 없습니다.')
   } else {
     console.log('일반 회원이다.');
     try {
       console.log(`댓글내용 : ${content}`);
-      const res = await axios.post(`http://52.78.131.56:8080/generalpost/comment/${id}`, {
+      const res = await axios.post(`https://team3back.sku-sku.com/generalpost/comment/${id}`, {
         token: localStorage.getItem('memberToken'),
         content
       });
@@ -193,7 +178,7 @@ const postDelete = async () => {
   
   if (post.writerId === loginId) {
     try {
-      await axios.delete(`http://52.78.131.56:8080/expert/post/${post.id}`, {
+      await axios.delete(`https://team3back.sku-sku.com/expert/post/${post.id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('memberToken')}` },
       });
       alert('게시글이 성공적으로 삭제되었습니다.');
@@ -227,7 +212,7 @@ const clickSave = async () => {
   });
 
   try {
-    await axios.post(`http://52.78.131.56:8080/post/save/${id}`, {
+    await axios.post(`https://team3back.sku-sku.com/post/save/${id}`, {
       token: localStorage.getItem('memberToken'),
     });
     alert('게시글 저장 완료!!');
@@ -246,7 +231,7 @@ const clickLike = async () => {
   }
 
   try {
-    await axios.post(`http://52.78.131.56:8080/post/like/${id}`, {
+    await axios.post(`https://team3back.sku-sku.com/post/like/${id}`, {
       token: localStorage.getItem('memberToken'),
     });
     window.location.reload();
@@ -274,7 +259,7 @@ const clickLike = async () => {
 
       <div className={styles.view_right}>
         <div className={styles.CommList_right_header}>
-          <p className={styles.header_p}><span onClick={goToMain}>홈</span> <FaAngleRight /> <span onClick={goToComm}>커뮤니티</span> <FaAngleRight /> <span onClick={goToComm}>고민 끄적끄적</span> <FaAngleRight /></p>
+          <p className={styles.header_p}>홈 <FaAngleRight /> 커뮤니티 <FaAngleRight /> 고민 끄적끄적 <FaAngleRight /></p>
           <p className={styles.header_p2}>전문의 정보 끄적끄적</p>
         </div>
 
@@ -336,29 +321,8 @@ const clickLike = async () => {
         </div>
 
         {/* 댓글 보이는 부분 */}
-        {comments.map((comment , index) => (
-        comment.role === 'EXPERT' ? (
-    <div key={comment.id} className={styles.view_show_comment}>
-       {/* 맨 위의 댓글에만 이미지를 보이게 */}
-    {index === 0 && comment.role === 'EXPERT' && (
-      <img
-        src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAfCAYAAAAfrhY5AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAECSURBVHgB7ZW9DcIwEIXPQJF0TibIBjBC2IANYAQ2ASZgBUYIHR3eADaAdOnCs5QCRbbiM/kp8CdFJ/lOeedz/EIUCARGQHCKpZQrhI0lfXwDYrAgHnshxNaUqOtaIVyIwYx4FJ65QcUVd+Q+4kYw8pI84IpnpkV8B0saQXxnWcdFkDkxcb5qeHmGHT5seYy+wLGvicHctTCO47vuwZZHY1kURVRV1ZX6FE/T9IyQd9WhgRwNlGjgRg50nrl2NYx0R47YTMhY61KEBrSlfo9cQuSAqNDYqVWu77yiIUmS5IWHZadtfjGZsvHz8cUb4WnEwRMP28/7Ep925z5/skDgP/kAvWlK4ab/5gwAAAAASUVORK5CYII='
-        alt='Expert Icon'
-        className={styles.view_show_icon}
-      />
-    )}
-      <div className={styles.view_nick2}>
-        
-        <img className={styles.show_comment_img} alt='' src='../img/profile.jpg' />
-        <p className={styles.pronick_comment}>{comment.writer}</p>
-        <p className={styles.view_p2}>{comment.createDate}</p>
-      </div>
-        <div className={styles.view_comment}>
-          {comment.content}
-        </div>
-     
-    </div>
-    ) : (
+        {comments.map((comment, index) => (
+  comment.role === 'MEMBER' ? (
     <div key={comment.id} className={styles.view_show_comment}>
       <div className={styles.view_nick2}>
         <img className={styles.show_comment_img} alt="" src="../img/profile.jpg" />
@@ -369,7 +333,7 @@ const clickLike = async () => {
         {comment.content}
       </div>
     </div>
-  )
+  ) : null
 ))}
 
   </div>

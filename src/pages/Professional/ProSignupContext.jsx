@@ -50,7 +50,7 @@ export default function ProSignupContext() {
     const handlePhone = async () => {
       setNum(true);
       try {
-        const response = await axios.post('http://52.78.131.56:8080/check/sendSMS', { phoneNumber: phoneNum });
+        const response = await axios.post('https://team3back.sku-sku.com/check/sendSMS', { phoneNumber: phoneNum });
         if (response.status === 200) {
           alert('SMS 발송 요청이 성공적으로 처리되었습니다.');
           setRandomNum(response.data.randomNumber);  // 서버로부터 랜덤번호를 받아서 상태에 저장
@@ -69,7 +69,7 @@ export default function ProSignupContext() {
 
     const checkNum = async () => {
       try {
-        const response = await axios.post('http://52.78.131.56:8080/check/certification', {
+        const response = await axios.post('https://team3back.sku-sku.com/check/certification', {
           phoneNumber: String(phoneNum),
           randomNumber: String(certified)
         }, {
@@ -102,7 +102,7 @@ export default function ProSignupContext() {
       }
 
       try {
-        const response = await axios.get(`http://52.78.131.56:8080/signup/checkId/${userId}`);
+        const response = await axios.get(`https://team3back.sku-sku.com/signup/checkId/${userId}`);
         const message = response.data;
 
         if (typeof message === 'string') {
@@ -143,7 +143,7 @@ export default function ProSignupContext() {
       }
 
       try {
-        const response = await axios.get(`http://52.78.131.56:8080/signup/checkId/${userId}`);
+        const response = await axios.get(`https://team3back.sku-sku.com/signup/checkId/${userId}`);
         console.log('API 응답 데이터:', response.data);
         const data = response.data;
 
@@ -268,7 +268,7 @@ export default function ProSignupContext() {
             console.warn('Image is not a File object');
           }
       
-          const response = await fetch('http://52.78.131.56:8080/signup/Expert', {
+          const response = await fetch('https://team3back.sku-sku.com/signup/Expert', {
             method: 'POST',
             body: formData, // FormData 객체를 body로 설정
           });
