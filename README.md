@@ -66,13 +66,31 @@
 ### 👨🏼‍💻 팀원소개
 
 <div style="text-align: center;">
-
-| [ME]김남빈 <a href="https://github.com/kimnambin"> <img style="width: 16px; height: 16px; margin-right: 20px;" alt="깃허브" src="https://cdn-icons-png.flaticon.com/512/25/25231.png"></a> | 김범준 <a href="https://github.com/beom-jun"> <img style="width: 16px; height: 16px; margin-right: 20px;" alt="깃허브" src="https://cdn-icons-png.flaticon.com/512/25/25231.png"></a> | 오한솔 <a href="https://github.com/ohansoln"> <img style="width: 16px; height: 16px; margin-right: 20px;" alt="깃허브" src="https://cdn-icons-png.flaticon.com/512/25/25231.png"></a> | 노주희 <a href="https://github.com/JuheeNoh1237"> <img style="width: 16px; height: 16px; margin-right: 20px;" alt="깃허브" src="https://cdn-icons-png.flaticon.com/512/25/25231.png"></a> | 오유진 <a href="https://github.com/5u0612"> <img style="width: 16px; height: 16px; margin-right: 20px;" alt="깃허브" src="https://cdn-icons-png.flaticon.com/512/25/25231.png"></a> |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                               <img style="width: 64px; height: 64px;" src="https://github.com/user-attachments/assets/b3e6f96e-8083-4ddf-a718-519c65468a97">                               |                            <img style="width: 64px; height: 64px;" src="https://github.com/user-attachments/assets/c3169e1c-ae98-4cd3-9502-8ca312368648">                             |                            <img style="width: 64px; height: 64px;" src="https://github.com/user-attachments/assets/c5f7c430-bd4f-46e2-93a8-9113c1c5d0fe">                             |                              <img style="width: 64px; height: 64px;" src="https://github.com/user-attachments/assets/188ed091-b883-4a19-93e6-0521ff48d567">                               |                           <img style="width: 64px; height: 64px;" src="https://github.com/user-attachments/assets/06175ad7-1bd9-4e70-b4a0-3fd2cda871fe">                            |
-|                                                                                         FRONT-END                                                                                          |                                                                                       FRONT-END                                                                                       |                                                                                     UX/UI 디자인                                                                                      |                                                                                         BACK-END                                                                                          |                                                                                      BACK-END                                                                                       |
-
+    <table style="margin: auto;">
+        <tr>
+            <td>[ME]김남빈 <a href="https://github.com/kimnambin"> <img style="width: 16px; height: 16px; margin-right: 20px;" alt="깃허브" src="https://cdn-icons-png.flaticon.com/512/25/25231.png"></a></td>
+            <td>김범준 <a href="https://github.com/beom-jun"> <img style="width: 16px; height: 16px; margin-right: 20px;" alt="깃허브" src="https://cdn-icons-png.flaticon.com/512/25/25231.png"></a></td>
+            <td>오한솔 <a href="https://github.com/ohansoln"> <img style="width: 16px; height: 16px; margin-right: 20px;" alt="깃허브" src="https://cdn-icons-png.flaticon.com/512/25/25231.png"></a></td>
+            <td>노주희 <a href="https://github.com/JuheeNoh1237"> <img style="width: 16px; height: 16px; margin-right: 20px;" alt="깃허브" src="https://cdn-icons-png.flaticon.com/512/25/25231.png"></a></td>
+            <td>오유진 <a href="https://github.com/5u0612"> <img style="width: 16px; height: 16px; margin-right: 20px;" alt="깃허브" src="https://cdn-icons-png.flaticon.com/512/25/25231.png"></a></td>
+        </tr>
+        <tr>
+            <td><img style="width: 64px; height: 64px;" src="https://github.com/user-attachments/assets/b3e6f96e-8083-4ddf-a718-519c65468a97"></td>
+            <td><img style="width: 64px; height: 64px;" src="https://github.com/user-attachments/assets/c3169e1c-ae98-4cd3-9502-8ca312368648"></td>
+            <td><img style="width: 64px; height: 64px;" src="https://github.com/user-attachments/assets/c5f7c430-bd4f-46e2-93a8-9113c1c5d0fe"></td>
+            <td><img style="width: 64px; height: 64px;" src="https://github.com/user-attachments/assets/188ed091-b883-4a19-93e6-0521ff48d567"></td>
+            <td><img style="width: 64px; height: 64px;" src="https://github.com/user-attachments/assets/06175ad7-1bd9-4e70-b4a0-3fd2cda871fe"></td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">FRONT-END</td>
+            <td style="text-align: center;">FRONT-END</td>
+            <td style="text-align: center;">UX/UI 디자인</td>
+            <td style="text-align: center;">BACK-END</td>
+            <td style="text-align: center;">BACK-END</td>
+        </tr>
+    </table>
 </div>
+
 <br>
 
 ---
